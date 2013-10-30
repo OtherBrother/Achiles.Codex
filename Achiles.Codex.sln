@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6339A9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Achiles.Codex.Web", "Achiles.Codex.Web\Achiles.Codex.Web.csproj", "{CFEAAA60-3D7E-46E3-B004-E48282088A36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Achiles.Codex.Web.Tests", "Achiles.Codex.Web.Tests\Achiles.Codex.Web.Tests.csproj", "{33593D3B-E525-4902-B833-87E2E3F9F4F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{CFEAAA60-3D7E-46E3-B004-E48282088A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFEAAA60-3D7E-46E3-B004-E48282088A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFEAAA60-3D7E-46E3-B004-E48282088A36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33593D3B-E525-4902-B833-87E2E3F9F4F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33593D3B-E525-4902-B833-87E2E3F9F4F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33593D3B-E525-4902-B833-87E2E3F9F4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33593D3B-E525-4902-B833-87E2E3F9F4F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
