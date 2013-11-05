@@ -1,0 +1,18 @@
+﻿@using Achiles.Codex.Web.Misc
+@model IEnumerable<Achiles.Codex.Web.Models.AttributeInfo>
+
+<h2>Attributes</h2>
+<p class="text-muted">
+    Attributes – numerical values of certain physical or mental qualities. Attributes are used in all combat and similar (turn based or instant) situations.
+</p>
+<hr />
+<div class="row">
+    @foreach (var attr in Model)
+    {
+        <div class="col-md-2">@attr.Name</div>
+        <div class="col-md-8">@attr.Description</div>
+        <div class="col-md-2">
+            <a href="@Url.Action("Edit","Attributes", new { Id = attr.Id.CleanId()})" class="pull-right"><span class="glyphicon glyphicon-edit"></span></a>
+        </div>
+        }
+</div>
