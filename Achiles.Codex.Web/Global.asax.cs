@@ -13,6 +13,7 @@ namespace Achiles.Codex.Web
     {
         protected void Application_Start()
         {
+            Bootstrapper.Initialise();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
