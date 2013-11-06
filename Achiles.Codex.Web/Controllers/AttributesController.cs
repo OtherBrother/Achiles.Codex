@@ -38,7 +38,23 @@ namespace Achiles.Codex.Web.Controllers
 
         public ActionResult Edit(string id)
         {
+            ViewBag.Saved = false;
             var model = _session.Load<AttributeInfo>(id);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Edit(AttributeInfo attribute)
+        {
+            var model = _session.Load<AttributeInfo>(attribute.Id);
+            ViewBag.Saved = false;
+            if (model != null)
+            {
+                model.Description = attribute.Description;
+                _session.Store(model);
+                _session.SaveChanges();
+                ViewBag.Saved = true;
+            }
+
             return View(model);
         }
     }
