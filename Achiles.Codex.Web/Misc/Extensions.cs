@@ -14,5 +14,13 @@ namespace Achiles.Codex.Web.Misc
                 return id;
             else return id.Substring(separatorIndex);
         }
+
+        public static string Fit(this string str, int maxLen)
+        {
+            if (string.IsNullOrEmpty(str) || str.Length <= maxLen)
+                return str;
+
+            return string.Concat(str.Substring(0, maxLen), "..");
+        }
     }
 }

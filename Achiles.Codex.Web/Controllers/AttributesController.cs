@@ -23,7 +23,7 @@ namespace Achiles.Codex.Web.Controllers
         // GET: /Attributes/
         public ActionResult Index()
         {
-            var model = _session.Query<AttributeInfo>().ToArray();
+            var model = _session.Query<AttributeInfo>().ToArray().OrderBy(a=>a.Order);
             return View(model);
         }
 
@@ -35,27 +35,30 @@ namespace Achiles.Codex.Web.Controllers
             _session.SaveChanges();
             return View();
         }
-
+        
+        [HttpGet]
         public ActionResult Edit(string id)
         {
             ViewBag.Saved = false;
             var model = _session.Load<AttributeInfo>(id);
             return View(model);
         }
+        
         [HttpPost]
-        public ActionResult Edit(AttributeInfo attribute)
+        public ActionResult Edit(AttributeInfo model)
         {
-            var model = _session.Load<AttributeInfo>(attribute.Id);
+            
             ViewBag.Saved = false;
-            if (model != null)
+            var entity = _session.Load<AttributeInfo>(model.Id);
+            if (entity != null)
             {
-                model.Description = attribute.Description;
-                _session.Store(model);
+                entity.Description = model.Description;
+                entity.Order = model.Order;
                 _session.SaveChanges();
                 ViewBag.Saved = true;
             }
 
-            return View(model);
+            return View(entity);
         }
     }
 }

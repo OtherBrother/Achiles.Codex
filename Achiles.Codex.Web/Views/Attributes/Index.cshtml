@@ -6,13 +6,15 @@
     Attributes – numerical values of certain physical or mental qualities. Attributes are used in all combat and similar (turn based or instant) situations.
 </p>
 <hr />
-<div class="row">
+
     @foreach (var attr in Model)
     {
-        <div class="col-md-2">@attr.Name</div>
-        <div class="col-md-8">@attr.Description</div>
-        <div class="col-md-2">
-            <a href="@Url.Action("Edit","Attributes", new { Id = attr.Id.CleanId()})" class="pull-right"><span class="glyphicon glyphicon-edit"></span></a>
+        <div class="row">
+            <div class="col-md-3">
+                <a href="@Url.Action("Edit","Attributes", new { Id = attr.Id.CleanId()})"><span class="glyphicon glyphicon-edit"></span></a>
+                @attr.Name
+            </div>
+            
         </div>
         }
-</div>
+

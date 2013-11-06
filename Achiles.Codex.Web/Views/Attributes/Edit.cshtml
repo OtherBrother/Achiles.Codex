@@ -14,5 +14,9 @@
         <label for="Description">Attribute description</label>
         <textarea rows="10" class="form-control" id="Description" name="Description" placeholder="Enter attribute description">@HttpUtility.HtmlEncode(Model.Description)</textarea>
     </div>
+    <div class="form-group">
+        <label for="Order">Order</label>
+        <input class="form-control" type="text" id="Order" name="Order" value="@Model.Order" />
+    </div>
     <button type="submit" class="btn btn-default">Save</button>
 </form>
