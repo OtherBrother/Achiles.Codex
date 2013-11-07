@@ -21,10 +21,14 @@ namespace Achiles.Codex.Web.Controllers
         }
 
         // GET: /Attributes/
-        public ActionResult Index()
+        public ActionResult Index(bool deleted = false)
         {
             var model = _session.Query<AttributeInfo>().ToArray().OrderBy(a=>a.Order);
-            return View(model);
+            
+            if (deleted)
+                ViewBag.DeletedMessage = "Oh well, attribute is gone now..";
+
+            return View("Index",model);
         }
 
         public ActionResult Init()
@@ -63,6 +67,18 @@ namespace Achiles.Codex.Web.Controllers
             }
 
             return View(entity);
+        }
+
+        public ActionResult Delete(string id)
+        {
+            var entity = _session.Load<AttributeInfo>(id);
+            if (entity != null)
+            {
+                _session.Delete(entity);
+                _session.SaveChanges();
+                
+            }
+            return RedirectToAction("Index", new { Deleted = true});
         }
     }
 }
