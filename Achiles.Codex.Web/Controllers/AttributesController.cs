@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Achiles.Codex.Web.Models;
 using Achiles.Codex.Web.Services;
@@ -9,7 +6,7 @@ using Raven.Client;
 
 namespace Achiles.Codex.Web.Controllers
 {
-    public class AttributesController : Controller
+    public class AttributesController : BaseController
     {
         private readonly IDocumentSession _session;
         private readonly IInitDataService _initDataService;
@@ -23,28 +20,28 @@ namespace Achiles.Codex.Web.Controllers
         // GET: /Attributes/
         public ActionResult Index(bool deleted = false)
         {
+            ViewBag.Title = "Attributes";
             var model = _session.Query<AttributeInfo>().ToArray().OrderBy(a=>a.Order);
-            
-            if (deleted)
-                ViewBag.DeletedMessage = "Oh well, attribute is gone now..";
 
-            return View("Index",model);
+            if (deleted)
+                Success("Oh well..","Attribute is gone now..");
+
+            return View(model);
         }
 
         public ActionResult Init()
         {
             _initDataService.InitData();
-            ViewBag.Result = "Done";
-            
             _session.SaveChanges();
+            
+            Success("Success!", "Initialization done");
+            
             return View();
         }
         
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            ViewBag.Saved = false;
-            
             var model = _session.Load<AttributeInfo>(id);
             @ViewBag.Title = string.Format("Edit {0}", model.Name);
             return View(model);
@@ -53,9 +50,6 @@ namespace Achiles.Codex.Web.Controllers
         [HttpPost]
         public ActionResult Edit(AttributeInfo model)
         {
-            
-            ViewBag.Saved = false;
-
             var entity = _session.Load<AttributeInfo>(model.Id);
             if (entity != null)
             {
@@ -63,7 +57,8 @@ namespace Achiles.Codex.Web.Controllers
                 entity.Description = model.Description;
                 entity.Order = model.Order;
                 _session.SaveChanges();
-                ViewBag.Saved = true;
+
+                Success("Hooray!", "Now it is much better.");
             }
 
             return View(entity);

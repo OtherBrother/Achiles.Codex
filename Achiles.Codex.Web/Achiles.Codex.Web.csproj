@@ -198,6 +198,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Misc\BaseController.cs" />
     <Compile Include="Misc\Extensions.cs" />
     <Compile Include="Models\Attribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

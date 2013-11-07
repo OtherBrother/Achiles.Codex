@@ -34,6 +34,18 @@
           </div>
     </div>
     <div class="container body-content">
+        @if (ViewBag.UserInterfaceMessages != null)
+        {
+            <p>
+            @foreach (UserInterfaceMessage msg in ViewBag.UserInterfaceMessages)
+            {
+                <p class="alert alert-@msg.MessageType.ToString().ToLower()">
+                    @if (!string.IsNullOrEmpty(msg.StrongMessage))
+                    {<strong>@msg.StrongMessage</strong>}&nbsp;@msg.Message
+                </p>
+            }
+            </p>
+        }
         @RenderBody()
         <hr />
         <footer>
