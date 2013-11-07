@@ -40,7 +40,9 @@ namespace Achiles.Codex.Web.Controllers
         public ActionResult Edit(string id)
         {
             ViewBag.Saved = false;
+            
             var model = _session.Load<AttributeInfo>(id);
+            @ViewBag.Title = string.Format("Edit {0}", model.Name);
             return View(model);
         }
         
@@ -49,9 +51,11 @@ namespace Achiles.Codex.Web.Controllers
         {
             
             ViewBag.Saved = false;
+
             var entity = _session.Load<AttributeInfo>(model.Id);
             if (entity != null)
             {
+                @ViewBag.Title = string.Format("Edit {0}", entity.Name);
                 entity.Description = model.Description;
                 entity.Order = model.Order;
                 _session.SaveChanges();

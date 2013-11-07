@@ -5,16 +5,31 @@
 <p class="text-muted">
     Attributes – numerical values of certain physical or mental qualities. Attributes are used in all combat and similar (turn based or instant) situations.
 </p>
-<hr />
 
-    @foreach (var attr in Model)
-    {
-        <div class="row">
-            <div class="col-md-3">
-                <a href="@Url.Action("Edit","Attributes", new { Id = attr.Id.CleanId()})"><span class="glyphicon glyphicon-edit"></span></a>
-                @attr.Name
-            </div>
-            
+<hr />
+<p >
+    <a class="btn btn-default" href="#">
+        <span class="glyphicon glyphicon-plus-sign"></span> New attribute
+    </a>
+</p>
+@foreach (var attr in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">@attr.Name<span class="badge pull-right">@attr.Id.CleanId().ToUpper()</span></div>
+        <div class="panel-body">
+            @if (string.IsNullOrEmpty((attr.Description)))
+            {<p class="alert alert-warning">
+                Attribute has no description. Go ahead and <a href="@Url.Action("Edit", "Attributes", new {Id = attr.Id.CleanId()})"> add one</a>!
+            </p>}
+            else
+            {@attr.Description}
         </div>
-        }
+        <div class="panel-footer">
+            <div class="btn-group">
+                <a class="btn btn-default" href="@Url.Action("Edit", "Attributes", new {Id = attr.Id.CleanId()})" title="Edit attribute"><i class="glyphicon glyphicon-edit"></i></a>
+                <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-remove" title="Delete attribute"> </i></a>
+            </div>
+        </div>
+    </div>
+}
 
