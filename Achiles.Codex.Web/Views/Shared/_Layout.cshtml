@@ -21,12 +21,32 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Codex", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Codex <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Index","Attributes")"><span class="glyphicon glyphicon-edit"></span> Attributes</a></li>
+                            <li class="divider"></li>
+                            <li><a href="@Url.Action("Init","Attributes")"><span class="glyphicon glyphicon-warning-sign"></span> Initialize database</a></li>
+                        </ul>
+                    </li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
-        </div>
+          </div>
     </div>
     <div class="container body-content">
+        @if (ViewBag.UserInterfaceMessages != null)
+        {
+            <p>
+            @foreach (UserInterfaceMessage msg in ViewBag.UserInterfaceMessages)
+            {
+                <p class="alert alert-@msg.MessageType.ToString().ToLower()">
+                    @if (!string.IsNullOrEmpty(msg.StrongMessage))
+                    {<strong>@msg.StrongMessage</strong>}&nbsp;@msg.Message
+                </p>
+            }
+            </p>
+        }
         @RenderBody()
         <hr />
         <footer>

@@ -1,0 +1,75 @@
+﻿
+@using Achiles.Codex.Web.Misc
+@model IEnumerable<Achiles.Codex.Web.Models.AttributeInfo>
+
+<h2>Attributes</h2>
+<p class="text-muted">
+    Attributes – numerical values of certain physical or mental qualities. Attributes are used in all combat and similar (turn based or instant) situations.
+</p>
+<hr />
+<p >
+    <a class="btn btn-default" href="#">
+        <span class="glyphicon glyphicon-plus-sign"></span> New attribute
+    </a>
+</p>
+@foreach (var attr in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">@attr.Name<span class="badge pull-right">@attr.Id.CleanId().ToUpper()</span></div>
+        <div class="panel-body">
+            @if (string.IsNullOrEmpty((attr.Description)))
+            {<p class="alert alert-warning">
+                 Attribute has no description. Go ahead and <a href="@Url.Action("Edit", "Attributes", new {Id = attr.Id.CleanId()})"> add one</a>!
+             </p>}
+            else
+            {@attr.Description}
+        </div>
+        @if (User.IsContributor())
+        {
+            <div class="panel-footer">
+                <div class="btn-group">
+                    <a class="btn btn-default" href="@Url.Action("Edit", "Attributes", new {Id = attr.Id.CleanId()})" title="Edit attribute"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a class="btn btn-default" href="#" title="Delete attribute" data-toggle="modal" data-target="#confirm_delete" data-delete-id="@attr.Id" data-delete-name="@attr.Name"><i class="glyphicon glyphicon-remove"> </i></a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<div class="modal fade" id="confirm_delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">You are about to delete attribute..</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete <strong id="attribute_name">asd</strong> attribute? Data will be irretrievably lost!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No way!</button>
+                <a class="btn btn-danger" id="delete_link">Sure, go ahead!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        var nameContainer = $('#attribute_name');
+        var deleteLink = $('#delete_link');
+
+        $('#confirm_delete').on('show.bs.modal', function(a, b) {
+            var $this = $(a.relatedTarget);
+            var id = $this.attr('data-delete-id');
+            var name = $this.attr('data-delete-name');
+
+            nameContainer.text(name);
+            deleteLink.attr('href', '@Url.Action("Delete", "Attributes")' + '/' + id );
+
+        });
+
+    </script>
+}
