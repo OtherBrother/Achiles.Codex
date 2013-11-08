@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using Achiles.Codex.Web.Models;
+using Achiles.Codex.Model;
 using Achiles.Codex.Web.Services;
 using Raven.Client;
 
