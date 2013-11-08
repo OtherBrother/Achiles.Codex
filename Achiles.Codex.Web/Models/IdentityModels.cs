@@ -28,7 +28,7 @@ namespace Achiles.Codex.Web.Models
         }
     }
 
-    public class RavenUserStore : IUserStore<ApplicationUser>, IUserLoginStore<ApplicationUser>
+    public class RavenUserStore : IUserStore<ApplicationUser>, IUserLoginStore<ApplicationUser>, IUserRoleStore<ApplicationUser>
     {
         private readonly IDocumentSession _session;
 
@@ -112,6 +112,38 @@ namespace Achiles.Codex.Web.Models
         {
             return Task.Factory.StartNew(x => _session.Query<ApplicationUser>()
                 .FirstOrDefault(u => u.Providers.Any(p => p.ProviderKey == login.ProviderKey)), null);
+        }
+
+        public Task AddToRoleAsync(ApplicationUser user, string role)
+        {
+            return Task.Factory.StartNew(() => user.Roles.Add(
+                new IdentityUserRole()
+                {
+                    Role = new IdentityRole()
+                    {
+                        Name = role
+                    },
+                }));
+        }
+
+        public Task RemoveFromRoleAsync(ApplicationUser user, string role)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                var r = user.Roles.FirstOrDefault(x => x.Role.Name == role);
+                if (r != null)
+                    user.Roles.Remove(r);
+            });
+        }
+
+        public Task<IList<string>> GetRolesAsync(ApplicationUser user)
+        {
+            return Task.Factory.StartNew(() => (IList<string>)user.Roles.Select(r => r.Role.Name).ToList());
+        }
+
+        public Task<bool> IsInRoleAsync(ApplicationUser user, string role)
+        {
+            return Task.Factory.StartNew(() => user.Roles.Any(r => r.Role.Name == role));
         }
     }
 }

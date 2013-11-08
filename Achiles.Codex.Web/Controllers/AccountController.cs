@@ -266,6 +266,10 @@ namespace Achiles.Codex.Web.Controllers
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+#if DEBUG
+                    await UserManager.AddToRoleAsync(user.Id, "Admin");
+                    await UserManager.AddToRoleAsync(user.Id, "Contributor");
+#endif
                     if (result.Succeeded)
                     {
                         await SignInAsync(user, isPersistent: false);
