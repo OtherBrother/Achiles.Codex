@@ -8,11 +8,32 @@
         @Html.HiddenFor(m=>m.Id)
         <label for="Description">Attribute description</label>
         <textarea rows="10" class="form-control" id="Description" name="Description" placeholder="Enter attribute description">@HttpUtility.HtmlEncode(Model.Description)</textarea>
+        
     </div>
     <div class="form-group">
         <label for="Order">Order</label>
         <input class="form-control" type="text" id="Order" name="Order" value="@Model.Order" />
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
-    <a class="btn btn-default" href="@Url.Action("Index", "Attributes")">Back to the list</a>
-</form>
+        <a class="btn btn-default" href="@Url.Action("Index", "Attributes")">Back to the list</a>
+    </form>
+
+
+@section scripts
+{
+        @Scripts.Render("~/Scripts/bootstrap-wysihtml5.js")
+
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                $('#Description').wysihtml5();
+                console.log($('#Description'));
+            });
+
+            
+    </script>
+}
+
+@section Head
+{
+    <link href="@Url.Content("~/Content/bootstrap-wysihtml5-0.0.2.css")" rel="stylesheet" type="text/css" />  
+}
