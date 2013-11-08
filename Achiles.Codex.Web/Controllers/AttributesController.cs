@@ -40,6 +40,7 @@ namespace Achiles.Codex.Web.Controllers
         }
         
         [HttpGet]
+        [Authorize(Roles = "Contributor")]
         public ActionResult Edit(string id)
         {
             var model = _session.Load<AttributeInfo>(id);

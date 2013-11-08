@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 
 namespace Achiles.Codex.Web.Misc
@@ -21,6 +22,11 @@ namespace Achiles.Codex.Web.Misc
                 return str;
 
             return string.Concat(str.Substring(0, maxLen), "..");
+        }
+
+        public static bool IsContributor(this IPrincipal user)
+        {
+            return user.IsInRole("Contributor");
         }
     }
 }
