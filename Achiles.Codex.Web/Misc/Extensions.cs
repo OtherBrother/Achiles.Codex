@@ -28,5 +28,9 @@ namespace Achiles.Codex.Web.Misc
         {
             return user.IsInRole("Contributor");
         }
+        public static bool IsAdmin(this IPrincipal user)
+        {
+            return user.IsInRole("Admin");
+        }
     }
 }

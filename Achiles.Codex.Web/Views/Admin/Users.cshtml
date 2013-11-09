@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Achiles.Codex.Web.Models.ApplicationUser>
+<h2>Codex Users</h2>           
+<hr/>
+
+<table class="table-responsive" style="width:100%">
+    <thead>
+        <tr>
+            <th>User name</th>
+            <th>Provider</th>
+            <th>Roles</th>
+            <th class="pull-right">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@string.Join(",", user.Providers.Select(x => x.LoginProvider))</td>
+                <td>@string.Join(",",user.Roles.Select(x=>x.Role.Name))</td>
+                <td>
+                    <div class="btn-group pull-right">
+                        <i class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</i>
+                        <i class="btn btn-warning"><span class="glyphicon glyphicon-ban-circle"></span> Ban</i>
+                        <i class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</i>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

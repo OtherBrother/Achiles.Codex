@@ -8,14 +8,6 @@ namespace Achiles.Codex.Web.Controllers
 {
     public class AttributesController : CodexItemController
     {
-
-        private readonly IInitDataService _initDataService;
-
-        public AttributesController(IInitDataService initDataService)
-        {
-            _initDataService = initDataService;
-        }
-
         public ActionResult Index(bool deleted = false)
         {
             ViewBag.Title = "Attributes";
@@ -25,17 +17,6 @@ namespace Achiles.Codex.Web.Controllers
                 Success("Oh well..","Attribute is gone now..");
 
             return View(model);
-        }
-         
-        [Authorize(Roles = "Admin")]
-        public ActionResult Init()
-        {
-            _initDataService.InitData();
-            DocumentSession.SaveChanges();
-            
-            Success("Success!", "Initialization done");
-            
-            return View();
         }
         
         [HttpGet]
