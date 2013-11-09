@@ -1,11 +1,13 @@
 using System.Web.Mvc;
 using Achiles.Codex.Web.Controllers;
+using Achiles.Codex.Web.Indexes;
 using Achiles.Codex.Web.Models;
 using Achiles.Codex.Web.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.Practices.Unity;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Indexes;
 using Unity.Mvc4;
 
 namespace Achiles.Codex.Web
@@ -51,9 +53,11 @@ namespace Achiles.Codex.Web
             {
                 ConnectionStringName = "RavenHQ"
             };
-            
             documentStore.Initialize();
+            IndexCreation.CreateIndexes(typeof(TagStatisticsIndex).Assembly, documentStore);
+            
             return documentStore;
+            
         }
 
     }

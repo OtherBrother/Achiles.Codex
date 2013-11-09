@@ -13,8 +13,38 @@
         <label for="Order">Order</label>
         <input class="form-control" type="text" id="Order" name="Order" value="@Model.Order" />
     </div>
+    <div class="form-group">
+        
+        <select multiple data-role="tagsinput" id="Tags" name="Tags">
+            @foreach (var tag in Model.Tags)
+            {
+                 <option value="@tag">tag</option>
+            }
+        </select>
+</div>
     <button type="submit" class="btn btn-primary">Save</button>
     <a class="btn btn-default" href="@Url.Action("Index", "Attributes")">Back to the list</a>
+    
+    
 </form>
 
 <hr />
+@section Head
+{
+    @Styles.Render("~/Content/bootstrap-tagsinput.css");
+}
+@section scripts
+{
+    @Scripts.Render("~/Scripts/bootstrap-tagsinput.js");
+    
+    <script type="text/javascript">
+        $('#Tags').tagsinput({
+            typeahead: {
+                source: function (query) {
+                    return $.get('@Url.Action("Suggest", "Tags")'+ '/'+ query);
+                }
+            }
+        });
+        
+    </script>
+}
