@@ -49,6 +49,7 @@ namespace Achiles.Codex.Web.Controllers
         }
         
         [HttpPost]
+        [Authorize(Roles = "Contributor")]
         public ActionResult Edit(AttributeInfo model)
         {
             var entity = _session.Load<AttributeInfo>(model.Id);
@@ -64,7 +65,7 @@ namespace Achiles.Codex.Web.Controllers
 
             return View(entity);
         }
-
+        [Authorize(Roles = "Contributor")]
         public ActionResult Delete(string id)
         {
             var entity = _session.Load<AttributeInfo>(id);
