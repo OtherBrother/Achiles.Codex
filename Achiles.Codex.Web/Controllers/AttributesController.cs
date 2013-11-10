@@ -48,6 +48,7 @@ namespace Achiles.Codex.Web.Controllers
         }
         
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(AttributeInfo model)
         {
             var entity = _session.Load<AttributeInfo>(model.Id);

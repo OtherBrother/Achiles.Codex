@@ -15,24 +15,20 @@
         <input class="form-control" type="text" id="Order" name="Order" value="@Model.Order" />
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
-        <a class="btn btn-default" href="@Url.Action("Index", "Attributes")">Back to the list</a>
+    <a class="btn btn-default" href="@Url.Action("Index", "Attributes")">Back to the list</a>
     </form>
 
 
 @section scripts
 {
-        @Scripts.Render("~/Scripts/bootstrap-wysihtml5.js")
+        @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
 
         <script type="text/javascript">
-            $( document ).ready(function() {
-                $('#Description').wysihtml5();
-                console.log($('#Description'));
-            });
-
-    </script>
+            tinymce.init({ selector: 'textarea.form-control', entity_encoding : "raw" });
+        </script>
 }
 
 @section Head
 {
-    <link href="@Url.Content("~/Content/bootstrap-wysihtml5-0.0.2.css")" rel="stylesheet" type="text/css" />  
+    
 }
