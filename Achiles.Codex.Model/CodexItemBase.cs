@@ -6,7 +6,6 @@ namespace Achiles.Codex.Model
     {
         private List<string> _relatedCodexItems = new List<string>();
         
-        public string IconUrl { get; set; }
         public string ArticleId { get; set; }
 
         public List<string> RelatedCodexItems

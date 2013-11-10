@@ -40,6 +40,12 @@
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
+                <form class="navbar-form navbar-left" role="search" method="POST" action="@Url.Action("Results","Search")"  >
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" name="query" value="@Request["query"]">
+                    </div>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
             </div>
           </div>
     </div>

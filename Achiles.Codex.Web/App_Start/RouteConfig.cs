@@ -16,6 +16,9 @@ namespace Achiles.Codex.Web
             routes.MapRoute("Tags", "tags/suggest/{query}",
                 defaults: new { controller = "Tags", Action = "Suggest" }
             );
+            routes.MapRoute("Search", "search/{query}",
+                defaults: new { controller = "Search", Action = "Results" }
+            );
 
             routes.MapRoute(
                 name: "Default",

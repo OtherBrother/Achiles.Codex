@@ -26,6 +26,10 @@ namespace Achiles.Codex.Web.Indexes
                                            from t in i.Tags
                                            select new TagStatistics { Tag = t, Count = 1 });
             
+            AddMap<Rule>(items => from i in items
+                                     from t in i.Tags
+                                     select new TagStatistics { Tag = t, Count = 1 });
+            
             AddMap<Talent>(items => from i in items
                                            from t in i.Tags
                                            select new TagStatistics { Tag = t, Count = 1 });
