@@ -1,4 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.Core.Objects;
+using Achiles.Codex.Web.Controllers;
+using Achiles.Codex.Web.Indexes;
 
 namespace Achiles.Codex.Web.Models
 {
@@ -59,5 +63,17 @@ namespace Achiles.Codex.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class SearchResultsViewModel
+    {
+        public SearchResultsViewModel()
+        {
+            Suggestions = new string[0];
+        }
+
+        public IEnumerable<SearchIndex.Result> Results { get; set; }
+        public string[] Suggestions { get; set; }
+        public SearchQuery OriginalQuery { get; set; }
     }
 }

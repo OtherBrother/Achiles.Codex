@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Security.Principal;
 using System.Web;
 
@@ -31,6 +29,7 @@ namespace Achiles.Codex.Web.Misc
         public static bool IsAdmin(this IPrincipal user)
         {
             return user.IsInRole("Admin");
+            
         }
     }
 }

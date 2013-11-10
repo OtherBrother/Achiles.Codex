@@ -26,7 +26,7 @@ namespace Achiles.Codex.Web.Tests
         [TestMethod]
         public void given_fulltext_term_query_object_constructs_correctly()
         {
-            const string queryStr = "?search string";
+            const string queryStr = "!search string";
 
             var query = new SearchQuery(queryStr);
 
@@ -61,7 +61,7 @@ namespace Achiles.Codex.Web.Tests
         [TestMethod]
         public void given_full_text_search__multiple_type_query_with_multiple_tags_object_contructs_correctly()
         {
-            const string queryStr = "?attribute,skill:search string@tag1,tag2";
+            const string queryStr = "!attribute,skill:search string@tag1,tag2";
 
             var query = new SearchQuery(queryStr);
 
@@ -89,25 +89,44 @@ namespace Achiles.Codex.Web.Tests
             }
 
         [TestMethod]
-        public void given_weird_string_object_constructs_correctly()
+        public void given_weird_string_exception_is_not_thrown()
         {
-            const string queryStr = "saD?sd:asd@tag";
+            const string queryStr = "saD!sd:asd@tag";
 
             var query = new SearchQuery(queryStr);
 
             Assert.AreEqual("asd", query.SearchTerm);
-            Assert.AreEqual("saD?sd", query.SearchObjects[0]);
+            Assert.AreEqual(0, query.SearchObjects.Count());
             Assert.AreEqual("tag", query.SearchTags[0]);
             Assert.IsFalse(query.IsFullText);
         }
 
         [TestMethod]
-        public void given_weirder_string_object_constructs_correctly()
+        public void given_weirder_string_exception_is_not_thrown()
         {
-            const string queryStr = "asd@sa:D?sd:asd@tag:sd";
+            const string queryStr = "asd@sa:D!sd:asd@tag:sd";
             var query = new SearchQuery(queryStr);
             Assert.IsNotNull(query);
             Console.WriteLine(query.ToString());
+        }
+        [TestMethod]
+        public void object_type_mappings_work()
+        {
+            const string queryStr = "at,ar,rs,sk,r,cs,m,s,cg,ncg,eq:search string";
+            var query = new SearchQuery(queryStr);
+
+            Assert.IsTrue(query.SearchObjects.Contains("attribute"));
+            Assert.IsTrue(query.SearchObjects.Contains("article"));
+            Assert.IsTrue(query.SearchObjects.Contains("ruleset"));
+            Assert.IsTrue(query.SearchObjects.Contains("skill"));
+            Assert.IsTrue(query.SearchObjects.Contains("combatskill"));
+            Assert.IsTrue(query.SearchObjects.Contains("miscellaneousitem"));
+            Assert.IsTrue(query.SearchObjects.Contains("handweapon"));
+            Assert.IsTrue(query.SearchObjects.Contains("rangedweapon"));
+            Assert.IsTrue(query.SearchObjects.Contains("shield"));
+            Assert.IsTrue(query.SearchObjects.Contains("ammo"));
+            Console.WriteLine(query.ToString());
+
         }
     }
 }

@@ -206,6 +206,7 @@
     <Compile Include="Indexes\TagIndex.cs" />
     <Compile Include="Misc\BaseController.cs" />
     <Compile Include="Misc\Extensions.cs" />
+    <Compile Include="Misc\PredicateBuilder.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

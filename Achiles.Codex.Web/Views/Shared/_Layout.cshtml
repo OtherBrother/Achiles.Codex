@@ -42,9 +42,9 @@
                 @Html.Partial("_LoginPartial")
                 <form class="navbar-form navbar-left" role="search" method="POST" action="@Url.Action("Results","Search")"  >
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" name="query" value="@Request["query"]">
+                        <input type="text" class="form-control" placeholder="Search codex" id="query" name="query" value="@Request["query"]" >
                     </div>
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    <button type="submit" class="btn btn-default" id="search" data-toggle="popover" data-original-title="Search tips"><span class="glyphicon glyphicon-search"></span></button>
                 </form>
             </div>
           </div>
@@ -53,13 +53,13 @@
         @if (ViewBag.UserInterfaceMessages != null)
         {
             <p>
-            @foreach (UserInterfaceMessage msg in ViewBag.UserInterfaceMessages)
-            {
-                <p class="alert alert-@msg.MessageType.ToString().ToLower()">
-                    @if (!string.IsNullOrEmpty(msg.StrongMessage))
-                    {<strong>@msg.StrongMessage</strong>}&nbsp;@msg.Message
-                </p>
-            }
+                @foreach (UserInterfaceMessage msg in ViewBag.UserInterfaceMessages)
+                {
+                    <p class="alert alert-@msg.MessageType.ToString().ToLower()">
+                        @if (!string.IsNullOrEmpty(msg.StrongMessage))
+                        {<strong>@msg.StrongMessage</strong>}&nbsp;@msg.Message
+                    </p>
+                }
             </p>
         }
         @RenderBody()
@@ -68,9 +68,31 @@
             <p>&copy; @DateTime.Now.Year - Achiles.Codex</p>
         </footer>
     </div>
+    <div id="search_help" class="hidden">
+        <p><span class="label label-info">Full-text search</span> <strong>!</strong><i>query</i></p>
+        <p>Searches in description instead of in a codex item name.</p>
+        <p><span class="label label-info">Tag search</span> <i>query</i><strong>@@tag1,tag2</strong></p>
+        <p>Search only for items that have specified tags.</p>
+        <p><span class="label label-info">Type search</span> <strong>article,skill:</strong><i>query</i></p>
+        Searches only in specific types of codex items. You can use follwing abbreviations: <i>at, ar, rs, sk, r, cs, m, s,t, cg, ncg, eq.</i> 
+        
+        <p>You can combine all the rules together, like in folowing example lets search in a description of all <i>comabt gear</i> codex items tagged as <i>experimental</i> containing keywords <i>super awsome</i></p>
+        <p><span class="label label-default">Example</span><br/><a href="@Url.Action("Results", "Search", new { query = "!cg:super awsome@@experimental" })">!cg:super&nbsp;awsome@@experimental</a></p>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+
+        $('#search').popover(
+        {
+            'delay': { show: 1000, hide: 100 },
+            'html':true,
+            'content' :$('#search_help').html(),
+            'placement': 'bottom',
+            'trigger': 'hover'
+            });
+    </script>
 </body>
 </html>

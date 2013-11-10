@@ -1,2 +1,34 @@
-﻿@model IEnumerable<Achiles.Codex.Web.Indexes.SearchIndex.Result>
+﻿@using Achiles.Codex.Web.Controllers
+@model Achiles.Codex.Web.Models.SearchResultsViewModel
+
+<h2>Search results</h2>
+
+@if (!Model.Results.Any())
+{
+    <p class="alert alert-warning">My oh my! Codex does not contain what you looking for..
+    @if (Model.Suggestions.Any())
+    {
+        <br />
+        <span>Perhaps you meant:</span>
+        foreach (var suggestion in Model.Suggestions)
+        {
+            <br />
+            <a href="@Url.Action("Results", "Search", new { query = (Model.OriginalQuery.IsFullText ? SearchQuery.FullTextSymbol : string.Empty) + suggestion })">@suggestion</a>
+        }
+    }
+    </p>
+}
+else
+{
+    <table class="table-striped" style="width:100%">
+        @foreach (var result in Model.Results)
+        {
+            <tr>
+                <td>@result.Name</td>
+                <td>@result.ObjectType</td>
+                <td>@string.Join(",",result.Tags)</td>
+            </tr>
+        }
+    </table>
+}
 

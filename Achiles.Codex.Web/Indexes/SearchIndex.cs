@@ -20,7 +20,7 @@ namespace Achiles.Codex.Web.Indexes
             #region Article and Rule-set
             AddMap<Article>(items => from i in items select new Result
             {
-                ObjectType = "Article",
+                ObjectType = "article",
                 Id= i.Id,
                 Name = i.Name,
                 Description = i.Description,
@@ -31,7 +31,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<RuleSet>(items => from i in items
                                      select new Result
                                      {
-                                         ObjectType = "RuleSet",
+                                         ObjectType = "ruleset",
                                          Id = i.Id,
                                          Name = i.Name,
                                          Description = i.Description,
@@ -44,7 +44,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<Talent>(items => from i in items
                                      select new Result
                                      {
-                                         ObjectType = "Talent",
+                                         ObjectType = "talent",
                                          Id = i.Id,
                                          Name = i.Name,
                                          Description = i.Description,
@@ -55,7 +55,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<AttributeInfo>(items => from i in items
                                     select new Result
                                     {
-                                        ObjectType = "Attribute",
+                                        ObjectType = "attribute",
                                         Id = i.Id,
                                         Name = i.Name,
                                         Description = i.Description,
@@ -66,7 +66,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<Rule>(items => from i in items
                                            select new Result
                                            {
-                                               ObjectType = "Rule",
+                                               ObjectType = "rule",
                                                Id = i.Id,
                                                Name = i.Name,
                                                Description = i.Description,
@@ -77,7 +77,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<Skill>(items => from i in items
                                   select new Result
                                   {
-                                      ObjectType = "Skill",
+                                      ObjectType = "skill",
                                       Id = i.Id,
                                       Name = i.Name,
                                       Description = i.Description,
@@ -87,7 +87,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<CombatSkill>(items => from i in items
                                    select new Result
                                    {
-                                       ObjectType = "CombatSkill",
+                                       ObjectType = "combatskill",
                                        Id = i.Id,
                                        Name = i.Name,
                                        Description = i.Description,
@@ -100,7 +100,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<HandWeapon>(items => from i in items
                                          select new Result
                                          {
-                                             ObjectType = "HandWeapon",
+                                             ObjectType = "handweapon",
                                              Id = i.Id,
                                              Name = i.Name,
                                              Description = i.Description,
@@ -111,7 +111,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<HandWeapon>(items => from i in items
                                         select new Result
                                         {
-                                            ObjectType = "HandWeapon",
+                                            ObjectType = "handweapon",
                                             Id = i.Id,
                                             Name = i.Name,
                                             Description = i.Description,
@@ -121,7 +121,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<MiscellaneousItem>(items => from i in items
                                         select new Result
                                         {
-                                            ObjectType = "MiscellaneousItem",
+                                            ObjectType = "miscellaneousitem",
                                             Id = i.Id,
                                             Name = i.Name,
                                             Description = i.Description,
@@ -132,7 +132,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<RangedWeapon>(items => from i in items
                                                select new Result
                                                {
-                                                   ObjectType = "RangedWeapon",
+                                                   ObjectType = "rangedweapon",
                                                    Id = i.Id,
                                                    Name = i.Name,
                                                    Description = i.Description,
@@ -142,7 +142,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<Ammo>(items => from i in items
                                           select new Result
                                           {
-                                              ObjectType = "Ammo",
+                                              ObjectType = "ammo",
                                               Id = i.Id,
                                               Name = i.Name,
                                               Description = i.Description,
@@ -153,21 +153,21 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<Shield>(items => from i in items
                                   select new Result
                                   {
-                                      ObjectType = "Shield",
+                                      ObjectType = "shield",
                                       Id = i.Id,
                                       Name = i.Name,
                                       Description = i.Description,
                                       IconUrl = i.IconUrl,
                                       Tags = i.Tags
                                   });
-#endregion
+            #endregion
 
             #region Armor
 
             AddMap<HeadArmor>(items => from i in items
                                     select new Result
                                     {
-                                        ObjectType = "HeadArmor",
+                                        ObjectType = "headarmor",
                                         Id = i.Id,
                                         Name = i.Name,
                                         Description = i.Description,
@@ -177,7 +177,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<BodyArmor>(items => from i in items
                                        select new Result
                                        {
-                                           ObjectType = "BodyArmor",
+                                           ObjectType = "bodyarmor",
                                            Id = i.Id,
                                            Name = i.Name,
                                            Description = i.Description,
@@ -188,7 +188,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<ArmArmor>(items => from i in items
                                        select new Result
                                        {
-                                           ObjectType = "ArmArmor",
+                                           ObjectType = "armarmor",
                                            Id = i.Id,
                                            Name = i.Name,
                                            Description = i.Description,
@@ -198,7 +198,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<LegArmor>(items => from i in items
                                       select new Result
                                       {
-                                          ObjectType = "LegArmor",
+                                          ObjectType = "legarmor",
                                           Id = i.Id,
                                           Name = i.Name,
                                           Description = i.Description,
@@ -208,15 +208,19 @@ namespace Achiles.Codex.Web.Indexes
             #endregion
 
             Indexes.Add(x=>x.Description, FieldIndexing.Analyzed);
-            Indexes.Add(x => x.IconUrl, FieldIndexing.No);
-            Indexes.Add(x => x.Id, FieldIndexing.No);
-            Indexes.Add(x => x.ObjectType, FieldIndexing.Default);
+            Indexes.Add(x => x.IconUrl, FieldIndexing.NotAnalyzed);
+            Indexes.Add(x => x.Id, FieldIndexing.NotAnalyzed);
+            Indexes.Add(x => x.ObjectType, FieldIndexing.NotAnalyzed);
             Indexes.Add(x => x.Name, FieldIndexing.Analyzed);
-            Indexes.Add(x => x.Tags, FieldIndexing.Default);
+            Indexes.Add(x => x.Tags, FieldIndexing.NotAnalyzed);
 
             Analyzers.Add(x => x.Description, "Lucene.Net.Analysis.Standard.StandardAnalyzer");
-            Analyzers.Add(x => x.Name, "Lucene.Net.Analysis.Standard.StandardAnalyzer");
 
-        }
+            Store(x=>x.Id, FieldStorage.Yes);
+            Store(x => x.Tags, FieldStorage.Yes);
+            Store(x => x.ObjectType, FieldStorage.Yes);
+            Store(x => x.IconUrl, FieldStorage.Yes);
+            
+            }
     }
 }
