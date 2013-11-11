@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Security.Principal;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Achiles.Codex.Web.Misc
@@ -20,6 +21,20 @@ namespace Achiles.Codex.Web.Misc
                 return str;
 
             return string.Concat(str.Substring(0, maxLen), "..");
+        
+        }
+
+        public static string GetQueryHighlightedinContext(this string content, string query, int contextWords = 5)
+        {
+            if (string.IsNullOrEmpty(query) || string.IsNullOrEmpty(content))
+                return null;
+
+            var rxRipContext = new Regex(string.Format(@"(?<ctx>(\w*\W){{0,{1}}}(?<q>{0})(\w*\W){{0,{1}}})", query, contextWords),RegexOptions.ExplicitCapture);
+            
+            var matches = rxRipContext.Match(content);
+            if (!matches.Success) return null;
+            var context = matches.Groups["ctx"];
+            return context.Value.Replace(query, string.Format("<strong>{0}</strong>",query));
         }
 
         public static bool IsContributor(this IPrincipal user)
