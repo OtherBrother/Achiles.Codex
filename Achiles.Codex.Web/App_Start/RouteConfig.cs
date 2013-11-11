@@ -13,11 +13,19 @@ namespace Achiles.Codex.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("Tags", "tags/suggest/{query}",
+                defaults: new { controller = "Tags", Action = "Suggest" }
+            );
+            routes.MapRoute("Search", "search/{query}",
+                defaults: new { controller = "Search", Action = "Results" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            
         }
     }
 }

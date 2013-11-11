@@ -1,5 +1,5 @@
 ﻿@using Achiles.Codex.Web.Misc
-@model Achiles.Codex.Web.Models.AttributeInfo
+@model Achiles.Codex.Model.AttributeInfo
 
 <h2>Edit @Model.Name</h2>
 
@@ -7,28 +7,46 @@
     <div class="form-group">
         @Html.HiddenFor(m=>m.Id)
         <label for="Description">Attribute description</label>
-        <textarea rows="10" class="form-control" id="Description" name="Description" placeholder="Enter attribute description">@HttpUtility.HtmlEncode(Model.Description)</textarea>
+        <textarea rows="10" class="form-control" id="Description" name="Description" placeholder="Enter attribute description">@Model.Description</textarea>
         
     </div>
     <div class="form-group">
         <label for="Order">Order</label>
         <input class="form-control" type="text" id="Order" name="Order" value="@Model.Order" />
     </div>
+    <div class="form-group">
+        
+        <select multiple data-role="tagsinput" id="Tags" name="Tags">
+            @foreach (var tag in Model.Tags)
+            {
+                 <option value="@tag">tag</option>
+            }
+        </select>
+</div>
     <button type="submit" class="btn btn-primary">Save</button>
     <a class="btn btn-default" href="@Url.Action("Index", "Attributes")">Back to the list</a>
+    
+    
     </form>
 
 
-@section scripts
-{
-        @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
-
-        <script type="text/javascript">
-            tinymce.init({ selector: 'textarea.form-control', entity_encoding : "raw" });
-        </script>
-}
-
 @section Head
 {
-    
+    @Styles.Render("~/Content/bootstrap-tagsinput.css");
+}
+@section scripts
+{
+    @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
+    @Scripts.Render("~/Scripts/bootstrap-tagsinput.js");    
+    <script type="text/javascript">
+            tinymce.init({ selector: 'textarea.form-control', entity_encoding : "raw" });
+	    $('#Tags').tagsinput({
+            typeahead: {
+                source: function (query) {
+                    return $.get('@Url.Action("Suggest", "Tags")'+ '/'+ query);
+                }
+            }
+        });
+        
+    </script>
 }
