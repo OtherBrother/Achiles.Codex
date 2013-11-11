@@ -28,13 +28,14 @@ namespace Achiles.Codex.Web.Misc
         {
             if (string.IsNullOrEmpty(query) || string.IsNullOrEmpty(content))
                 return null;
+            var sanitizedContent = Regex.Replace(content, @"<[^>]+>|&nbsp;", "").Trim();
+            var rxRipContext = new Regex(string.Format(@"(?<ctx>(\w*\W){{0,{1}}}(?<q>{0})(\w*\W){{0,{1}}})", query, contextWords),RegexOptions.ExplicitCapture | RegexOptions.IgnoreCase);
 
-            var rxRipContext = new Regex(string.Format(@"(?<ctx>(\w*\W){{0,{1}}}(?<q>{0})(\w*\W){{0,{1}}})", query, contextWords),RegexOptions.ExplicitCapture);
-            
-            var matches = rxRipContext.Match(content);
+            var matches = rxRipContext.Match(sanitizedContent);
             if (!matches.Success) return null;
             var context = matches.Groups["ctx"];
-            return context.Value.Replace(query, string.Format("<strong>{0}</strong>",query));
+            return Regex.Replace(context.Value, string.Format("(?<q>{0})", query), "<strong>${q}</strong>", RegexOptions.IgnoreCase);
+            //return context.Value.Replace(query, string.Format("<strong>{0}</strong>",query));
         }
 
         public static bool IsContributor(this IPrincipal user)
