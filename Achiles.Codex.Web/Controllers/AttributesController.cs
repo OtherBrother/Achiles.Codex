@@ -29,7 +29,7 @@ namespace Achiles.Codex.Web.Controllers
         }
         
         [HttpPost]
-        [Authorize(Roles = "Contributor")]
+        [ValidateInput(false)]
         public ActionResult Edit(AttributeInfo input)
         {
             var entity = DocumentSession.Load<AttributeInfo>(input.Id);

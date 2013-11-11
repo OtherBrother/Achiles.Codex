@@ -8,6 +8,7 @@
         @Html.HiddenFor(m=>m.Id)
         <label for="Description">Attribute description</label>
         <textarea rows="10" class="form-control" id="Description" name="Description" placeholder="Enter attribute description">@HttpUtility.HtmlEncode(Model.Description)</textarea>
+        
     </div>
     <div class="form-group">
         <label for="Order">Order</label>
@@ -26,19 +27,20 @@
     <a class="btn btn-default" href="@Url.Action("Index", "Attributes")">Back to the list</a>
     
     
-</form>
+    </form>
 
-<hr />
+
 @section Head
 {
     @Styles.Render("~/Content/bootstrap-tagsinput.css");
 }
 @section scripts
 {
-    @Scripts.Render("~/Scripts/bootstrap-tagsinput.js");
-    
+    @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
+    @Scripts.Render("~/Scripts/bootstrap-tagsinput.js");    
     <script type="text/javascript">
-        $('#Tags').tagsinput({
+            tinymce.init({ selector: 'textarea.form-control', entity_encoding : "raw" });
+	    $('#Tags').tagsinput({
             typeahead: {
                 source: function (query) {
                     return $.get('@Url.Action("Suggest", "Tags")'+ '/'+ query);
