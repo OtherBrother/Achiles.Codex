@@ -1,0 +1,77 @@
+﻿@using Achiles.Codex.Web.Controllers
+@using Achiles.Codex.Web.Misc
+@model Achiles.Codex.Web.Models.SearchResultsViewModel
+<h2>Search results</h2>
+
+@if (!Model.Results.Any())
+{
+    <p class="alert alert-warning">My oh my! Codex does not contain what you looking for..
+        @if (Model.Suggestions.Any())
+        {
+            <br />
+            <span>Perhaps you meant:</span>
+            foreach (var suggestion in Model.Suggestions)
+            {
+                <br />
+                <a href="@Url.Action("Results", "Search", new {query = (Model.OriginalQuery.IsFullText ? SearchQuery.FullTextSymbol : string.Empty) + suggestion})">@suggestion</a>
+            }
+        }
+    </p>
+}
+else
+{
+
+    <ul class="nav nav-tabs" id="results">
+        @foreach (var type in Model.Results.GroupBy(x => x.ObjectType).OrderBy(x => x.Key))
+        {
+            <li><a href="#@type.Key" data-toggle="tab">@type.Key  <span class="badge">@type.Count()</span></a></li>
+        }
+    </ul>
+    <div class="tab-content" id="content">
+        @foreach (var type in Model.Results.GroupBy(x => x.ObjectType).OrderBy(x => x.Key))
+{
+    <div class="tab-pane fade" id="@type.Key">
+        <div style="margin-top: 20px;">
+            <div class="list-group">
+                @foreach (var result in type)
+                {
+                    <a class="list-group-item">
+                        <table>
+                            <tr>
+                                <td rowspan="3"><img class="img-circle" style="width: 64px; height: 64px;" src="@(result.IconUrl ?? Url.Content("~/Content/dice.jpg"))" /></td>
+                                <td style="vertical-align: top">
+                                    <h4 class="list-group-item-heading">@result.Name</h4>            
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.Raw(result.Description.GetQueryHighlightedinContext(Model.OriginalQuery.SearchTerm, 10))</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (result.Tags.Any())
+                                    {
+                                        <span class="label label-default">Tags:</span>
+                                        <i>
+                                            @string.Join(",", result.Tags)
+                                        </i>
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+    
+    </div>
+}
+@section scripts{
+        <script type="text/javascript">
+            var resultsTab = $('#results');
+            $('#content').children().first().addClass('in').addClass('active');
+            resultsTab.tab('show');
+        </script>
+}

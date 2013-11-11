@@ -50,8 +50,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TestingTest.cs" />
+    <Compile Include="SearchQueryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Achiles.Codex.Model\Achiles.Codex.Model.csproj">
+      <Project>{0f8604f0-293c-4b3d-b4fe-e3a13592dab4}</Project>
+      <Name>Achiles.Codex.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Achiles.Codex.Web\Achiles.Codex.Web.csproj">
+      <Project>{cfeaaa60-3d7e-46e3-b004-e48282088a36}</Project>
+      <Name>Achiles.Codex.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
