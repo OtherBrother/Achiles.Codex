@@ -14,7 +14,7 @@
         </div>
         <div class="col-xs-2">
             @if (User.IsContributor()) //only contributors can add new attribute
-            {<a class="btn btn-default" href="#">
+            {<a class="btn btn-default" href="#" title="Add new attribute to codex">
                 <span class="glyphicon glyphicon-plus-sign"></span> New attribute
             </a>}
         </div>
@@ -25,11 +25,11 @@
 {
     var attributeID = "attributePanel" + i;
     <div id="@attributeID" class="panel panel-default">
-        <div class="panel-heading"><span class="attributeName">@attr.Name</span><span class="badge pull-right">@attr.Id.CleanId().ToUpper()</span></div>
+        <div class="panel-heading" title="Press to expand"><span class="attributeName">@attr.Name</span><span class="badge pull-right">@attr.Id.CleanId().ToUpper()</span></div>
         <div class="panel-body">
             @if (string.IsNullOrEmpty((attr.Description)))
             {<p class="alert alert-warning">
-                 Attribute has no description. Go ahead and <a href="@Url.Action("Edit", "Attributes", new {Id = attr.Id.CleanId()})"> add one</a>!
+                 Attribute has no description. Go ahead and <a href="@Url.Action("Edit", "Attributes", new {Id = attr.Id.CleanId()})" title=""> add one</a>!
              </p>}
             else
             {@attr.Description}
@@ -69,6 +69,11 @@
 {
     <script type="text/javascript">
 
+        $(document).ready(function(){
+            $(".panel-heading").tooltip();
+            $("a").tooltip();
+        });
+
         var nameContainer = $('#attribute_name');
         var deleteLink = $('#delete_link');
 
@@ -100,7 +105,7 @@
                     $("#attributePanel" + i).show(100);
                 }
             }
-        });
+        });to
 
     </script>
 }
