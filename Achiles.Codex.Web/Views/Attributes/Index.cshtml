@@ -7,10 +7,11 @@
     Attributes – numerical values of certain physical or mental qualities. Attributes are used in all combat and similar (turn based or instant) situations.
 </p>
 <hr />
-<p >
-    <a class="btn btn-default" href="#">
-        <span class="glyphicon glyphicon-plus-sign"></span> New attribute
-    </a>
+<p>
+    @if (User.IsContributor()) //only contributors can add new attribute
+    {<a class="btn btn-default" href="#">
+            <span class="glyphicon glyphicon-plus-sign"></span> New attribute
+    </a>}
 </p>
 @foreach (var attr in Model)
 {
@@ -69,6 +70,13 @@
             nameContainer.text(name);
             deleteLink.attr('href', '@Url.Action("Delete", "Attributes")' + '/' + id );
 
+        });
+
+        $(".panel-body").hide(0); //close all panels
+        $(".panel-footer").hide(0); //close all panel footers
+        $(".panel-heading").click(function () { //display panel contents on click
+            $(this).parent().children(".panel-body").toggle(400);
+            $(this).parent().children(".panel-footer").toggle(400);
         });
 
     </script>
