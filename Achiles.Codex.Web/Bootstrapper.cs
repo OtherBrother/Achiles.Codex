@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Web.Mvc;
 using Achiles.Codex.Web.Controllers;
 using Achiles.Codex.Web.Indexes;
@@ -51,8 +52,10 @@ namespace Achiles.Codex.Web
         {
             var documentStore = new DocumentStore
             {
-                ConnectionStringName = "RavenHQ"
-            };
+                Url = ConfigurationManager.AppSettings["CodexDbConnectionString"],
+                ApiKey = ConfigurationManager.AppSettings["CodexDbRavenKey"],
+                DefaultDatabase = "Personal-Codex"
+                };
             documentStore.Initialize();
             IndexCreation.CreateIndexes(typeof(TagStatisticsIndex).Assembly, documentStore);
             
