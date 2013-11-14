@@ -8,15 +8,24 @@
 </p>
 <hr />
 <p>
-    @if (User.IsContributor()) //only contributors can add new attribute
-    {<a class="btn btn-default" href="#">
-            <span class="glyphicon glyphicon-plus-sign"></span> New attribute
-    </a>}
+    <div class="row">
+        <div class="col-xs-2">
+            <input type="text" class="form-control" id="filterAttributes" placeholder="fillter">
+        </div>
+        <div class="col-xs-2">
+            @if (User.IsContributor()) //only contributors can add new attribute
+            {<a class="btn btn-default" href="#">
+                <span class="glyphicon glyphicon-plus-sign"></span> New attribute
+            </a>}
+        </div>
+    </div>
 </p>
+@{ var i = 0; }
 @foreach (var attr in Model)
 {
-    <div class="panel panel-default">
-        <div class="panel-heading">@attr.Name<span class="badge pull-right">@attr.Id.CleanId().ToUpper()</span></div>
+    var attributeID = "attributePanel" + i;
+    <div id="@attributeID" class="panel panel-default">
+        <div class="panel-heading"><span class="attributeName">@attr.Name</span><span class="badge pull-right">@attr.Id.CleanId().ToUpper()</span></div>
         <div class="panel-body">
             @if (string.IsNullOrEmpty((attr.Description)))
             {<p class="alert alert-warning">
@@ -35,6 +44,7 @@
             </div>
         }
     </div>
+    i++;
 }
 
 <div class="modal fade" id="confirm_delete">
@@ -77,6 +87,19 @@
         $(".panel-heading").click(function () { //display panel contents on click
             $(this).parent().children(".panel-body").toggle(400);
             $(this).parent().children(".panel-footer").toggle(400);
+        });
+
+        $("#filterAttributes").keyup(function () {
+            var str = $(this).val().toLowerCase();
+            console.log(str);
+            for (var i = 0; i < 5; i++) {
+                var attributeLabel = $("#attributePanel" + i).children(".panel-heading").children(".attributeName").html().toLowerCase();
+                if(attributeLabel.indexOf(str) == -1) {
+                    $("#attributePanel" + i).hide();
+                } else {
+                    $("#attributePanel" + i).show();
+                }
+            }
         });
 
     </script>
