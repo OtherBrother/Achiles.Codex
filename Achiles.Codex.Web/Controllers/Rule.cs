@@ -5,10 +5,4 @@
         public Gear? Gear { get; set; }
     }
 
-    public enum Gear
-    { 
-        Cobat,
-        NonComabt
-    }
-
 }
