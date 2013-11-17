@@ -62,7 +62,7 @@ namespace Achiles.Codex.Web.Models
 
         public Task<ApplicationUser> FindByIdAsync(string userId)
         {
-            return Task.Factory.StartNew(x => _session.Load<ApplicationUser>(userId), null);
+            return Task.Run(()=>_session.Load<ApplicationUser>(userId));
         }
 
         public Task<ApplicationUser> FindByNameAsync(string userName)
