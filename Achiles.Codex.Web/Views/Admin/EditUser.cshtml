@@ -10,14 +10,26 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+
         @Html.ValidationSummary(true)
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="row">
+                <div>@Html.LabelFor(x=>x.IsAdmin)</div>
+                <div>@Html.EditorFor(x => x.IsAdmin)</div>
             </div>
+            <div class="row">
+                <div>@Html.LabelFor(x => x.IsContributor)</div>
+                <div>@Html.EditorFor(x => x.IsContributor)</div>
+            </div>
+            
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <input value="Delete" class="btn btn-danger disabled" />
+                <a href="@Url.Action("Users")" class="btn btn-default" >Back to list</a>
+            </div>
+            
         </div>
-    </div>
-}}
+}
 
 

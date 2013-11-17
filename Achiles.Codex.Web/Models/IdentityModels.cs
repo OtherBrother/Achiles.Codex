@@ -60,6 +60,12 @@ namespace Achiles.Codex.Web.Models
             throw new NotSupportedException();
         }
 
+        private ApplicationUser FindById(string userId)
+        {
+            var usr = _session.Load<ApplicationUser>(userId);
+            return usr;
+        }
+
         public Task<ApplicationUser> FindByIdAsync(string userId)
         {
             return Task.Run(()=>_session.Load<ApplicationUser>(userId));

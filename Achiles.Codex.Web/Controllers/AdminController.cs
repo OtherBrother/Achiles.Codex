@@ -42,7 +42,6 @@ namespace Achiles.Codex.Web.Controllers
         public async Task<ActionResult> EditUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            
             var model = new EditUserModel
             {
                 Id = user.Id,
@@ -54,11 +53,40 @@ namespace Achiles.Codex.Web.Controllers
         }
         
         [HttpPost]
-        public ActionResult EditUser(EditUserModel model)
+        public async Task<ActionResult> EditUser(EditUserModel model)
         {
-            var user = _userManager.FindByIdAsync(model.Id);
+            var user = await _userManager.FindByIdAsync(model.Id);
             if (user != null)
             {
+                if (model.IsAdmin)
+                {
+                    var result =await _userManager.AddToRoleAsync(user.Id, "Admin");
+                    
+                    if (result.Succeeded)
+                        Success("You asked for it.","Another admin..");
+                }
+                else
+                {
+                    var result = await _userManager.RemoveFromRoleAsync(user.Id, "Admin");
+                    if(result.Succeeded)
+                        Success("Thats the spirit. Less admins less hassle");
+
+                }
+                if (model.IsContributor)
+                { 
+                    var result  =  await _userManager.AddToRoleAsync(user.Id, "Contributor");
+                    if(result.Succeeded)
+                        Success("Congrats!","More contributors - more content, but can the same be said about quality?");
+                    
+                 }
+                else
+                {
+                    var result = await _userManager.RemoveFromRoleAsync(user.Id, "Contributor");
+                    if (result.Succeeded)
+                    {
+                        Success("Great success!", "Wasn't contributing much anyways..");
+                    }
+                }
 
             }
             return View(model);

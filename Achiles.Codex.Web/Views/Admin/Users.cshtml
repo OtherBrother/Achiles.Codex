@@ -15,7 +15,7 @@
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("EditUser", new { Id = user.UserName })">@user.UserName</a>;
+                    <a href="@Url.Action("EditUser", new { Id = user.Id })">@user.UserName</a>
                 </td>
                 <td>@string.Join(",", user.Providers.Select(x => x.LoginProvider))</td>
                 <td>@string.Join(",",user.Roles.Select(x=>x.Role.Name))</td>
