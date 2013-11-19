@@ -32,7 +32,7 @@
                  Attribute has no description. Go ahead and <a href="@Url.Action("Edit", "Attributes", new {Id = attr.Id.CleanId()})" title=""> add one</a>!
              </p>}
             else
-            {@attr.Description}
+            {@Html.Raw(attr.Description)}
         </div>
         @if (User.IsContributor())
         {

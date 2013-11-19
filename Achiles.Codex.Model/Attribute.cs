@@ -2,7 +2,7 @@
 
 namespace Achiles.Codex.Model
 {
-    public class AttributeInfo : CodexItemBase
+    public class AttributeInfo : CombatGearItem
     {
         public int Order { get; set; }
     }

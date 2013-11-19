@@ -4,14 +4,8 @@ namespace Achiles.Codex.Model
 {
     public abstract class CodexItemBase : CodexItem
     {
-        private List<string> _relatedCodexItems = new List<string>();
-        
-        public string ArticleId { get; set; }
 
-        public List<string> RelatedCodexItems
-        {
-            get { return _relatedCodexItems; }
-            set { _relatedCodexItems = value; }
-        }
+
+        public string ArticleId { get; set; }
     }
 }

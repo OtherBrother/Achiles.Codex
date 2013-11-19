@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,9 +44,18 @@
     <Compile Include="Attribute.cs" />
     <Compile Include="CodexItem.cs" />
     <Compile Include="CodexItemBase.cs" />
+    <Compile Include="CodexItemType.cs" />
+    <Compile Include="CombatGearItem.cs" />
     <Compile Include="CombatSkill.cs" />
     <Compile Include="EquipmentItem.cs" />
+    <Compile Include="NcgEquipmentItem.cs" />
+    <Compile Include="NonCombatGearItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\CodexItemLabels.Designer.cs">
+      <DependentUpon>CodexItemLabels.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Rule.cs" />
     <Compile Include="RuleSet.cs" />
     <Compile Include="Skill.cs" />
@@ -53,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CodexModel.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CodexItemLabels.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CodexItemLabels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

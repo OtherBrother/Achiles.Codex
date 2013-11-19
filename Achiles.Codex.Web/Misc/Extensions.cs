@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
+using Microsoft.Owin.Security.Provider;
 
 namespace Achiles.Codex.Web.Misc
 {
@@ -47,5 +50,12 @@ namespace Achiles.Codex.Web.Misc
             return user.IsInRole("Admin");
             
         }
+
+        public async static Task<T> Result<T>(this Task<T> task)
+        {
+            var x = await task.ConfigureAwait(false);
+            return x;
+        }
+        
     }
 }
