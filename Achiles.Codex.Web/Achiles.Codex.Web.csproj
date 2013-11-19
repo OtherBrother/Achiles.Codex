@@ -217,7 +217,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CodexItemLabels.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\ICodexItemLocatorService.cs" />
     <Compile Include="Services\InitDataService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
