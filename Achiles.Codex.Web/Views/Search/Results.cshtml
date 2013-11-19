@@ -1,4 +1,5 @@
-﻿@using Achiles.Codex.Web.Controllers
+﻿@using Achiles.Codex.Model
+@using Achiles.Codex.Web.Controllers
 @using Achiles.Codex.Web.Misc
 @model Achiles.Codex.Web.Models.SearchResultsViewModel
 <h2>Search results</h2>
@@ -24,7 +25,7 @@ else
     <ul class="nav nav-tabs" id="results">
         @foreach (var type in Model.Results.GroupBy(x => x.ObjectType).OrderBy(x => x.Key))
         {
-            <li><a href="#@type.Key" data-toggle="tab">@type.Key  <span class="badge">@type.Count()</span></a></li>
+            <li><a href="#@type.Key" data-toggle="tab">@CodexItem.GetLabelForType(type.Key)  <span class="badge">@type.Count()</span></a></li>
         }
     </ul>
     <div class="tab-content" id="content">

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Versioning;
 
 namespace Achiles.Codex.Model
 {
@@ -27,7 +29,30 @@ namespace Achiles.Codex.Model
             get { return _relatedCodexItems; }
             set { _relatedCodexItems = value; }
         }
+
+        public static CodexItemType DetermineType(string id)
+        {
+            if(string.IsNullOrEmpty(id))
+                return CodexItemType.Unknown;
+            
+            var separatorIndex = id.IndexOf('/');
+            var typeName = id.Substring(0, separatorIndex);
+            
+            var itemType = CodexItemType.Unknown;
+            Enum.TryParse(typeName, true, out itemType);
+
+            return itemType;
+        }
+
+        public static string GetTypeLabel(string id)
+        {
+            return GetLabelForType(DetermineType(id));
+        }
+
+        public static string GetLabelForType(CodexItemType itemType)
+        {
+            
+            return Resources.CodexItemLabels.ResourceManager.GetString(itemType.ToString()) ?? itemType.ToString();
+        }
     }
-
-
 }

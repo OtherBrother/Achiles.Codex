@@ -212,6 +212,12 @@
     <Compile Include="Models\EditUserModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\CodexItemLabels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodexItemLabels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ICodexItemLocatorService.cs" />
     <Compile Include="Services\InitDataService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -291,6 +297,12 @@
       <Project>{0f8604f0-293c-4b3d-b4fe-e3a13592dab4}</Project>
       <Name>Achiles.Codex.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CodexItemLabels.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CodexItemLabels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

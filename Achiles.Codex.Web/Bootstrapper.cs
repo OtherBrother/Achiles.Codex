@@ -20,9 +20,11 @@ namespace Achiles.Codex.Web
             var container = BuildUnityContainer();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            Resources.CodexItemLabels.ResourceManager.IgnoreCase = true;
 
             return container;
         }
+
 
         private static IUnityContainer BuildUnityContainer()
         {
