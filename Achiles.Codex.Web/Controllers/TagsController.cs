@@ -11,10 +11,10 @@ namespace Achiles.Codex.Web.Controllers
 {
     public class TagsController : CodexItemController
     {
-        public JsonResult Suggest(string query)
+        public JsonResult Suggest(string q)
         {
             var suggestedTags = DocumentSession.Query<TagStatisticsIndex.TagStatistics, TagStatisticsIndex>()
-                .Where(t => t.Tag.StartsWith(query)).ToArray().Select(x => x.Tag).ToArray();
+                .Where(t => t.Tag.StartsWith(q)).ToArray().Select(x => x.Tag).ToArray();
 
             return new JsonResult() { Data = suggestedTags, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }

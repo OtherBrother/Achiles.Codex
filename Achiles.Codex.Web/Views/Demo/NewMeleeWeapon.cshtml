@@ -1,0 +1,275 @@
+﻿@using Achiles.Codex.Model
+@model dynamic
+
+<h2>New melee weapon</h2>
+<form class="form-horizontal" role="form">
+    <ul class="nav nav-tabs">
+        <li><a href="#basic-info" data-toggle="tab">Basic information</a></li>
+        <li><a href="#article" data-toggle="tab">Article</a></li>
+        <li><a href="#damage" data-toggle="tab">Damage <span class="label label-danger">!</span></a></li>
+        <li><a href="#properties" data-toggle="tab">Properties</a></li>
+    </ul>
+    <br />
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="basic-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Weapon name and short description</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input class="form-control" id="weapon-title" placeholder="Enter weapon name">
+                        </div>
+                    </div>
+
+                    <textarea rows="8" class="form-control" id="Description" name="Description" placeholder="Enter attribute description"></textarea>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Related items & tags</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapseOne" data>
+                                        Related Items
+                                    </a><span class="badge">5</span>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="input-group">
+                                        <input id="related-item" type="text" class="form-control" placeholder="Start typing to get suggestions">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">Add</button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                    <hr />
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><a href="">Animal handling</a> <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                                        <li class="list-group-item">Dapibus ac facilisis in <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                                        <li class="list-group-item">Morbi leo risus <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                                        <li class="list-group-item">Porta ac consectetur ac <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                                        <li class="list-group-item">Vestibulum at eros <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapseTwo" data>
+                                        Tags
+                                    </a><span class="badge">1</span>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="col-lg-6">
+                                        <select multiple data-role="tagsinput" id="Tags" name="Tags">
+                                            <option>Test</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+        </div>
+        <div class="tab-pane fade" id="article">
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Article about weapon</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-12">
+                        <textarea rows="16" class="form-control" id="article-body" style="height: 500px;">
+                            
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="tab-pane fade" id="damage">
+          
+            @*Damagae types*@
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Damage types</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select damage type <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li role="presentation" class="dropdown-header">Physical damage types</li>
+                                <li><a href="#">Bash</a></li>
+                                <li><a href="#">Trauma</a></li>
+                                <li><a href="#">Bleed</a></li>
+                                <li><a href="#">Critical</a></li>
+
+                                <li role="presentation" class="dropdown-header">Other damage types</li>
+                                <li><a href="#">Poison</a></li>
+                                <li><a href="#">Magic</a></li>
+                                <li><a href="#">Fire</a></li>
+                                <li><a href="#">Ice</a></li>
+                                <li><a href="#">Unicorn fart</a></li>
+                            </ul>
+                        </div><!-- /btn-group -->
+
+                        <input type="text" class="form-control">
+
+                    </div>
+                    <hr />
+
+                    <ul class="list-group">
+                        <li class="list-group-item">Bleed 1 <button class="close"><span class="glyphicon glyphicon-remove"></span></button><button class="close"><span class="glyphicon glyphicon-arrow-down"></span></button> </li>
+                        <li class="list-group-item">Critical 1 <button class="close"><span class="glyphicon glyphicon-remove"></span></button><button class="close"><span class="glyphicon glyphicon-arrow-up"></span></button><button class="close"><span class="glyphicon glyphicon-arrow-down"></span></button></li>
+                        <li class="list-group-item">Fire 1 <button class="close"><span class="glyphicon glyphicon-remove"></span></button><button class="close"><span class="glyphicon glyphicon-arrow-up"></span></button></li>
+                    </ul>
+                </div>
+            </div>
+
+            @*Thurst damage*@
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><input type="checkbox" checked="checked" /> Thrust damage</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group  has-error">
+                        <label for="swingbase" class="col-sm-2 control-label">Base</label>
+                        <div class="col-sm-10">
+                            <input class="form-control field-validation-error" id="swingbase" placeholder="Base damage" value="-1" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="swingarmor" class="col-sm-2 control-label">Armor piercing</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="swingarmor" placeholder="Armor piercing damage">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Swing damage*@
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><input type="checkbox" /> Swing damage</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="swingbase" class="col-sm-2 control-label">Base</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="swingbase" placeholder="Base  damage" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="swingarmor" class="col-sm-2 control-label">Armor piercing</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="swingarmor" placeholder="Armor piercing damage" disabled="disabled">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+        </div>
+        <div class="tab-pane fade" id="properties">
+            @*Properties*@
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Reach and strength</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="swingbase" class="col-sm-2 control-label">Reach</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="swingbase" placeholder="Reach">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="swingarmor" class="col-sm-2 control-label">Minimum strength</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="swingarmor" placeholder="Minimum">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Other properties</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input id="related-item" type="text" class="form-control" placeholder="Start typing to get suggestions">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Add</button>
+                            </span>
+                        </div><!-- /input-group -->
+                        <hr />
+                        <ul class="list-group">
+                            <li class="list-group-item">+1 against shields<button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                            <li class="list-group-item">-1 for autofail<button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                            <li class="list-group-item">Concealable<button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                            <li class="list-group-item">Cost no vigor to use<button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Save and create new</a></li>
+            <li><a href="#">Save and return to list</a></li>
+        </ul>
+    </div>
+    <button class="btn btn-default">Cancel</button>
+    </form>
+
+@section Head
+    {
+        @Styles.Render("~/Content/bootstrap-tagsinput.css");
+    }
+
+    @section scripts
+ {
+        @Scripts.Render("~/Scripts/bootstrap-tagsinput.js");
+        @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
+
+        <script type="text/javascript">
+            tinymce.init({ selector: '#Description', entity_encoding: "raw" });
+
+            tinymce.init({ selector: '#article-body', entity_encoding: "raw" });
+
+            $('#tags').tagsinput({
+                typeahead: {
+                    source: function (query) {
+                        return $.get('@Url.Action("Suggest", "Tags")' + '/' + query);
+                    }
+                }
+            });
+        </script>
+    }

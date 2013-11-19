@@ -1,0 +1,112 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>New article</h2>
+
+<hr />
+
+
+<div class="form-group">
+    <label for="Title">Title</label>
+    <input type="email" class="form-control" id="Title" placeholder="Enter article title">
+</div>
+
+<div class="form-group">
+    <textarea rows="16" class="form-control" id="Description" name="Description" placeholder="Enter attribute description"></textarea>
+</div>
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapseOne" data>
+                    Related Items
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input id="related-item" type="text" class="form-control" placeholder="Start typing to get suggestions">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Add</button>
+                        </span>
+                    </div><!-- /input-group -->
+                    <hr />
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="">Animal handling</a> <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                        <li class="list-group-item">Dapibus ac facilisis in <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                        <li class="list-group-item">Morbi leo risus <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                        <li class="list-group-item">Porta ac consectetur ac <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                        <li class="list-group-item">Vestibulum at eros <button class="close"><span class="glyphicon glyphicon-remove"></span></button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapseTwo" data>
+                    Tags
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="col-lg-6">
+                    <select multiple data-role="tagsinput" id="Tags" name="Tags">
+                        <option>Test</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary">Save article</button>
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Save and create new</a></li>
+        <li><a href="#">Save and return to list</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Save and do something unexpected</a></li>
+    </ul>
+</div>
+<button class="btn btn-default">Cancel</button>
+
+
+
+
+@section Head
+{
+    @Styles.Render("~/Content/bootstrap-tagsinput.css");
+}
+
+@section scripts
+ {
+    @Scripts.Render("~/Scripts/bootstrap-tagsinput.js");
+    @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
+
+    <script type="text/javascript">
+        tinymce.init({ selector: '#Description', entity_encoding: "raw" });
+        
+        $('#tags').tagsinput({
+            typeahead: {
+                source: function (query) {
+                    return $.get('@Url.Action("Suggest", "Tags")' + '/' + query);
+                }
+            }
+        });
+    </script>
+}

@@ -4,14 +4,9 @@
     {
 
         public int OrderInCircleOfQualities
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+        { 
+            get; set;
         }
+
     }
 }

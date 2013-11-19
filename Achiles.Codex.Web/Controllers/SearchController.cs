@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using Achiles.Codex.Model;
 using Achiles.Codex.Web.Indexes;
 using Achiles.Codex.Web.Misc;
 using Achiles.Codex.Web.Models;
@@ -65,21 +66,21 @@ namespace Achiles.Codex.Web.Controllers
         private static readonly List<Mapping> Mappings = new List<Mapping>();
         static SearchQuery()
         {
-            Mappings.Add(new Mapping { PossibleInputs = { "attribute", "at", "attr" }, MappedItemTypes = { "attribute" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "article", "ar" }, MappedItemTypes = { "article" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "ruleset", "rs"}, MappedItemTypes = { "ruleset" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "rule", "r" }, MappedItemTypes = { "rule" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "skill", "sk", }, MappedItemTypes = { "skill" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "combatskill", "cs" }, MappedItemTypes = { "combatskill" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "misc", "m" }, MappedItemTypes = { "miscellaneousitem" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "s" }, MappedItemTypes = { "skill", "combatskill" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "t" }, MappedItemTypes = { "talent" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "cg" }, MappedItemTypes = { "combatskill", "attribute" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "ncg" }, MappedItemTypes = { "skill,talent" } });
-            
-            Mappings.Add(new Mapping { PossibleInputs = { "armor", "am" }, MappedItemTypes = { "headarmor", "bodyarmor", "armarmor", "legarmor" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "weapon", "w" }, MappedItemTypes = { "handweapon", "rangedweapon", "ammo", "shield" } });
-            Mappings.Add(new Mapping { PossibleInputs = { "equipment", "eq" }, MappedItemTypes = { "headarmor", "bodyarmor", "armarmor", "legarmor", "handweapon", "rangedweapon", "ammo", "shield" } });
+            Mappings.Add(new Mapping { PossibleInputs = { "attribute", "at", "attr" }, MappedItemTypes = { CodexItemType.Attribute } });
+            Mappings.Add(new Mapping { PossibleInputs = { "article", "ar" }, MappedItemTypes = { CodexItemType.Article } });
+            Mappings.Add(new Mapping { PossibleInputs = { "ruleset", "rs" }, MappedItemTypes = { CodexItemType.RuleSet } });
+            Mappings.Add(new Mapping { PossibleInputs = { "rule", "r" }, MappedItemTypes = { CodexItemType.Rule } });
+            Mappings.Add(new Mapping { PossibleInputs = { "skill", "sk", }, MappedItemTypes = { CodexItemType.Skill } });
+            Mappings.Add(new Mapping { PossibleInputs = { "combatskill", "cs" }, MappedItemTypes = { CodexItemType.CombatSkill } });
+            Mappings.Add(new Mapping { PossibleInputs = { "misc", "m" }, MappedItemTypes = { CodexItemType.MiscellaneousItem } });
+            Mappings.Add(new Mapping { PossibleInputs = { "s" }, MappedItemTypes = { CodexItemType.Skill, CodexItemType.CombatSkill } });
+            Mappings.Add(new Mapping { PossibleInputs = { "t" }, MappedItemTypes = { CodexItemType.Talent } });
+            Mappings.Add(new Mapping { PossibleInputs = { "cg" }, MappedItemTypes = { CodexItemType.CombatSkill, CodexItemType.Attribute } });
+            Mappings.Add(new Mapping { PossibleInputs = { "ncg" }, MappedItemTypes = { CodexItemType.Skill, CodexItemType.Talent } });
+
+            Mappings.Add(new Mapping { PossibleInputs = { "armor", "am" }, MappedItemTypes = { CodexItemType.HeadArmor, CodexItemType.BodyArmor, CodexItemType.ArmArmor, CodexItemType.LegArmor } });
+            Mappings.Add(new Mapping { PossibleInputs = { "weapon", "w" }, MappedItemTypes = { CodexItemType.HandWeapon, CodexItemType.RangedWeapon, CodexItemType.Ammo, CodexItemType.Shield } });
+            Mappings.Add(new Mapping { PossibleInputs = { "equipment", "eq" }, MappedItemTypes = { CodexItemType.HeadArmor, CodexItemType.BodyArmor, CodexItemType.ArmArmor, CodexItemType.LegArmor, CodexItemType.HandWeapon, CodexItemType.RangedWeapon, CodexItemType.Ammo, CodexItemType.Shield } });
         }
 
         private class Mapping
@@ -87,11 +88,11 @@ namespace Achiles.Codex.Web.Controllers
             public Mapping()
             {
                 PossibleInputs = new HashSet<string>();
-                MappedItemTypes = new HashSet<string>();
+                MappedItemTypes = new HashSet<CodexItemType>();
             }
 
             public HashSet<string> PossibleInputs { get; set; }
-            public HashSet<string> MappedItemTypes { get; set; }
+            public HashSet<CodexItemType> MappedItemTypes { get; set; }
         }
       
         
@@ -131,7 +132,7 @@ namespace Achiles.Codex.Web.Controllers
 
         public bool IsFullText { get; set; }
         public string SearchTerm { get; set; }
-        public string[] SearchObjects { get; set; }
+        public CodexItemType[] SearchObjects { get; set; }
         public string[] SearchTags { get; set; }
 
         public override string ToString()

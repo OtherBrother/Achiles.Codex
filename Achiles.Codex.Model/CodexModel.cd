@@ -17,7 +17,7 @@
   <Class Name="Achiles.Codex.Model.CodexItem">
     <Position X="25.5" Y="1" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAAAIACAAAAQAAACAAEAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAACAAAAAAAgAAAIACAAAAQAAACAAEAAAAAgAAAAAAg=</HashCode>
       <FileName>CodexItem.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -37,11 +37,7 @@
   </Class>
   <Class Name="Achiles.Codex.Model.NcgEquipmentItem">
     <Position X="28.25" Y="9" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Gear.cs</FileName>
-      <NewMemberFileName>EquipmentItem.cs</NewMemberFileName>
-    </TypeIdentifier>
+    <TypeIdentifier />
   </Class>
   <Class Name="Achiles.Codex.Model.HandWeapon">
     <Position X="19.75" Y="14.5" Width="2" />
@@ -148,14 +144,14 @@
     <Position X="29.75" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Gear.cs</FileName>
+      <FileName>NonCombatGearItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.CombatGearItem">
     <Position X="25.75" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Gear.cs</FileName>
+      <FileName>CombatGearItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.EquipmentItem">
