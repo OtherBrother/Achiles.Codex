@@ -66,21 +66,7 @@ namespace Achiles.Codex.Web.Controllers
         private static readonly List<Mapping> Mappings = new List<Mapping>();
         static SearchQuery()
         {
-            Mappings.Add(new Mapping { PossibleInputs = { "attribute", "at", "attr" }, MappedItemTypes = { CodexItemType.Attribute } });
-            Mappings.Add(new Mapping { PossibleInputs = { "article", "ar" }, MappedItemTypes = { CodexItemType.Article } });
-            Mappings.Add(new Mapping { PossibleInputs = { "ruleset", "rs" }, MappedItemTypes = { CodexItemType.RuleSet } });
-            Mappings.Add(new Mapping { PossibleInputs = { "rule", "r" }, MappedItemTypes = { CodexItemType.Rule } });
-            Mappings.Add(new Mapping { PossibleInputs = { "skill", "sk", }, MappedItemTypes = { CodexItemType.Skill } });
-            Mappings.Add(new Mapping { PossibleInputs = { "combatskill", "cs" }, MappedItemTypes = { CodexItemType.CombatSkill } });
-            Mappings.Add(new Mapping { PossibleInputs = { "misc", "m" }, MappedItemTypes = { CodexItemType.MiscellaneousItem } });
-            Mappings.Add(new Mapping { PossibleInputs = { "s" }, MappedItemTypes = { CodexItemType.Skill, CodexItemType.CombatSkill } });
-            Mappings.Add(new Mapping { PossibleInputs = { "t" }, MappedItemTypes = { CodexItemType.Talent } });
-            Mappings.Add(new Mapping { PossibleInputs = { "cg" }, MappedItemTypes = { CodexItemType.CombatSkill, CodexItemType.Attribute } });
-            Mappings.Add(new Mapping { PossibleInputs = { "ncg" }, MappedItemTypes = { CodexItemType.Skill, CodexItemType.Talent } });
-
-            Mappings.Add(new Mapping { PossibleInputs = { "armor", "am" }, MappedItemTypes = { CodexItemType.HeadArmor, CodexItemType.BodyArmor, CodexItemType.ArmArmor, CodexItemType.LegArmor } });
-            Mappings.Add(new Mapping { PossibleInputs = { "weapon", "w" }, MappedItemTypes = { CodexItemType.HandWeapon, CodexItemType.RangedWeapon, CodexItemType.Ammo, CodexItemType.Shield } });
-            Mappings.Add(new Mapping { PossibleInputs = { "equipment", "eq" }, MappedItemTypes = { CodexItemType.HeadArmor, CodexItemType.BodyArmor, CodexItemType.ArmArmor, CodexItemType.LegArmor, CodexItemType.HandWeapon, CodexItemType.RangedWeapon, CodexItemType.Ammo, CodexItemType.Shield } });
+           
         }
 
         private class Mapping
@@ -123,10 +109,7 @@ namespace Achiles.Codex.Web.Controllers
 
            SearchTags = tagSeparatorIndex > -1 ? query.Substring(tagSeparatorIndex + 1).Split(',') : new string[0];
 
-           SearchObjects = Mappings.Where(x => x.PossibleInputs.Overlaps(searchObjects))
-                .SelectMany(x => x.MappedItemTypes)
-                .Distinct()
-                .ToArray();
+            SearchObjects = CodexItem.MatchTypes(searchObjects);
         }
         
 

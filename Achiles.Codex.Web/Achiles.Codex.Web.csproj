@@ -197,6 +197,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\AttributesController.cs" />
+    <Compile Include="Controllers\CodexController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -286,6 +287,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Codex\" />
     <Folder Include="Views\Tags\" />
   </ItemGroup>
   <ItemGroup>

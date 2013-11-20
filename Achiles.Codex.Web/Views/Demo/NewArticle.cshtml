@@ -103,7 +103,7 @@
         
         $('#tags').tagsinput({
             typeahead: {
-                source: function (query) {
+                remote: function (query) {
                     return $.get('@Url.Action("Suggest", "Tags")' + '/' + query);
                 }
             }

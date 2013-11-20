@@ -12,6 +12,11 @@ namespace Achiles.Codex.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute("JsonCodexItemFind", "Codex/Find/{*q}",defaults: new { controller = "Codex", Action = "Find" });
+            routes.MapRoute("RedirectToItem", "Redirect/{*id}",defaults: new { controller = "Codex", Action = "Redirect" });
+            routes.MapRoute("CodexGetJson", "Codex/{*id}", defaults: new { controller = "Codex", Action = "Get" });
+            
+
 
             routes.MapRoute("Search", "search/{query}",
                 defaults: new { controller = "Search", Action = "Results" }

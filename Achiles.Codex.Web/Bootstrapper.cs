@@ -1,5 +1,6 @@
 using System.Configuration;
 using System.Web.Mvc;
+using Achiles.Codex.Model;
 using Achiles.Codex.Web.Controllers;
 using Achiles.Codex.Web.Indexes;
 using Achiles.Codex.Web.Models;
@@ -7,6 +8,7 @@ using Achiles.Codex.Web.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.Practices.Unity;
 using Raven.Client;
+using Raven.Client.Connection;
 using Raven.Client.Document;
 using Raven.Client.Indexes;
 using Unity.Mvc4;
@@ -49,7 +51,7 @@ namespace Achiles.Codex.Web
             container.RegisterType<HomeController>();
             container.RegisterType<AccountController>();
         }
-
+        
         private static IDocumentStore CreateDocumentStore()
         {
             var documentStore = new DocumentStore
@@ -57,13 +59,36 @@ namespace Achiles.Codex.Web
                 Url = ConfigurationManager.AppSettings["CodexDbConnectionString"],
                 ApiKey = ConfigurationManager.AppSettings["CodexDbRavenKey"],
                 DefaultDatabase = "Personal-Codex"
-                };
+            };
+
+            documentStore.Conventions.RegisterIdConvention<Article>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<RuleSet>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<Rule>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<AttributeInfo>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<CombatSkill>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<Talent>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<Skill>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<SkillFeature>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<HandWeapon>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<RangedWeapon>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<Shield>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<MiscellaneousItem>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<Ammo>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<HeadArmor>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<BodyArmor>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<ArmArmor>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<LegArmor>(GenerateCodexId);
+
             documentStore.Initialize();
             IndexCreation.CreateIndexes(typeof(TagStatisticsIndex).Assembly, documentStore);
             
             return documentStore;
             
         }
-
+        
+        private static string GenerateCodexId<T>(string dbName, IDatabaseCommands commands, T entity) where  T : CodexItem
+        {
+            return string.Format("{0}/{1}", typeof (T).Name.ToLower(), entity.Name.Trim().Replace(' ', '-').ToLower());
+        }
     }
 }

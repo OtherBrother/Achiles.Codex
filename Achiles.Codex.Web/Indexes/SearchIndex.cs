@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using Achiles.Codex.Model;
 using Raven.Abstractions.Indexing;
 using Raven.Client.Indexes;

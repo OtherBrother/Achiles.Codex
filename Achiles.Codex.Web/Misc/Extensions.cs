@@ -15,7 +15,7 @@ namespace Achiles.Codex.Web.Misc
             var separatorIndex = id.IndexOf('/');
             if (separatorIndex < 0)
                 return id;
-            else return id.Substring(separatorIndex);
+            else return id.Substring(separatorIndex +1);
         }
 
         public static string Fit(this string str, int maxLen)
@@ -27,7 +27,7 @@ namespace Achiles.Codex.Web.Misc
         
         }
 
-        public static string GetQueryHighlightedinContext(this string content, string query, int contextWords = 5)
+        public static string GetQueryHighlightedinContext(this string content, string query, int contextWords = 15)
         {
             if (string.IsNullOrEmpty(query) || string.IsNullOrEmpty(content))
                 return null;
