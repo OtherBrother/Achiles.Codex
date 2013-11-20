@@ -7,8 +7,6 @@
 <h2>New article</h2>
 
 <hr />
-
-
 <div class="form-group">
     <label for="Title">Title</label>
     <input type="email" class="form-control" id="Title" placeholder="Enter article title">
@@ -31,7 +29,7 @@
             <div class="panel-body">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input id="related-item" type="text" class="form-control" placeholder="Start typing to get suggestions">
+                        <input id="related-item" type="text" placeholder="Start typing to get suggestions" class="form-control">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Add</button>
                         </span>
@@ -83,10 +81,8 @@
         <li><a href="#">Save and do something unexpected</a></li>
     </ul>
 </div>
+
 <button class="btn btn-default">Cancel</button>
-
-
-
 
 @section Head
 {
@@ -94,19 +90,49 @@
 }
 
 @section scripts
- {
+{
+
     @Scripts.Render("~/Scripts/bootstrap-tagsinput.js");
     @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
-
+    @Scripts.Render("~/Scripts/typeahead.js")
+    @Scripts.Render("~/Scripts/handlebars-1.1.2.js")
+    
     <script type="text/javascript">
         tinymce.init({ selector: '#Description', entity_encoding: "raw" });
-        
+
         $('#tags').tagsinput({
             typeahead: {
-                remote: function (query) {
+                remote: function(query) {
                     return $.get('@Url.Action("Suggest", "Tags")' + '/' + query);
                 }
             }
+        });
+
+        var T = {};
+        T.compile = function(template) {
+            var compile = Handlebars.compile(template),
+                render = {
+                    render: function(ctx) {
+                        return compile(ctx);
+                    }
+                };
+            return render;
+        };
+
+
+        $('#related-item').typeahead([
+            {
+                limit: 10,
+                name: 'items',
+                valueKey: 'Name',
+                remote: '@Url.Action("Find", "Codex")/%QUERY',
+                template: '<strong>{{Name}}</strong><br/>{{Id}}',
+                engine: T,
+            }
+        ]).on('typeahead:selected', function (obj, datum) {
+            console.log(datum);
+            $('#Title').val((datum.Description));
+
         });
     </script>
 }
