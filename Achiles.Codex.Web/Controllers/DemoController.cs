@@ -23,5 +23,9 @@ namespace Achiles.Codex.Web.Controllers
         {
             return View();
         }
+        public ActionResult NewMeleeWeaponJonas()
+        {
+            return View();
+        }
 	}
 }

@@ -289,6 +289,7 @@
     <Content Include="Views\Demo\Index.cshtml" />
     <Content Include="Views\Demo\NewArticle.cshtml" />
     <Content Include="Views\Demo\NewMeleeWeapon.cshtml" />
+    <Content Include="Views\Demo\NewMeleeWeaponJonas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

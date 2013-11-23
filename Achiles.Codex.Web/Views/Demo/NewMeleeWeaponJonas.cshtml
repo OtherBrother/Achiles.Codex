@@ -1,0 +1,86 @@
+﻿
+<ol class="breadcrumb">
+    <li><a href="#">Codex</a></li>
+    <li><a href="#">Combat gear</a></li>
+    <li><a href="#">Weapons</a></li>
+    <li>New meele weapon</li>
+</ol>
+
+
+
+<input class="form-control" id="swingarmor" placeholder="Enter weapon name">
+<br/>
+<div class="row">
+    <div class="col-md-1">
+        Reach
+        <br/>
+        <a href="#" class="btn btn-default">1</a>
+    </div>
+    <div class="col-md-1">
+        Weight
+        <br />
+        <a href="#" class="btn btn-default">1</a>
+    </div>
+    <div class="col-md-1">
+        Min.ST.
+        <br />
+        <a href="#" class="btn btn-default">12</a>
+    </div>
+    <div class="col-md-6">Damage<br/>
+        <div class="btn-group" >
+            <a href="#" class="btn btn-default">Thurst:2+2 | 2B1C</a>
+            <a href="#" class="btn btn-default">Swing:2 | 1B2C</a>
+            <a href="#" class="btn btn-default">Swing:2 | 1B2C</a>
+            <a href="#" class="btn btn-default">+</a>
+        </div>    
+    </div>
+</div>
+<br/>
+<p>
+    <strong>Description</strong>: <a href="#">Nullam dapibus ultricies aliquet. Aliquam fermentum sagittis metus eget rhoncus. </a>
+</p>
+<p>
+    <strong>Article</strong> : Sed ipsum nisi, fringilla vulputate gravida ac, euismod quis nisl. Suspendisse potenti. Nunc vitae nisi magna. Nulla non leo lectus...<a href="#">  Edit</a>
+</p> 
+<p>
+    <strong>Properties</strong>: +1 Against shields, Other property  <a href="#">  Edit</a>
+</p>
+
+<p>
+    <strong>Tags</strong> : Tag1,Tag2<a href="#">  Edit</a>
+</p>
+<p>
+    <strong>Related items</strong> : Codex Item, Rule, Whateva<a href="#">  Edit</a>
+</p>
+
+   
+<hr/>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary">Save article</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Save and create new</a></li>
+            <li><a href="#">Save and return to list</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Save and do something unexpected</a></li>
+        </ul>
+    </div>
+
+@section Head
+    {
+    @Styles.Render("~/Content/bootstrap-tagsinput.css");
+}
+
+@section scripts
+ {
+    @Scripts.Render("~/Scripts/bootstrap-tagsinput.js");
+    @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
+
+    <script type="text/javascript">
+            //tinymce.init({ selector: '#Description', entity_encoding: "raw" });
+        tinymce.init({ selector: '#article-body', entity_encoding: "raw" });
+        </script>
+}
