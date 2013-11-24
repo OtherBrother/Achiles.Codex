@@ -22,6 +22,9 @@ namespace Achiles.Codex.Web
                 defaults: new { controller = "Search", Action = "Results" }
             );
 
+            routes.MapRoute("ArticleList", "Articles", new { controller = "Article", Action = "Index", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional });
+            routes.MapRoute("ArticleListJson", "Articles/Json", new { controller = "Article", Action = "GetJsonArticles", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

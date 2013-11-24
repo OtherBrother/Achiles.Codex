@@ -211,6 +211,7 @@
     <Compile Include="Misc\Extensions.cs" />
     <Compile Include="Misc\PredicateBuilder.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ArticleListViewModel.cs" />
     <Compile Include="Models\EditUserModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -290,6 +291,7 @@
     <Content Include="Views\Demo\NewArticle.cshtml" />
     <Content Include="Views\Demo\NewMeleeWeapon.cshtml" />
     <Content Include="Views\Demo\NewMeleeWeaponJonas.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
