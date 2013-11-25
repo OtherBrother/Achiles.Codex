@@ -22,8 +22,7 @@ namespace Achiles.Codex.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/typeahead.js"
-                      ));
+                      "~/Scripts/typeahead.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/edit-codex-item-article").Include(
@@ -37,9 +36,9 @@ namespace Achiles.Codex.Web
                 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                    "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/typeahead.js"
+                      "~/Content/typeahead.js-bootstrap.css"
                       ));
             
             bundles.Add(new StyleBundle("~/Content/edit-codex-item-basic-info").Include(

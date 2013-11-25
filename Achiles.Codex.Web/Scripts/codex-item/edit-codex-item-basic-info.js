@@ -1,2 +1,3 @@
 ﻿
 
+$('#Tags').tagsinput();

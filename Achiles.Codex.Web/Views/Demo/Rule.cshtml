@@ -47,10 +47,40 @@ else
 {
     @Styles.Render("~/Content/edit-codex-item-basic-info")
     @Styles.Render("~/Content/edit-codex-item-article")
+        
 }
 
 @section scripts
 {
     @Scripts.Render("~/bundles/edit-codex-item-basic-info")
     @Scripts.Render("~/bundles/edit-codex-item-article")
+
+    @Scripts.Render("~/Scripts/handlebars-1.1.2.js")
+
+    <script type="text/javascript">
+        var T = {};
+        T.compile = function (template) {
+            var compile = Handlebars.compile(template),
+                render = {
+                    render: function (ctx) {
+                        return compile(ctx);
+                    }
+                };
+            return render;
+        };
+        $('#RelatedItems').tagsinput();
+        var input = $('#RelatedItems').tagsinput('input');
+
+        input.typeahead([
+            {
+                limit: 10,
+                name: 'items',
+                valueKey: 'Name',
+                remote: '@Url.Action("Find", "Codex")/%QUERY',
+                template: '<strong>{{Name}}</strong><br/>{{Id}}',
+                engine: T,
+            }
+        ]);
+
+    </script>
 }

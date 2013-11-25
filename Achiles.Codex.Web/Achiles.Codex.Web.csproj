@@ -298,7 +298,6 @@
     <Content Include="Views\Shared\_EditCodexItemBasicInfoView.cshtml" />
     <Content Include="Views\Demo\Rule.cshtml" />
     <Content Include="Views\Shared\_EditCodexItemArticleView.cshtml" />
-    <Content Include="Views\Demo\zz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
