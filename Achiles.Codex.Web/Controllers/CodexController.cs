@@ -12,11 +12,12 @@ using Raven.Client.Linq;
 
 namespace Achiles.Codex.Web.Controllers
 {
-    public class CodexController : CodexItemController
+    public class CodexController : CodexItemBaseController
     {
         private const int MinQueryLength = 3;
         private readonly JsonResult _noResults = new JsonResult { Data = new SearchIndex.Result[] { }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        public ActionResult Redirect(string id)
+        
+        public ActionResult RedirectToItem(string id)
         {
             return RedirectToAction("Index", "Home");
         }

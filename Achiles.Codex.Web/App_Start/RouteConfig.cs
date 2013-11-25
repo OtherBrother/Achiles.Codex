@@ -15,20 +15,13 @@ namespace Achiles.Codex.Web
             routes.MapRoute("JsonCodexItemFind", "Codex/Find/{*q}",defaults: new { controller = "Codex", Action = "Find" });
             routes.MapRoute("RedirectToItem", "Redirect/{*id}",defaults: new { controller = "Codex", Action = "Redirect" });
             routes.MapRoute("CodexGetJson", "Codex/{*id}", defaults: new { controller = "Codex", Action = "Get" });
-            
 
-
-            routes.MapRoute("Search", "search/{query}",
-                defaults: new { controller = "Search", Action = "Results" }
-            );
+            routes.MapRoute("Search", "search/{query}",defaults: new { controller = "Search", Action = "Results" });
 
             routes.MapRoute("ArticleList", "Articles", new { controller = "Article", Action = "Index", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional });
             routes.MapRoute("ArticleListJson", "Articles/Json", new { controller = "Article", Action = "GetJsonArticles", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional });
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            routes.MapRoute(name: "Default",url: "{controller}/{action}/{*id}", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
             
         }

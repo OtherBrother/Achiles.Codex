@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Versioning;
@@ -42,7 +43,7 @@ namespace Achiles.Codex.Model
         }
 
         private List<string> _tags = new List<string>();
-        private List<string> _relatedCodexItems = new List<string>();
+        private List<RelatedCodexItem> _relatedCodexItems = new List<RelatedCodexItem>();
 
         private string _id;
         public string Id
@@ -52,7 +53,7 @@ namespace Achiles.Codex.Model
                 return _id;
             }
             set {
-                _id = (value.Contains("/") ? value : string.Format("{0}/{1}", this.GetType().Name, value)).ToLower();
+                _id = !string.IsNullOrEmpty(value) ? (value.Contains("/") ? value : string.Format("{0}/{1}", this.GetType().Name, value)).ToLower() : value;
             }
         }
 
@@ -62,13 +63,14 @@ namespace Achiles.Codex.Model
         public string Description { get; set; }
         public string IconUrl { get; set; }
 
+        [TypeConverter(typeof(StringConverter))]
         public List<string> Tags
         {
             get { return _tags; }
             set { _tags = value; }
         }
 
-        public List<string> RelatedCodexItems
+        public List<RelatedCodexItem> RelatedCodexItems
         {
             get { return _relatedCodexItems; }
             set { _relatedCodexItems = value; }
@@ -133,10 +135,12 @@ namespace Achiles.Codex.Model
             
             return Resources.CodexItemLabels.ResourceManager.GetString(itemType.ToString()) ?? itemType.ToString();
         }
-
     }
 
-    public class CommonCodexItem
+    public class RelatedCodexItem
     {
+        public string Id{ get; set;}
+        public string Name { get; set; }
+
     }
 }

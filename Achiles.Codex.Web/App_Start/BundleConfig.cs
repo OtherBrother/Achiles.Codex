@@ -21,14 +21,34 @@ namespace Achiles.Codex.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/typeahead.js"
+                      ));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/edit-codex-item-article").Include(
+                     "~/Scripts/codex-item/edit-codex-item-article.js" /*Make sure this item is alway last in the bundle*/
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/edit-codex-item-basic-info").Include(
+                     "~/Scripts/bootstrap-tagsinput.js",
+                     "~/Scripts/codex-item/edit-codex-item-basic-info.js"/*Make sure this item is alway last in the bundle*/
+                     ));
+                
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/typeahead.js-bootstrap.css"
+                      "~/Content/typeahead.js"
                       ));
+            
+            bundles.Add(new StyleBundle("~/Content/edit-codex-item-basic-info").Include(
+                      "~/Content/bootstrap-tagsinput.css"
+                      ));
+            
+            bundles.Add(new StyleBundle("~/Content/edit-codex-item-article").Include(
 
+                      ));
         }
     }
 }

@@ -1,0 +1,57 @@
+﻿@model Achiles.Codex.Model.CodexItem
+
+@Html.HiddenFor(x => x.Id)
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Name, short description and Icon Url</h3>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input class="form-control" id="Name" name="Name" placeholder="Enter codex item name" value="@Model.Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <textarea rows="4" class="form-control" id="Description" name="Description" placeholder="Enter short description">@HttpUtility.HtmlDecode(Model.Description)</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IconUrl" class="col-sm-2 control-label">Icon Url</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="IconUrl" name="IconUrl" placeholder="Enter codex item name" value="@Model.IconUrl">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Related items & tags</h3>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label for="Tags" class="col-sm-2 control-label">Tags</label>
+            <div class="col-sm-10">
+                <select multiple data-role="tagsinput" id="Tags" name="Tags">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <option value="@tag">@tag</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="RelatedItems" class="col-sm-2 control-label">Related items</label>
+            <div class="col-sm-10">
+                <select multiple data-role="tagsinput" id="RelatedItems" name="RelatedItems">
+                    @foreach (var relatedItem in Model.RelatedCodexItems)
+                    {
+                        <option value="@relatedItem.Id">@relatedItem.Id</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+    </div>
+</div>
