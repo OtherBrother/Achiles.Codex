@@ -20,10 +20,10 @@ else
 {
     <div class="tab-content">
         <div class="tab-pane fade in active" id="basic-info">
-            @Html.Partial("_EditCodexItemBasicInfoView", Model.CodexItem)
+            @Html.Partial("_EditCodexItemBasicInfoView", Model)
         </div>
         <div class="tab-pane fade in" id="article">
-            @Html.Partial("_EditCodexItemArticleView", Model.CodexItem)
+            @Html.Partial("_EditCodexItemArticleView", Model)
         </div>
     </div>
     <hr/>
@@ -40,47 +40,20 @@ else
         <li><a href="#">Save and do something unexpected</a></li>
     </ul>
 </div>
-
 }
 
 @section Head
 {
     @Styles.Render("~/Content/edit-codex-item-basic-info")
     @Styles.Render("~/Content/edit-codex-item-article")
-        
 }
 
 @section scripts
 {
+    @*TODO:host editor scripts localy so that we can include them in the 'bundles/edit-codex-item-article' bundle and avoid copy-pastying to each form*@
+    @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
+
     @Scripts.Render("~/bundles/edit-codex-item-basic-info")
     @Scripts.Render("~/bundles/edit-codex-item-article")
-
-    @Scripts.Render("~/Scripts/handlebars-1.1.2.js")
-
-    <script type="text/javascript">
-        var T = {};
-        T.compile = function (template) {
-            var compile = Handlebars.compile(template),
-                render = {
-                    render: function (ctx) {
-                        return compile(ctx);
-                    }
-                };
-            return render;
-        };
-        $('#RelatedItems').tagsinput();
-        var input = $('#RelatedItems').tagsinput('input');
-
-        input.typeahead([
-            {
-                limit: 10,
-                name: 'items',
-                valueKey: 'Name',
-                remote: '@Url.Action("Find", "Codex")/%QUERY',
-                template: '<strong>{{Name}}</strong><br/>{{Id}}',
-                engine: T,
-            }
-        ]);
-
-    </script>
+    
 }

@@ -1,13 +1,15 @@
-﻿@using Achiles.Codex.Web.Misc
+﻿@using Achiles.Codex.Model
+@using Achiles.Codex.Web.Misc
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Codex</title>
+    @RenderSection("Head", false)
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("Head",false)
+    
 
 </head>
 <body>
@@ -81,21 +83,32 @@
         <p><span class="label label-default">Example</span><br/><a href="@Url.Action("Results", "Search", new { query = "!cg:super awsome@@experimental" })">!cg:super&nbsp;awsome@@experimental</a></p>
     </div>
     
+    <script type="text/javascript">
+        
+        window.codex = window.codex || {};
+        window.codex.objectTypeNames = { @Html.Raw(string.Join(",", Enum.GetNames(typeof (CodexItemType)).Select((x, i) => string.Format("{0}:'{1}'", i, x)))) };
+        window.codex.urls = window.urls || {};
 
+        window.codex.urls.tagsSuggestUrl = '@Url.Action("Suggest","Tags")';
+        window.codex.urls.codexItemSuggestUrl = '@Url.Action("Find", "Codex")';
+
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/common")
+
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
-        
-        $('#search').popover(
-        {
-            'delay': { show: 1000, hide: 100 },
-            'html':true,
-            'content' :$('#search_help').html(),
-            'placement': 'bottom',
-            'trigger': 'hover'
-            });
-    </script>
+        <script type="text/javascript">
+            //help tooltip
+            $('#search').popover(
+                {
+                    'delay': { show: 1000, hide: 100 },
+                    'html':true,
+                    'content' :$('#search_help').html(),
+                    'placement': 'bottom',
+                    'trigger': 'hover'
+                });
+        </script>
 </body>
 </html>

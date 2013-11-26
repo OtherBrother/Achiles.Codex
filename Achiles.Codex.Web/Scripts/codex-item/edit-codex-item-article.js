@@ -1,1 +1,1 @@
-﻿
+﻿tinymce.init({ selector: '#ArticleBody', entity_encoding: "raw" });

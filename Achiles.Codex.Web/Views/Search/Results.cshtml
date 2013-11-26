@@ -21,7 +21,6 @@
 }
 else
 {
-
     <ul class="nav nav-tabs" id="results">
         @foreach (var type in Model.Results.GroupBy(x => x.ObjectType).OrderBy(x => x.Key))
         {
@@ -39,7 +38,7 @@ else
                     <a class="list-group-item">
                         <table>
                             <tr>
-                                <td rowspan="3"><img class="img-circle" style="width: 64px; height: 64px;" src="@(result.IconUrl ?? Url.Content("~/Content/dice.jpg"))" /></td>
+                                <td rowspan="3"><img style="width: 64px; height: 64px;" src="@(result.IconUrl ?? Url.Content("~/Content/dice.jpg"))" /></td>
                                 <td style="vertical-align: top">
                                     <h4 class="list-group-item-heading">@result.Name</h4>            
                                 </td>

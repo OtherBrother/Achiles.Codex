@@ -6,9 +6,29 @@ using Achiles.Codex.Model;
 
 namespace Achiles.Codex.Web.Models
 {
-    public class CodexItemModel<T>  where T : CodexItemBase
+    public interface ICodexItemModel<out T> where T : CodexItemBase
     {
-        public T CodexItem { get; set; }
+        CodexItemBase __CodexItemBase { get; set; }
+        bool IsNew { get; set; }
+        string ArticleBody { get; set; }
+    }
+
+    public class CodexItemModel<T> : ICodexItemModel<T> where T : CodexItemBase
+    {
+        public CodexItemBase __CodexItemBase { get; set; }
+  
+        public string ArticleBody { get; set; }
+
+        public T CodexItem {
+            get
+            {
+                return __CodexItemBase as T;
+            }
+             set
+            {
+                __CodexItemBase = value;
+            }
+        }
         public bool IsNew { get; set; }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Achiles.Codex.Model;
 using Achiles.Codex.Web.Models;
 
@@ -10,13 +11,15 @@ namespace Achiles.Codex.Web.Controllers
 {
     public class DemoController : CodexItemBaseController
     {
+
+
         //
         // GET: /Demo/
         public ActionResult Index()
         {
             return View();
         }
-        
+
         public ActionResult NewArticle()
         {
             return View();
@@ -35,26 +38,28 @@ namespace Achiles.Codex.Web.Controllers
             var model = GetModel<Rule>(id);
             return View(model);
         }
-        
+
+       
+
+        [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Rule(Rule input)
+        public ActionResult Rule(CodexItemModel<Rule> input)
         {
-            Rule storedItem = null;
-            
+
             if (ModelState.IsValid)
             {
                 //insert or update properties common for all base codex items
-                storedItem = UpsertBaseCodexItem(input);
-                
+                var storedItem = UpsertBaseCodexItem(input);
+
                 //set item other properties if neccessary..
-                storedItem.Gear = input.Gear;
+                storedItem.Gear = input.CodexItem.Gear;
 
                 //..and save 
                 DocumentSession.SaveChanges();
+                Success("Nice work!","Rules are made to be broken!");
             }
-            
-            return View(CreateModel(storedItem ?? input));
-        }
 
-	}
+            return View(input);
+        }
+    }
 }
