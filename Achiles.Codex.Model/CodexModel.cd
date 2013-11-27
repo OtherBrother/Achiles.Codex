@@ -14,8 +14,8 @@
       <FileName>Attribute.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Achiles.Codex.Model.CodexItem" Collapsed="true">
-    <Position X="25.25" Y="0.5" Width="2.75" />
+  <Class Name="Achiles.Codex.Model.CodexItem">
+    <Position X="19.5" Y="0.5" Width="2.75" />
     <NestedTypes>
       <Class Name="Achiles.Codex.Model.CodexItem.Mapping" Collapsed="true">
         <TypeIdentifier>
@@ -49,7 +49,7 @@
       <FileName>NcgEquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Achiles.Codex.Model.HandWeapon">
+  <Class Name="Achiles.Codex.Model.MeleeWeapon">
     <Position X="19.75" Y="14.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAACAAAAAAEIAAAAAAA=</HashCode>

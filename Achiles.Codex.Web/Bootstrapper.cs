@@ -70,7 +70,7 @@ namespace Achiles.Codex.Web
             documentStore.Conventions.RegisterIdConvention<Talent>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<Skill>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<SkillFeature>(GenerateCodexId);
-            documentStore.Conventions.RegisterIdConvention<HandWeapon>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<MeleeWeapon>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<RangedWeapon>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<Shield>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<MiscellaneousItem>(GenerateCodexId);

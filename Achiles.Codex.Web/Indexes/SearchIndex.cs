@@ -94,10 +94,10 @@ namespace Achiles.Codex.Web.Indexes
             #endregion
 
             #region Weapons
-            AddMap<HandWeapon>(items => from i in items
+            AddMap<MeleeWeapon>(items => from i in items
                                          select new Result
                                          {
-                                             ObjectType = CodexItemType.HandWeapon,
+                                             ObjectType = CodexItemType.MeleeWeapon,
                                              Id = i.Id,
                                              Name = i.Name,
                                              Description = i.Description,

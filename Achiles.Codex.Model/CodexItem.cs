@@ -37,9 +37,9 @@ namespace Achiles.Codex.Model
             Mappings.Add(new Mapping { PossibleInputs = { "ncg" }, MappedItemTypes = { CodexItemType.Skill, CodexItemType.Talent } });
 
             Mappings.Add(new Mapping { PossibleInputs = { "armor", "am" }, MappedItemTypes = { CodexItemType.HeadArmor, CodexItemType.BodyArmor, CodexItemType.ArmArmor, CodexItemType.LegArmor } });
-            Mappings.Add(new Mapping { PossibleInputs = { "weapon", "w" }, MappedItemTypes = { CodexItemType.HandWeapon, CodexItemType.RangedWeapon, CodexItemType.Ammo, CodexItemType.Shield } });
+            Mappings.Add(new Mapping { PossibleInputs = { "weapon", "w" }, MappedItemTypes = { CodexItemType.MeleeWeapon, CodexItemType.RangedWeapon, CodexItemType.Ammo, CodexItemType.Shield } });
             Mappings.Add(new Mapping { PossibleInputs = { "shield", "sh" }, MappedItemTypes = { CodexItemType.Shield } });
-            Mappings.Add(new Mapping { PossibleInputs = { "equipment", "eq" }, MappedItemTypes = { CodexItemType.HeadArmor, CodexItemType.BodyArmor, CodexItemType.ArmArmor, CodexItemType.LegArmor, CodexItemType.HandWeapon, CodexItemType.RangedWeapon, CodexItemType.Ammo, CodexItemType.Shield } });
+            Mappings.Add(new Mapping { PossibleInputs = { "equipment", "eq" }, MappedItemTypes = { CodexItemType.HeadArmor, CodexItemType.BodyArmor, CodexItemType.ArmArmor, CodexItemType.LegArmor, CodexItemType.MeleeWeapon, CodexItemType.RangedWeapon, CodexItemType.Ammo, CodexItemType.Shield } });
         }
 
         private List<string> _tags = new List<string>();
