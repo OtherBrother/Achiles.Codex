@@ -201,6 +201,7 @@
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SearchQuery.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -221,6 +222,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CodexItemLabels.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\CodexSearchService.cs" />
     <Compile Include="Services\InitDataService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

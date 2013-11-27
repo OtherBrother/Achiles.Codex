@@ -1,29 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Indexes;
-using Achiles.Codex.Web.Misc;
 using Achiles.Codex.Web.Models;
-using Microsoft.Win32.SafeHandles;
-using Raven.Client;
-using Raven.Client.Linq;
+using Achiles.Codex.Web.Services;
 
 namespace Achiles.Codex.Web.Controllers
 {
     public class SearchController : CodexItemController
     {
-    
-        
-       
+        private readonly ICodexSearchService _searchService;
 
-        public SearchController()
+
+        public SearchController(ICodexSearchService searchService)
         {
-           
+            _searchService = searchService;
         }
 
         [ValidateInput(false)]
@@ -32,104 +21,20 @@ namespace Achiles.Codex.Web.Controllers
             ViewBag.Title = "Search results";
 
             var searchQuery = new SearchQuery(query);
-
-            var q = DocumentSession.Query<SearchIndex.Result, SearchIndex>();
             
-            if (searchQuery.SearchTags.Any())
-                q = searchQuery.SearchTags.Aggregate(q, (current, t) => current.Where(x => x.Tags.Any(y => y == t)));
-            
-            if (searchQuery.SearchObjects.Any())
-                q = q.Where(x => x.ObjectType.In(searchQuery.SearchObjects));
-
-            if (searchQuery.IsFullText)
-                q = q.Search(x => x.Description, string.Format("{0}", searchQuery.SearchTerm), options: SearchOptions.And);
-            else if (!string.IsNullOrEmpty(searchQuery.SearchTerm))
-                q = q.Where(x => x.Name.StartsWith(searchQuery.SearchTerm));
  
             var model = new SearchResultsViewModel
             {
-                Results  = q.AsProjection<SearchIndex.Result>().ToList(),
+                Results = _searchService.Find(searchQuery),
                 OriginalQuery = searchQuery
             };
 
             if (!model.Results.Any())
             {
-                model.Suggestions = q.Suggest().Suggestions;
+                model.Suggestions = _searchService.GetSuggestions(searchQuery);
             }
 
             return View(model);
-        }
-    }
-    public class SearchQuery
-    {
-        public const string FullTextSymbol = "!";
-        private static readonly List<Mapping> Mappings = new List<Mapping>();
-        static SearchQuery()
-        {
-           
-        }
-
-        private class Mapping
-        {
-            public Mapping()
-            {
-                PossibleInputs = new HashSet<string>();
-                MappedItemTypes = new HashSet<CodexItemType>();
-            }
-
-            public HashSet<string> PossibleInputs { get; set; }
-            public HashSet<CodexItemType> MappedItemTypes { get; set; }
-        }
-      
-        
-        /*
-         * Serach syntax:
-        * [?][ObjectType[,ObjectType]:]Search term[@tag1,tag2]
-        * ?:skill,attribute:
-        */
-        
-
-        public SearchQuery(string query)
-        {
-
-            IsFullText = query.StartsWith(FullTextSymbol);
-            if (IsFullText)
-                query = query.Remove(0, 1);
-            
-            var typeSeparatorIndex = query.IndexOf(":");
-            var tagSeparatorIndex = query.LastIndexOf("@");
-
-            var typeModifier = typeSeparatorIndex > -1 ? typeSeparatorIndex + 1 : 0;
-
-            SearchTerm = query.Substring(typeModifier, (tagSeparatorIndex > -1 ? tagSeparatorIndex : (query.Length)) - typeModifier);
-            var searchObjects =
-                new HashSet<string>(typeSeparatorIndex > -1
-                    ? query.Substring(0, typeSeparatorIndex).Split(',')
-                    : new string[0]);
-
-           SearchTags = tagSeparatorIndex > -1 ? query.Substring(tagSeparatorIndex + 1).Split(',') : new string[0];
-
-            SearchObjects = CodexItem.MatchTypes(searchObjects);
-        }
-        
-
-        public bool IsFullText { get; set; }
-        public string SearchTerm { get; set; }
-        public CodexItemType[] SearchObjects { get; set; }
-        public string[] SearchTags { get; set; }
-
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            
-            sb.AppendFormat("IsFullText: {0}", IsFullText)
-                .AppendLine()
-                .AppendFormat("Search term : {0}", SearchTerm)
-                .AppendLine()
-                .AppendFormat("SearchObjects:", string.Concat(",", SearchObjects))
-                .AppendLine().AppendFormat("SearchTags:", string.Concat(",", SearchTags));
-            
-            return sb.ToString();
         }
     }
 }

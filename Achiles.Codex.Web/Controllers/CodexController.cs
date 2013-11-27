@@ -7,6 +7,7 @@ using System.Web.Http.Results;
 using System.Web.Mvc;
 using Achiles.Codex.Model;
 using Achiles.Codex.Web.Indexes;
+using Achiles.Codex.Web.Services;
 using Raven.Client;
 using Raven.Client.Linq;
 
@@ -14,9 +15,15 @@ namespace Achiles.Codex.Web.Controllers
 {
     public class CodexController : CodexItemBaseController
     {
+        private readonly ICodexSearchService _searchService;
         private const int MinQueryLength = 3;
         private readonly JsonResult _noResults = new JsonResult { Data = new SearchIndex.Result[] { }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         
+        public CodexController(ICodexSearchService searchService)
+        {
+            _searchService = searchService;
+        }
+
         public ActionResult RedirectToItem(string id)
         {
             return RedirectToAction("Index", "Home");
@@ -30,30 +37,15 @@ namespace Achiles.Codex.Web.Controllers
 
             return new JsonResult { Data = coedxItem , JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
+        [ValidateInput(false)]
         public JsonResult Find(string q)
         {
-            if (q.Length < MinQueryLength)
-                return _noResults;
 
-            CodexItemType[] types;
-            string term = null;
-            IRavenQueryable<SearchIndex.Result> results;
-            
-            if (CodexItem.GetTypesForQuery(q, out types, out term))
-            {
-                if (term.Length < MinQueryLength)
-                    return _noResults;
+            var searchQuery = new SearchQuery(q);
 
-                 results =
-                    DocumentSession.Query<SearchIndex.Result, SearchIndex>()
-                        .Where(x => x.ObjectType.In(types) && x.Name.StartsWith(term));
-            }
-            else
-            {
-                results =  DocumentSession.Query<SearchIndex.Result, SearchIndex>().Where(x => x.Name.StartsWith(q));
+            var results = _searchService.Find(searchQuery);
 
-            }
-            return new JsonResult { Data = results.AsProjection<SearchIndex.Result>().ToList(), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult { Data = results, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }
 }

@@ -41,6 +41,7 @@ namespace Achiles.Codex.Web
             container.RegisterInstance<IDocumentStore>(CreateDocumentStore(), new ContainerControlledLifetimeManager());
             container.RegisterType<IDocumentSession>(new HierarchicalLifetimeManager(), new InjectionFactory(c => c.Resolve<IDocumentStore>().OpenSession()));
             container.RegisterType<IInitDataService, InitDataService>();
+            container.RegisterType<ICodexSearchService, CodexSearchService>();
             
             container.RegisterType<UserManager<ApplicationUser>>();
             container.RegisterType<IUserStore<ApplicationUser>, RavenUserStore>();
