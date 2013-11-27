@@ -41,6 +41,7 @@ namespace Achiles.Codex.Web
             container.RegisterInstance<IDocumentStore>(CreateDocumentStore(), new ContainerControlledLifetimeManager());
             container.RegisterType<IDocumentSession>(new HierarchicalLifetimeManager(), new InjectionFactory(c => c.Resolve<IDocumentStore>().OpenSession()));
             container.RegisterType<IInitDataService, InitDataService>();
+            container.RegisterType<ICodexSearchService, CodexSearchService>();
             
             container.RegisterType<UserManager<ApplicationUser>>();
             container.RegisterType<IUserStore<ApplicationUser>, RavenUserStore>();
@@ -69,7 +70,7 @@ namespace Achiles.Codex.Web
             documentStore.Conventions.RegisterIdConvention<Talent>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<Skill>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<SkillFeature>(GenerateCodexId);
-            documentStore.Conventions.RegisterIdConvention<HandWeapon>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<MeleeWeapon>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<RangedWeapon>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<Shield>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<MiscellaneousItem>(GenerateCodexId);

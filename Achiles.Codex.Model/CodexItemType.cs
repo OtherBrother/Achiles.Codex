@@ -12,7 +12,7 @@
         Talent,
         Skill,
         SkillFeature,
-        HandWeapon,
+        MeleeWeapon,
         RangedWeapon,
         Shield,
         MiscellaneousItem,

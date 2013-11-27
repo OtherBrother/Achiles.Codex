@@ -46,7 +46,7 @@ namespace Achiles.Codex.Web.Indexes
                                    from t in i.Tags
                                    select new TagStatistics { Tag = t, Count = 1 });
             
-            AddMap<HandWeapon>(items => from i in items
+            AddMap<MeleeWeapon>(items => from i in items
                                          from t in i.Tags
                                          select new TagStatistics { Tag = t, Count = 1 });
 

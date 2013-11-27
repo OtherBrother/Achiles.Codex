@@ -15,9 +15,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.CodexItem">
-    <Position X="25.5" Y="1" Width="2.75" />
+    <Position X="19.5" Y="0.5" Width="2.75" />
+    <NestedTypes>
+      <Class Name="Achiles.Codex.Model.CodexItem.Mapping" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>CodexItem.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAAAIACAAAAQAAACAAEAAAAAgAAAAAAg=</HashCode>
+      <HashCode>AgkCAAAAAAAgAAAIAiBAAAQAAACAAEAAAAAgAAAAAAg=</HashCode>
       <FileName>CodexItem.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -37,9 +44,12 @@
   </Class>
   <Class Name="Achiles.Codex.Model.NcgEquipmentItem">
     <Position X="28.25" Y="9" Width="2.25" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NcgEquipmentItem.cs</FileName>
+    </TypeIdentifier>
   </Class>
-  <Class Name="Achiles.Codex.Model.HandWeapon">
+  <Class Name="Achiles.Codex.Model.MeleeWeapon">
     <Position X="19.75" Y="14.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAACAAAAAAEIAAAAAAA=</HashCode>

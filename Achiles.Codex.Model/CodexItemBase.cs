@@ -2,7 +2,7 @@
 
 namespace Achiles.Codex.Model
 {
-    public abstract class CodexItemBase : CodexItem
+    public class CodexItemBase : CodexItem
     {
 
 

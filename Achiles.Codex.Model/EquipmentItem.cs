@@ -49,7 +49,7 @@ namespace Achiles.Codex.Model
         public Damage Damage { get; set; }
     }
 
-    public class HandWeapon : Weapon
+    public class MeleeWeapon : Weapon
     {
         public int SwingBaseDamage { get; set; }
         public int ThrustBaseDamage { get; set; }

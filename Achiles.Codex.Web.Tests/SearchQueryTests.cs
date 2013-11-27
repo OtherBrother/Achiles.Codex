@@ -122,7 +122,7 @@ namespace Achiles.Codex.Web.Tests
             Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.Skill));
             Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.CombatSkill));
             Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.MiscellaneousItem));
-            Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.HandWeapon));
+            Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.MeleeWeapon));
             Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.RangedWeapon));
             Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.Shield));
             Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.Ammo));

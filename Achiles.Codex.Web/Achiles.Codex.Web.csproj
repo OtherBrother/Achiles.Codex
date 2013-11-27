@@ -201,6 +201,7 @@
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SearchQuery.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,12 +215,14 @@
     <Compile Include="Models\ArticleListViewModel.cs" />
     <Compile Include="Models\EditUserModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\CodexItemModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CodexItemLabels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CodexItemLabels.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\CodexSearchService.cs" />
     <Compile Include="Services\InitDataService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -239,6 +242,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\codex-item\edit-codex-item-article.js" />
+    <Content Include="Scripts\codex-item\edit-codex-item-basic-info.js" />
     <Content Include="Scripts\handlebars-1.1.2.js" />
     <Content Include="Scripts\handlebars.runtime-1.1.2.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -251,6 +256,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Scripts\typeahead.js" />
     <Content Include="Scripts\typeahead.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -292,6 +298,9 @@
     <Content Include="Views\Demo\NewMeleeWeapon.cshtml" />
     <Content Include="Views\Demo\NewMeleeWeaponJonas.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Shared\_EditCodexItemBasicInfoView.cshtml" />
+    <Content Include="Views\Demo\Rule.cshtml" />
+    <Content Include="Views\Shared\_EditCodexItemArticleView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
