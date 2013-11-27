@@ -110,7 +110,7 @@ namespace Achiles.Codex.Web
                     articleBody = article.Description;
             }
 
-            return new CodexItemModel<T> { CodexItem = codexItem, IsNew = codexItem == null, ArticleBody = articleBody };
+            return new CodexItemModel<T> { CodexItem = codexItem, IsNew = (codexItem == null) || string.IsNullOrEmpty(codexItem.Id), ArticleBody = articleBody };
         }
 
         /// <summary>
