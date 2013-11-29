@@ -200,6 +200,7 @@
     <Compile Include="Controllers\CodexController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NCGEquipmentItemController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SearchQuery.cs" />
     <Compile Include="Controllers\TagsController.cs" />
@@ -301,6 +302,8 @@
     <Content Include="Views\Shared\_EditCodexItemBasicInfoView.cshtml" />
     <Content Include="Views\Demo\Rule.cshtml" />
     <Content Include="Views\Shared\_EditCodexItemArticleView.cshtml" />
+    <Content Include="Views\NCGEquipmentItem\Index.cshtml" />
+    <Content Include="Views\NCGEquipmentItem\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

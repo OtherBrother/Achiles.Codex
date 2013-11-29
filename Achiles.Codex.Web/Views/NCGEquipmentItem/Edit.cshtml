@@ -2,11 +2,11 @@
 
 @if (Model.IsNew)
 {
-    <h2>New Non-combat Equipment Item</h2>
+    <h2>New Non-combat equipment item</h2>
 }
 else
 {
-    <h2>Edit Non-Combat Equipment Item <em>@(Model.CodexItem.Name ?? "<new rule>") </em></h2>
+    <h2>Edit Non-Combat equipment item <em>@(Model.CodexItem.Name ?? "<new NCGEquipmentItem>") </em></h2>
 }
 
 <ul class="nav nav-tabs">
@@ -28,17 +28,7 @@ else
     </div>
     <hr />
     <div class="btn-group">
-        <button type="submit" class="btn btn-primary">Save article</button>
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Save and create new</a></li>
-            <li><a href="#">Save and return to list</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Save and do something unexpected</a></li>
-        </ul>
+        <button type="submit" class="btn btn-primary" href="@Url.Action("Index", "NCGEquipmentItem")">Save Non-Combat equipment item</button>
     </div>
 }
 
@@ -50,7 +40,6 @@ else
 
 @section scripts
 {
-    @*TODO:host editor scripts localy so that we can include them in the 'bundles/edit-codex-item-article' bundle and avoid copy-pastying to each form*@
     @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
 
     @Scripts.Render("~/bundles/edit-codex-item-basic-info")
@@ -59,5 +48,5 @@ else
 }
 
 
-<
+
 
