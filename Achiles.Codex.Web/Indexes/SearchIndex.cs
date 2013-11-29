@@ -91,6 +91,18 @@ namespace Achiles.Codex.Web.Indexes
                                        IconUrl = i.IconUrl,
                                        Tags = i.Tags
                                    });
+
+            AddMap<NcgEquipmentItem>(items => from i in items
+                                              select new Result
+                                              {
+                                                  ObjectType = CodexItemType.NcgEquimpentItem,
+                                                  Id = i.Id,
+                                                  Name = i.Name,
+                                                  Description = i.Description,
+                                                  IconUrl = i.IconUrl,
+                                                  Tags = i.Tags
+                                              });
+            
             #endregion
 
             #region Weapons
@@ -193,6 +205,7 @@ namespace Achiles.Codex.Web.Indexes
                                           Tags = i.Tags
                                       });
             #endregion
+           
 
             Indexes.Add(x=>x.Description, FieldIndexing.Analyzed);
             Indexes.Add(x => x.IconUrl, FieldIndexing.NotAnalyzed);
@@ -207,7 +220,6 @@ namespace Achiles.Codex.Web.Indexes
             Store(x => x.Tags, FieldStorage.Yes);
             Store(x => x.ObjectType, FieldStorage.Yes);
             Store(x => x.IconUrl, FieldStorage.Yes);
-            
             }
     }
 }
