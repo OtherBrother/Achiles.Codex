@@ -78,6 +78,8 @@ namespace Achiles.Codex.Web
             if (itemToUpdate == null)
             {
                 SetRelatedItems(input);
+                //make all tags lowercase
+                input.Tags = input.Tags.Select(x => x.ToLower()).ToList();
                 DocumentSession.Store(input);
                 return input;
             }
@@ -85,7 +87,7 @@ namespace Achiles.Codex.Web
             {
                 itemToUpdate.Name = input.Name; //this allows to id and name to differ..
                 itemToUpdate.Description = input.Description;
-                itemToUpdate.Tags = input.Tags;
+                itemToUpdate.Tags = input.Tags.Select(x=>x.ToLower()).ToList();
                 SetRelatedItems(itemToUpdate);
                 return itemToUpdate;
             }
