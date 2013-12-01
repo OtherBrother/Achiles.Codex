@@ -20,61 +20,65 @@ namespace Achiles.Codex.Web.Indexes
         {
             AddMap<AttributeInfo>(items=> from i in items 
                                           from t in i.Tags
-                                          select new TagStatistics{ Tag= t, Count = 1});
+                                          select new TagStatistics{ Tag= t.ToLower(), Count = 1});
 
             AddMap<RuleSet>(items => from i in items
                                            from t in i.Tags
-                                           select new TagStatistics { Tag = t, Count = 1 });
+                                           select new TagStatistics { Tag = t.ToLower(), Count = 1 });
             
             AddMap<Rule>(items => from i in items
                                      from t in i.Tags
-                                     select new TagStatistics { Tag = t, Count = 1 });
+                                     select new TagStatistics { Tag = t.ToLower(), Count = 1 });
             
             AddMap<Talent>(items => from i in items
                                            from t in i.Tags
-                                           select new TagStatistics { Tag = t, Count = 1 });
+                                           select new TagStatistics { Tag = t.ToLower(), Count = 1 });
             
             AddMap<Rule>(items => from i in items
                                      from t in i.Tags
-                                     select new TagStatistics { Tag = t, Count = 1 });
+                                     select new TagStatistics { Tag = t.ToLower(), Count = 1 });
 
             AddMap<Skill>(items => from i in items
                                   from t in i.Tags
-                                  select new TagStatistics { Tag = t, Count = 1 });
+                                  select new TagStatistics { Tag = t.ToLower(), Count = 1 });
+
+            AddMap<NcgEquipmentItem>(items => from i in items
+                                   from t in i.Tags
+                                   select new TagStatistics { Tag = t.ToLower(), Count = 1 });
 
             AddMap<CombatSkill>(items => from i in items
                                    from t in i.Tags
-                                   select new TagStatistics { Tag = t, Count = 1 });
+                                   select new TagStatistics { Tag = t.ToLower(), Count = 1 });
             
             AddMap<MeleeWeapon>(items => from i in items
                                          from t in i.Tags
-                                         select new TagStatistics { Tag = t, Count = 1 });
+                                         select new TagStatistics { Tag = t.ToLower(), Count = 1 });
 
             AddMap<RangedWeapon>(items => from i in items
                                         from t in i.Tags
-                                        select new TagStatistics { Tag = t, Count = 1 });
+                                        select new TagStatistics { Tag = t.ToLower(), Count = 1 });
 
             AddMap<Ammo>(items => from i in items
                                           from t in i.Tags
-                                          select new TagStatistics { Tag = t, Count = 1 });
+                                          select new TagStatistics { Tag = t.ToLower(), Count = 1 });
 
             AddMap<Shield>(items => from i in items
                                   from t in i.Tags
-                                  select new TagStatistics { Tag = t, Count = 1 });
+                                  select new TagStatistics { Tag = t.ToLower(), Count = 1 });
             
             AddMap<HeadArmor>(items => from i in items
                                     from t in i.Tags
-                                    select new TagStatistics { Tag = t, Count = 1 });
+                                    select new TagStatistics { Tag = t.ToLower(), Count = 1 });
             AddMap<BodyArmor>(items => from i in items
                                        from t in i.Tags
-                                       select new TagStatistics { Tag = t, Count = 1 });
+                                       select new TagStatistics { Tag = t.ToLower(), Count = 1 });
             AddMap<ArmArmor>(items => from i in items
                                        from t in i.Tags
-                                       select new TagStatistics { Tag = t, Count = 1 });
+                                       select new TagStatistics { Tag = t.ToLower(), Count = 1 });
 
             AddMap<LegArmor>(items => from i in items
                                        from t in i.Tags
-                                       select new TagStatistics { Tag = t, Count = 1 });
+                                       select new TagStatistics { Tag = t.ToLower(), Count = 1 });
 
             Reduce = tags => from t in tags
                 group t by t.Tag
