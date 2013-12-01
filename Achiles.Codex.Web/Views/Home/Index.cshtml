@@ -1,9 +1,81 @@
-﻿@using System.Web.UI.WebControls
+﻿@model Achiles.Codex.Web.Models.HomeViewModel
+@using System.Web.UI.WebControls
+@using Achiles.Codex.Model
+@using Achiles.Codex.Web.Misc
+
 @{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>Achiles.Codex</h1>
-    <p class="text-muted">Connected to RavenHQ, Raven Version : @ViewBag.RavenBuildNumber </p>
+    <h1>Achilles <small>The Cool RPG system</small></h1>
+    <p class="text-muted">Short description goes here!</p>
+</div>
+<div class="row">
+    <div class="col-md-3 home-screen-panel-row">
+        <div class="panel panel-default home-screen-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lear to play</h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">How to..</a></li>
+                    <li><a href="#">Other stuff</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 home-screen-panel-row">
+        <div class="panel panel-default home-screen-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Latest articles</h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li><a href="#">Harnessing power of luck</a></li>
+                    <li><a href="#">How to create character</a></li>
+                    <li><a href="#">Tips and tricks for GM</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    @*Random article*@
+    @if (Model.RandomArticle != null)
+    {
+        <div class="col-md-3 home-screen-panel-row">
+            <div class="panel panel-default home-screen-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Model.RandomArticle.Name</h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <img style="float: left; padding: 3px 3px 0px 3px; width: 32px; height: 32px;" src="@(Model.RandomArticle.IconUrl ?? Url.Content("~/Content/dice.jpg"))" alt="@Model.RandomArticle.Name" />
+                        @Model.RandomArticle.Description.Cleanup().Fit(150)
+                    </p>
+                    <p><a href="#">Read full article</a></p>
+                </div>
+            </div>
+        </div>
+    }
+    @*Random item*@
+    @if (Model.RandomItem != null)
+    {
+        <div class="col-md-3 home-screen-panel-row">
+            <div class="panel panel-default home-screen-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Model.RandomItem.Name <span class="badge pull-right">@CodexItem.GetLabelForType(Model.RandomItem.ObjectType)</span></h3> 
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <img style="float: left; padding: 3px 3px 0px 3px; width: 32px; height: 32px;" src="@(Model.RandomItem.IconUrl ?? Url.Content("~/Content/dice.jpg"))" alt="@Model.RandomItem.Name" />
+                        @Model.RandomItem.Description.Cleanup().Fit(150);
+                    </p>
+                    <p><a href="#">I want to know more</a></p>
+                </div>
+            </div>
+        </div>
+    }
 </div>

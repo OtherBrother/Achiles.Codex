@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Achiles.Codex.Model;
+using Achiles.Codex.Web.Indexes;
+using Achiles.Codex.Web.Models;
 using Raven.Client;
+using Raven.Client.Linq;
 
 namespace Achiles.Codex.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IDocumentSession _session;
 
@@ -15,12 +19,20 @@ namespace Achiles.Codex.Web.Controllers
         {
             _session = session;
         }
-
+        
         public ActionResult Index()
         {
-            ViewBag.RavenBuildNumber = _session.Advanced.DocumentStore.DatabaseCommands.GetBuildNumber().ProductVersion;
+            var model = new HomeViewModel
+            {
+                RandomArticle = DocumentSession.Query<Article>().Customize(x => x.RandomOrdering()).Take(1).FirstOrDefault(),
+                RandomItem = DocumentSession.Query<SearchIndex.Result, SearchIndex>()
+                .Where(x=>!x.ObjectType.In(CodexItemType.Article))
+                    .Customize(x => x.RandomOrdering()).AsProjection<SearchIndex.Result>()
+                    .Take(1)
+                    .FirstOrDefault()
+            };
             
-            return View();
+            return View(model);
         }
 
         public ActionResult About()

@@ -214,6 +214,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleListViewModel.cs" />
     <Compile Include="Models\EditUserModel.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\CodexItemModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
