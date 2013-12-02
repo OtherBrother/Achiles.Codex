@@ -11,5 +11,6 @@ namespace Achiles.Codex.Web.Models
     {
         public Article RandomArticle { get; set; }
         public SearchIndex.Result RandomItem { get; set; }
+        public TagStatisticsIndex.TagStatistics[] Tags { get; set; }
     }
 }

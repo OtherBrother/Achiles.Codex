@@ -30,14 +30,10 @@
     <div class="col-md-3 home-screen-panel-row">
         <div class="panel panel-default home-screen-panel">
             <div class="panel-heading">
-                <h3 class="panel-title">Latest articles</h3>
+                <h3 class="panel-title">Tags</h3>
             </div>
-            <div class="panel-body">
-                <ul>
-                    <li><a href="#">Harnessing power of luck</a></li>
-                    <li><a href="#">How to create character</a></li>
-                    <li><a href="#">Tips and tricks for GM</a></li>
-                </ul>
+            <div class="panel-body" style="margin-top: 0">
+                <div id="tag-cloud" style="width: 200px; height: 150px;"></div>
             </div>
         </div>
     </div>
@@ -79,3 +75,23 @@
         </div>
     }
 </div>
+
+
+@section Head
+{
+    @Styles.Render("~/Content/jqcloud.css")
+}
+@section scripts
+{
+    @Scripts.Render("~/Scripts/jqcloud-1.0.4.js")
+    
+    
+
+    <script type="text/javascript">
+        var tags = [@Html.Raw(string.Join(",", Model.Tags.Select(x => string.Format("{{text:'{0}',weight:{1}, link:window.codex.urls.searchCodexUrl+'@{0}' }}", x.Tag, x.Count))))];
+        $(function() {
+            // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+            $("#tag-cloud").jQCloud(tags);
+        });
+    </script>
+}

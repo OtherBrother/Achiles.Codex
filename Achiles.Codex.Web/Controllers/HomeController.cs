@@ -29,7 +29,8 @@ namespace Achiles.Codex.Web.Controllers
                 .Where(x=>!x.ObjectType.In(CodexItemType.Article))
                     .Customize(x => x.RandomOrdering()).AsProjection<SearchIndex.Result>()
                     .Take(1)
-                    .FirstOrDefault()
+                    .FirstOrDefault(),
+                Tags = DocumentSession.Query<TagStatisticsIndex.TagStatistics, TagStatisticsIndex>().ToArray()
             };
             
             return View(model);
