@@ -30,7 +30,10 @@ namespace Achilles.Codex.Web.Controllers
             {
                 //insert or update properties common for all base codex items
                 var storedItem = UpsertBaseCodexItem(input);
-                //..and save 
+                 
+                //set item other properties if neccessary..
+                storedItem.MaxLevel = input.CodexItem.MaxLevel;
+
                 DocumentSession.SaveChanges();
                 Success("New skill feature is created");
             }

@@ -6,12 +6,13 @@
 }
 else
 {
-    <h2>Edit Skill Feature <em>@(Model.CodexItem.Name ?? "<new SkillFeature>") </em></h2>
+  
 }
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#basic-info" data-toggle="tab">Basic information</a></li>
     <li><a href="#article" data-toggle="tab">Article</a></li>
+    <li><a href="#properties" data-toggle="tab">Properties</a></li>
 </ul>
 <br />
 @Html.ValidationSummary(false)
@@ -24,6 +25,12 @@ else
         </div>
         <div class="tab-pane fade in" id="article">
             @Html.Partial("_EditCodexItemArticleView", Model)
+        </div>
+        <div class="tab-pane fade in" id="properties">
+            <div class="form-group">
+                <label for="MaxLevel">Maximum skill level</label>
+                <input class="form-control" type="number" id="MaxLevel" name="MaxLevel" value="@Model.CodexItem.MaxLevel" />
+            </div>
         </div>
     </div>
     <hr />
@@ -40,7 +47,7 @@ else
 
 @section scripts
 {
-    @*TODO: missing property in form: MaxLevel*@
+    @*TODO: MaxLevel property do not take value*@
     @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
 
     @Scripts.Render("~/bundles/edit-codex-item-basic-info")
