@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Achiles.Codex.Web.Resources {
+namespace Achilles.Codex.Web.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Achiles.Codex.Web.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Achiles.Codex.Web.Resources.CodexItemLabels", typeof(CodexItemLabels).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Achilles.Codex.Web.Resources.CodexItemLabels", typeof(CodexItemLabels).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,6 +61,15 @@ namespace Achiles.Codex.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attribute.
+        /// </summary>
+        internal static string AttributeInfo {
+            get {
+                return ResourceManager.GetString("AttributeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Combat skill.
         /// </summary>
         internal static string CombatSkill {
@@ -75,6 +84,15 @@ namespace Achiles.Codex.Web.Resources {
         internal static string HandWeapon {
             get {
                 return ResourceManager.GetString("HandWeapon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Melee weapon.
+        /// </summary>
+        internal static string MeleeWeapon {
+            get {
+                return ResourceManager.GetString("MeleeWeapon", resourceCulture);
             }
         }
         

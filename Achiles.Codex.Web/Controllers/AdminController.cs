@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Achiles.Codex.Web.Misc;
-using Achiles.Codex.Web.Models;
-using Achiles.Codex.Web.Services;
+using Achilles.Codex.Web.Misc;
+using Achilles.Codex.Web.Models;
+using Achilles.Codex.Web.Services;
 using Microsoft.AspNet.Identity;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class AdminController : CodexItemController

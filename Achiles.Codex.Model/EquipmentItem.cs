@@ -1,20 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Achiles.Codex.Model
+namespace Achilles.Codex.Model
 {
 
     public class Damage
     {
-        public Damage(params DamageValue[] damages)
+        private List<DamageValue> _damages = new List<DamageValue>();
+
+        public List<DamageValue> Damages
         {
-
+            get { return _damages; }
+            set { _damages = value; }
         }
-        public IEnumerable<DamageValue> Damages { get; set; }
     }
-
-    
-
+ 
     public class DamageValue
     {
         public DamageType DamageType { get; set; }
@@ -49,12 +49,9 @@ namespace Achiles.Codex.Model
         public Damage Damage { get; set; }
     }
 
-    public class HandWeapon : Weapon
+    public class MeleeWeapon : Weapon
     {
-        public int SwingBaseDamage { get; set; }
-        public int ThrustBaseDamage { get; set; }
-        public int ThrustArmorPiercing { get; set; }
-        public int SwingArmorPiercing { get; set; }
+              
     }
 
     public class RangedWeapon : Weapon

@@ -1,10 +1,10 @@
 using System.Configuration;
 using System.Web.Mvc;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Controllers;
-using Achiles.Codex.Web.Indexes;
-using Achiles.Codex.Web.Models;
-using Achiles.Codex.Web.Services;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Controllers;
+using Achilles.Codex.Web.Indexes;
+using Achilles.Codex.Web.Models;
+using Achilles.Codex.Web.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.Practices.Unity;
 using Raven.Client;
@@ -13,7 +13,7 @@ using Raven.Client.Document;
 using Raven.Client.Indexes;
 using Unity.Mvc4;
 
-namespace Achiles.Codex.Web
+namespace Achilles.Codex.Web
 {
     public static class Bootstrapper
     {
@@ -41,6 +41,7 @@ namespace Achiles.Codex.Web
             container.RegisterInstance<IDocumentStore>(CreateDocumentStore(), new ContainerControlledLifetimeManager());
             container.RegisterType<IDocumentSession>(new HierarchicalLifetimeManager(), new InjectionFactory(c => c.Resolve<IDocumentStore>().OpenSession()));
             container.RegisterType<IInitDataService, InitDataService>();
+            container.RegisterType<ICodexSearchService, CodexSearchService>();
             
             container.RegisterType<UserManager<ApplicationUser>>();
             container.RegisterType<IUserStore<ApplicationUser>, RavenUserStore>();
@@ -69,7 +70,7 @@ namespace Achiles.Codex.Web
             documentStore.Conventions.RegisterIdConvention<Talent>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<Skill>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<SkillFeature>(GenerateCodexId);
-            documentStore.Conventions.RegisterIdConvention<HandWeapon>(GenerateCodexId);
+            documentStore.Conventions.RegisterIdConvention<MeleeWeapon>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<RangedWeapon>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<Shield>(GenerateCodexId);
             documentStore.Conventions.RegisterIdConvention<MiscellaneousItem>(GenerateCodexId);

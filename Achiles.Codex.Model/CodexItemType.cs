@@ -1,4 +1,4 @@
-﻿namespace Achiles.Codex.Model
+﻿namespace Achilles.Codex.Model
 {
     public enum CodexItemType
     {
@@ -6,13 +6,13 @@
         Article,
         RuleSet,
         Rule,
-        Attribute,
+        AttributeInfo,
         CombatSkill,
         NcgEquimpentItem,
         Talent,
         Skill,
         SkillFeature,
-        HandWeapon,
+        MeleeWeapon,
         RangedWeapon,
         Shield,
         MiscellaneousItem,
@@ -21,5 +21,6 @@
         BodyArmor,
         ArmArmor,
         LegArmor,
+
     }
 }

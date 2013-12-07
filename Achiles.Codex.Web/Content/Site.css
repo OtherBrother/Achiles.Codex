@@ -34,3 +34,10 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.home-screen-panel {
+    height: 100%;
+}
+.home-screen-panel-row {
+    height: 220px;
+}

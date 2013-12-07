@@ -1,130 +1,140 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Achiles.Codex.Model.Article">
-    <Position X="23" Y="4.5" Width="1.5" />
+    <Position X="21.75" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Article.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.AttributeInfo">
-    <Position X="19.75" Y="9" Width="1.5" />
+    <Position X="18.5" Y="13.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Attribute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.CodexItem">
-    <Position X="25.5" Y="1" Width="2.75" />
+    <Position X="28" Y="0.5" Width="2.75" />
+    <NestedTypes>
+      <Class Name="Achiles.Codex.Model.CodexItem.Mapping" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>CodexItem.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAAAIACAAAAQAAACAAEAAAAAgAAAAAAg=</HashCode>
+      <HashCode>AgkCAAAAAAAgAAAIAiBAAAQAAACAAEAAAAAgAAAAAAg=</HashCode>
       <FileName>CodexItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.CodexItemBase">
-    <Position X="28" Y="4.5" Width="1.75" />
+    <Position X="28" Y="8" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
       <FileName>CodexItemBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.CombatSkill">
-    <Position X="22.5" Y="9" Width="1.5" />
+    <Position X="21.25" Y="13.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CombatSkill.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.NcgEquipmentItem">
-    <Position X="28.25" Y="9" Width="2.25" />
-    <TypeIdentifier />
+    <Position X="27" Y="13.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NcgEquipmentItem.cs</FileName>
+    </TypeIdentifier>
   </Class>
-  <Class Name="Achiles.Codex.Model.HandWeapon">
-    <Position X="19.75" Y="14.5" Width="2" />
+  <Class Name="Achiles.Codex.Model.MeleeWeapon">
+    <Position X="18.5" Y="18.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAACAAAAAAEIAAAAAAA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.RangedWeapon">
-    <Position X="17.75" Y="14.5" Width="1.5" />
+    <Position X="16.5" Y="18.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAIAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.Ammo">
-    <Position X="12" Y="11.25" Width="1.5" />
+    <Position X="10.75" Y="15.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.Shield">
-    <Position X="22.5" Y="14.5" Width="1.5" />
+    <Position X="21.25" Y="18.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAABAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.Armor" Collapsed="true">
-    <Position X="15.75" Y="11.25" Width="1.5" />
+    <Position X="14.5" Y="15.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAACAAA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.HeadArmor" Collapsed="true">
-    <Position X="9.75" Y="13.25" Width="1.5" />
+    <Position X="8.5" Y="17.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.BodyArmor" Collapsed="true">
-    <Position X="11.75" Y="13.25" Width="1.5" />
+    <Position X="10.5" Y="17.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.ArmArmor" Collapsed="true">
-    <Position X="14" Y="13.25" Width="1.5" />
+    <Position X="12.75" Y="17.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.LegArmor" Collapsed="true">
-    <Position X="16.25" Y="13.25" Width="1.5" />
+    <Position X="15" Y="17.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.MiscellaneousItem" Collapsed="true">
-    <Position X="14" Y="11.25" Width="1.5" />
+    <Position X="12.75" Y="15.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.Rule">
-    <Position X="31.5" Y="4.5" Width="1.5" />
+    <Position X="32" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
       <FileName>Rule.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.RuleSet">
-    <Position X="25.5" Y="4.5" Width="1.5" />
+    <Position X="25" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>RuleSet.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.Skill">
-    <Position X="34.25" Y="9" Width="1.5" />
+    <Position X="33" Y="13.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAACEA=</HashCode>
       <FileName>Skill.cs</FileName>
@@ -134,34 +144,34 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Achiles.Codex.Model.Talent">
-    <Position X="31.25" Y="9" Width="2" />
+    <Position X="30" Y="13.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Talent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.NonCombatGearItem">
-    <Position X="29.75" Y="7" Width="1.5" />
+    <Position X="28.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NonCombatGearItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.CombatGearItem">
-    <Position X="25.75" Y="7" Width="1.5" />
+    <Position X="24.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CombatGearItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.EquipmentItem">
-    <Position X="16.75" Y="9" Width="1.5" />
+    <Position X="15.5" Y="13.25" Width="1.5" />
     <InheritanceLine Type="Achiles.Codex.Model.CombatGearItem" FixedFromPoint="true">
       <Path>
-        <Point X="26.5" Y="7.997" />
-        <Point X="26.5" Y="8.625" />
-        <Point X="17.5" Y="8.625" />
-        <Point X="17.5" Y="9" />
+        <Point X="25.25" Y="12.247" />
+        <Point X="25.25" Y="12.875" />
+        <Point X="16.25" Y="12.875" />
+        <Point X="16.25" Y="13.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -170,21 +180,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.Specialization">
-    <Position X="37.5" Y="9.75" Width="1.5" />
+    <Position X="36.25" Y="14" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAABQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Skill.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.SkillFeature">
-    <Position X="24.5" Y="9" Width="2.5" />
+    <Position X="23.25" Y="13.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>CombatSkill.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Achiles.Codex.Model.Weapon">
-    <Position X="17.75" Y="11.25" Width="1.5" />
+    <Position X="16.5" Y="15.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAACABA=</HashCode>
       <FileName>EquipmentItem.cs</FileName>

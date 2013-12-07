@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Achiles.Codex.Model.Resources {
+namespace Achilles.Codex.Model.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Achiles.Codex.Model.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Achiles.Codex.Model.Resources.CodexItemLabels", typeof(CodexItemLabels).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Achilles.Codex.Model.Resources.CodexItemLabels", typeof(CodexItemLabels).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

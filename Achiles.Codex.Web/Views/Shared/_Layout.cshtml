@@ -1,13 +1,15 @@
-﻿@using Achiles.Codex.Web.Misc
+﻿@using Achilles.Codex.Model
+@using Achilles.Codex.Web.Misc
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Codex</title>
+    @RenderSection("Head", false)
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("Head",false);
+    
 
 </head>
 <body>
@@ -19,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Achiles Codex", "Index", "Home", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("Achilles Codex", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -27,6 +29,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Codex <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("Index","Attributes")">Attributes</a></li>
+                            <li><a href="@Url.Action("Index","NCGEquipmentItem")">NCGEquipmentItems</a></li>
                         </ul>
                     </li>
                     @if (User.IsAdmin())
@@ -66,7 +69,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Achiles.Codex</p>
+            <p>&copy; @DateTime.Now.Year - Achilles.Codex</p>
         </footer>
     </div>
     <div id="search_help" class="hidden">
@@ -80,20 +83,34 @@
         <p>You can combine all the rules together, like in folowing example lets search in a description of all <i>comabt gear</i> codex items tagged as <i>experimental</i> containing keywords <i>super awsome</i></p>
         <p><span class="label label-default">Example</span><br/><a href="@Url.Action("Results", "Search", new { query = "!cg:super awsome@@experimental" })">!cg:super&nbsp;awsome@@experimental</a></p>
     </div>
+    
+    <script type="text/javascript">
+        
+        window.codex = window.codex || {};
+        window.codex.objectTypeNames = { @Html.Raw(string.Join(",", Enum.GetNames(typeof (CodexItemType)).Select((x, i) => string.Format("{0}:'{1}'", i, x)))) };
+        window.codex.urls = window.urls || {};
+
+        window.codex.urls.tagsSuggestUrl = '@Url.Action("Suggest","Tags")';
+        window.codex.urls.codexItemSuggestUrl = '@Url.Action("Find", "Codex")';
+        window.codex.urls.searchCodexUrl = '@Url.Action("Results", "Search")';
+
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    <script type="text/javascript">
+    @Scripts.Render("~/bundles/common")
 
-        $('#search').popover(
-        {
-            'delay': { show: 1000, hide: 100 },
-            'html':true,
-            'content' :$('#search_help').html(),
-            'placement': 'bottom',
-            'trigger': 'hover'
-            });
-    </script>
+    @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            //help tooltip
+            $('#search').popover(
+                {
+                    'delay': { show: 1000, hide: 100 },
+                    'html':true,
+                    'content' :$('#search_help').html(),
+                    'placement': 'bottom',
+                    'trigger': 'hover'
+                });
+        </script>
 </body>
 </html>

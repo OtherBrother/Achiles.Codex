@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Services;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Services;
 using Raven.Client;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     public class AttributesController : CodexItemController
     {

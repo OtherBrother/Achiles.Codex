@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Achiles.Codex.Web
+namespace Achilles.Codex.Web
 {
     public class BundleConfig
     {
@@ -11,7 +11,7 @@ namespace Achiles.Codex.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquer   yval").Include(
                         "~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -19,13 +19,41 @@ namespace Achiles.Codex.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/common").Include(
+                      "~/Scripts/typeahead.js",
+                      "~/Scripts/site.js",
+                      "~/Scripts/handlebars-1.1.2.js"
+                      ));
+
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/edit-codex-item-article").Include(
+                "~/Scripts/codex-item/edit-codex-item-article.js" /*Make sure this item is alway last in the bundle*/
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/edit-codex-item-basic-info").Include(
+                     "~/Scripts/bootstrap-tagsinput.js",
+                     "~/Scripts/codex-item/edit-codex-item-basic-info.js"/*Make sure this item is alway last in the bundle*/
+                     ));
+                
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                    "~/Content/bootstrap.css",
+                      "~/Content/site.css",
+                      "~/Content/typeahead.js-bootstrap.css"
+                      ));
+            
+            bundles.Add(new StyleBundle("~/Content/edit-codex-item-basic-info").Include(
+                      "~/Content/bootstrap-tagsinput.css"
+                      ));
+            
+            bundles.Add(new StyleBundle("~/Content/edit-codex-item-article").Include(
+
+                      ));
         }
     }
 }

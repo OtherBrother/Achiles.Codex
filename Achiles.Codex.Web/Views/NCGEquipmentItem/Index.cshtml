@@ -1,0 +1,38 @@
+﻿
+@using Achilles.Codex.Web.Misc
+@model IEnumerable<Achilles.Codex.Model.NcgEquipmentItem>
+
+<h2>Non-Cobat Equipment Items</h2>
+<p class="text-muted">
+    Non-Combat Equipment Items - Special items used in non-cobat situations. See also: Non-Cobat Gear Rules
+</p>
+<hr />
+
+
+@{
+    ViewBag.Title = "Non-Combat Equipment Item";
+}
+
+<h2>Index</h2>
+
+<p>
+    <div class="row">
+        <div class="col-xs-2">
+            <input type="text" class="form-control" id="filterAttributes" placeholder="fillter">
+        </div>
+        <div class="col-xs-2">
+            @if (User.IsContributor()) //only contributors can add new attribute
+            {<a class="btn btn-default" href="@Url.Action("Edit","NCGEquipmentItem")" title="Add new non-combat equipment item">
+                <span class="glyphicon glyphicon-plus-sign"></span> New Equipment Item
+            </a>}
+        </div>
+    </div>
+</p>
+
+
+
+
+
+
+
+

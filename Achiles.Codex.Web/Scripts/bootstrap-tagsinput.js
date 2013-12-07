@@ -497,7 +497,7 @@
    * Initialize tagsinput behaviour on inputs and selects which have
    * data-role=tagsinput
    */
-  $(function() {
-    $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
-  });
+  //$(function() {
+  //  $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
+  //});
 })(window.jQuery);

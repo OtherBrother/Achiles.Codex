@@ -4,9 +4,10 @@ using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 using Microsoft.Owin.Security.Provider;
 
-namespace Achiles.Codex.Web.Misc
+namespace Achilles.Codex.Web.Misc
 {
     public static class Extensions
     {
@@ -25,6 +26,10 @@ namespace Achiles.Codex.Web.Misc
 
             return string.Concat(str.Substring(0, maxLen), "..");
         
+        }
+        public static string Cleanup(this string str)
+        {
+            return string.IsNullOrEmpty(str) ? str : Regex.Replace(str, @"(<[^>]+>|&nbsp;)|(<[^>]+$)", "").Trim();
         }
 
         public static string GetQueryHighlightedinContext(this string content, string query, int contextWords = 15)
@@ -49,6 +54,13 @@ namespace Achiles.Codex.Web.Misc
         {
             return user.IsInRole("Admin");
             
+        }
+
+        public static string Dump(this HtmlHelper helper, object obj)
+        {
+            var tb = new TagBuilder("pre");
+            tb.SetInnerText(ObjectDumper.Dump(obj, 5, "Description", "RelatedCodexItems", "Tags", "Name"));
+            return tb.ToString();
         }
 
         public async static Task<T> Result<T>(this Task<T> task)

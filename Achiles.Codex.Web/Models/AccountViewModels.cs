@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Core.Objects;
-using Achiles.Codex.Web.Controllers;
-using Achiles.Codex.Web.Indexes;
+using Achilles.Codex.Web.Controllers;
+using Achilles.Codex.Web.Indexes;
 
-namespace Achiles.Codex.Web.Models
+namespace Achilles.Codex.Web.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -70,6 +70,7 @@ namespace Achiles.Codex.Web.Models
         public SearchResultsViewModel()
         {
             Suggestions = new string[0];
+            Results = new SearchIndex.Result[0];
         }
 
         public IEnumerable<SearchIndex.Result> Results { get; set; }

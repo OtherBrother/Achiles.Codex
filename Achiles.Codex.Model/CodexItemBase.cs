@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Achiles.Codex.Model
+namespace Achilles.Codex.Model
 {
-    public abstract class CodexItemBase : CodexItem
+    public class CodexItemBase : CodexItem
     {
 
 
