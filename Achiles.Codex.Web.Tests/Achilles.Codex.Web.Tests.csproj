@@ -6,8 +6,8 @@
     <ProjectGuid>{33593D3B-E525-4902-B833-87E2E3F9F4F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Achiles.Codex.Web.Tests</RootNamespace>
-    <AssemblyName>Achiles.Codex.Web.Tests</AssemblyName>
+    <RootNamespace>Achilles.Codex.Web.Tests</RootNamespace>
+    <AssemblyName>Achilles.Codex.Web.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -70,13 +70,13 @@
     <Compile Include="CodeItemTypeResolutionTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Achiles.Codex.Model\Achiles.Codex.Model.csproj">
+    <ProjectReference Include="..\Achiles.Codex.Model\Achilles.Codex.Model.csproj">
       <Project>{0f8604f0-293c-4b3d-b4fe-e3a13592dab4}</Project>
-      <Name>Achiles.Codex.Model</Name>
+      <Name>Achilles.Codex.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Achiles.Codex.Web\Achiles.Codex.Web.csproj">
+    <ProjectReference Include="..\Achiles.Codex.Web\Achilles.Codex.Web.csproj">
       <Project>{cfeaaa60-3d7e-46e3-b004-e48282088a36}</Project>
-      <Name>Achiles.Codex.Web</Name>
+      <Name>Achilles.Codex.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

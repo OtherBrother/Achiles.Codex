@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Web;
 
-namespace Achiles.Codex.Web.Misc
+namespace Achilles.Codex.Web.Misc
 {
     public class ObjectDumper
     {
@@ -101,7 +101,7 @@ namespace Achiles.Codex.Web.Misc
                             var isEnumerable = typeof(IEnumerable).IsAssignableFrom(type);
                             Write("{0}: {1}", memberInfo.Name, isEnumerable ? "..." : "{ }");
 
-                            var alreadyTouched = !isEnumerable && AlreadyTouched(value);
+                            var alreadyTouched = !isEnumerable && value!=null  && AlreadyTouched(value);
                             _level++;
                             if (!alreadyTouched)
                                 DumpElement(value);
@@ -123,6 +123,7 @@ namespace Achiles.Codex.Web.Misc
 
         private bool AlreadyTouched(object value)
         {
+            
             var hash = value.GetHashCode();
             for (var i = 0; i < _hashListOfFoundElements.Count; i++)
             {

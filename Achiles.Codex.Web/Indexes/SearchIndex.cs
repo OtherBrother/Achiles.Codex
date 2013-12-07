@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Achiles.Codex.Model;
+using Achilles.Codex.Model;
 using Raven.Abstractions.Indexing;
 using Raven.Client.Indexes;
 
-namespace Achiles.Codex.Web.Indexes
+namespace Achilles.Codex.Web.Indexes
 {
     public class SearchIndex : AbstractMultiMapIndexCreationTask<SearchIndex.Result>
     {

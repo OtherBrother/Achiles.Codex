@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security.Provider;
 
-namespace Achiles.Codex.Web.Misc
+namespace Achilles.Codex.Web.Misc
 {
     public static class Extensions
     {

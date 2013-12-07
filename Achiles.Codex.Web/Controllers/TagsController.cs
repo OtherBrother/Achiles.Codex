@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Achiles.Codex.Web.Indexes;
+using Achilles.Codex.Web.Indexes;
 using Raven.Client;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     public class TagsController : CodexItemController
     {

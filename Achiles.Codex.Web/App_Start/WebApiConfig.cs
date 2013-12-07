@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Achiles.Codex.Web
+namespace Achilles.Codex.Web
 {
     public static class WebApiConfig
     {

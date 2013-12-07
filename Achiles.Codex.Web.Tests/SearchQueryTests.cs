@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Controllers;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Achiles.Codex.Web.Tests
+namespace Achilles.Codex.Web.Tests
 {
     [TestClass]
     public class SearchQueryTests

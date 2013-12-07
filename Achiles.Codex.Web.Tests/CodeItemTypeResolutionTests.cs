@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Achiles.Codex.Model;
+using Achilles.Codex.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Achiles.Codex.Web.Tests
+namespace Achilles.Codex.Web.Tests
 {
     [TestClass]
     public class CodexItemTypeResolutionTests

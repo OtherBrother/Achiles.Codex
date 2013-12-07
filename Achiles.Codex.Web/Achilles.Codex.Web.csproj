@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Achiles.Codex.Web</RootNamespace>
-    <AssemblyName>Achiles.Codex.Web</AssemblyName>
+    <RootNamespace>Achilles.Codex.Web</RootNamespace>
+    <AssemblyName>Achilles.Codex.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -318,9 +318,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Achiles.Codex.Model\Achiles.Codex.Model.csproj">
+    <ProjectReference Include="..\Achiles.Codex.Model\Achilles.Codex.Model.csproj">
       <Project>{0f8604f0-293c-4b3d-b4fe-e3a13592dab4}</Project>
-      <Name>Achiles.Codex.Model</Name>
+      <Name>Achilles.Codex.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

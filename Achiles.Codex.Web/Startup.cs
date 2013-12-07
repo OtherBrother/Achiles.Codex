@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Achiles.Codex.Web.Startup))]
-namespace Achiles.Codex.Web
+[assembly: OwinStartupAttribute(typeof(Achilles.Codex.Web.Startup))]
+namespace Achilles.Codex.Web
 {
     public partial class Startup
     {

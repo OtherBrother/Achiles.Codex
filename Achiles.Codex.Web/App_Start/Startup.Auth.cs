@@ -3,7 +3,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace Achiles.Codex.Web
+namespace Achilles.Codex.Web
 {
     public partial class Startup
     {

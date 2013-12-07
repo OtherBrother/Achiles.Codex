@@ -6,13 +6,13 @@ using System.Web;
 using System.Web.Http.Results;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Indexes;
-using Achiles.Codex.Web.Services;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Indexes;
+using Achilles.Codex.Web.Services;
 using Raven.Client;
 using Raven.Client.Linq;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     public class CodexController : CodexItemBaseController
     {

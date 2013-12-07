@@ -1,5 +1,5 @@
 ﻿
-namespace Achiles.Codex.Model
+namespace Achilles.Codex.Model
 {
     public class RuleSet : CodexItem
     {

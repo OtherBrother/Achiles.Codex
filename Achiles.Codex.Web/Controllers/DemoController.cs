@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Models;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Models;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     public class DemoController : CodexItemBaseController
     {

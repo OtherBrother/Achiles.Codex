@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Versioning;
 
-namespace Achiles.Codex.Model
+namespace Achilles.Codex.Model
 {
     public abstract class CodexItem
     {
