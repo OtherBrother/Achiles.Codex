@@ -26,12 +26,12 @@ namespace Achilles.Codex.Web.Services
 
         private void InitAttributes()
         {
-            var strength = new AttributeInfo { Id = "str", Name = "Strength", Order = 1, Description = "Having high value helps you carry big ass weapons"};
+            var strength = new AttributeInfo {  Name = "Strength", Order = 1, Description = "Having high value helps you carry big ass weapons"};
             var stamina = new AttributeInfo { Name = "Stamina", Order = 2 };
             var dexterity = new AttributeInfo { Name = "Dexterity", Order = 3 };
-            var reflexes = new AttributeInfo { Id = "ref", Name = "Reflexes", Order = 4 };
-            var perception = new AttributeInfo { Id = "per", Name = "Perception", Order = 5 };
-            var will = new AttributeInfo { Id = "AttributeInfo/will", Name = "Will", Order = 6 };
+            var reflexes = new AttributeInfo {  Name = "Reflexes", Order = 4 };
+            var perception = new AttributeInfo {  Name = "Perception", Order = 5 };
+            var will = new AttributeInfo { Name = "Will", Order = 6 };
 
             _session.Store(strength);
             _session.Store(stamina);

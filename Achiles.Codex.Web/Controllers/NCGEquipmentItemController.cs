@@ -1,12 +1,9 @@
-﻿using Achiles.Codex.Model;
-using Achiles.Codex.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web;
+using Achilles.Codex.Web.Models;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     public class NCGEquipmentItemController : CodexItemBaseController
     {
