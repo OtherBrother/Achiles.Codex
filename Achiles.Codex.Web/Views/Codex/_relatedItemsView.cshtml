@@ -1,0 +1,14 @@
+﻿@using Achilles.Codex.Model
+@model System.Collections.Generic.List<Achilles.Codex.Model.RelatedCodexItem>
+
+@if (Model.Any())
+{
+    <strong>See also</strong>
+    <div class="list-group">
+        @foreach (var i in Model)
+        {
+            <a href="@Url.Action("RedirectToItem", "Codex", new {id = i.Id})" class="list-group-item">@i.Name<span class="badge">@CodexItem.GetTypeLabel(i.Id)</span></a>
+            
+        }
+    </div>
+}

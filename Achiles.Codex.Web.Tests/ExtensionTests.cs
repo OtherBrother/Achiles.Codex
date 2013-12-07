@@ -1,8 +1,8 @@
 ﻿using System;
-using Achiles.Codex.Web.Misc;
+using Achilles.Codex.Web.Misc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Achiles.Codex.Web.Tests
+namespace Achilles.Codex.Web.Tests
 {
     [TestClass]
     public class ExtensionTests

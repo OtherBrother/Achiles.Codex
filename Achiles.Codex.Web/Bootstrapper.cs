@@ -1,10 +1,10 @@
 using System.Configuration;
 using System.Web.Mvc;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Controllers;
-using Achiles.Codex.Web.Indexes;
-using Achiles.Codex.Web.Models;
-using Achiles.Codex.Web.Services;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Controllers;
+using Achilles.Codex.Web.Indexes;
+using Achilles.Codex.Web.Models;
+using Achilles.Codex.Web.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.Practices.Unity;
 using Raven.Client;
@@ -13,7 +13,7 @@ using Raven.Client.Document;
 using Raven.Client.Indexes;
 using Unity.Mvc4;
 
-namespace Achiles.Codex.Web
+namespace Achilles.Codex.Web
 {
     public static class Bootstrapper
     {

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Achiles.Codex.Model;
+using Achilles.Codex.Model;
 using Raven.Abstractions.Indexing;
 using Raven.Client.Indexes;
 
-namespace Achiles.Codex.Web.Indexes
+namespace Achilles.Codex.Web.Indexes
 {
     public class TagStatisticsIndex : AbstractMultiMapIndexCreationTask<TagStatisticsIndex.TagStatistics>
     {
@@ -18,9 +18,13 @@ namespace Achiles.Codex.Web.Indexes
 
         public TagStatisticsIndex()
         {
-            AddMap<AttributeInfo>(items=> from i in items 
+            AddMap<Article>(items=> from i in items 
                                           from t in i.Tags
                                           select new TagStatistics{ Tag= t.ToLower(), Count = 1});
+
+            AddMap<AttributeInfo>(items => from i in items
+                                           from t in i.Tags
+                                           select new TagStatistics { Tag = t.ToLower(), Count = 1 });
 
             AddMap<RuleSet>(items => from i in items
                                            from t in i.Tags

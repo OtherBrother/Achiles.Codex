@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Achiles.Codex.Model;
+using Achilles.Codex.Model;
 
-namespace Achiles.Codex.Model
+namespace Achilles.Codex.Model
 {
     public class CombatSkill : CombatGearItem
     {

@@ -1,7 +1,7 @@
-﻿@using Achiles.Codex.Model
-@using Achiles.Codex.Web.Controllers
-@using Achiles.Codex.Web.Misc
-@model Achiles.Codex.Web.Models.SearchResultsViewModel
+﻿@using Achilles.Codex.Model
+@using Achilles.Codex.Web.Controllers
+@using Achilles.Codex.Web.Misc
+@model Achilles.Codex.Web.Models.SearchResultsViewModel
 <h2>Search results</h2>
 
 @if (!Model.Results.Any())
@@ -35,7 +35,7 @@ else
             <div class="list-group">
                 @foreach (var result in type)
                 {
-                    <a class="list-group-item">
+                    <a class="list-group-item" href="@Url.Action("RedirectToItem", "Codex", new { id = result.Id})">
                         <table>
                             <tr>
                                 <td rowspan="3"><img style="width: 64px; height: 64px;" src="@(result.IconUrl ?? Url.Content("~/Content/dice.jpg"))" /></td>

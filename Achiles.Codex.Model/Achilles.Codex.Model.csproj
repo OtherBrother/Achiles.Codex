@@ -7,8 +7,8 @@
     <ProjectGuid>{0F8604F0-293C-4B3D-B4FE-E3A13592DAB4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Achiles.Codex.Model</RootNamespace>
-    <AssemblyName>Achiles.Codex.Model</AssemblyName>
+    <RootNamespace>Achilles.Codex.Model</RootNamespace>
+    <AssemblyName>Achilles.Codex.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

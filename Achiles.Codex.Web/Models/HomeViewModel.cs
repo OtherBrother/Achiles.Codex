@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Indexes;
+﻿using Achilles.Codex.Model;
+using Achilles.Codex.Web.Indexes;
 
-namespace Achiles.Codex.Web.Models
+namespace Achilles.Codex.Web.Models
 {
     public class HomeViewModel
     {

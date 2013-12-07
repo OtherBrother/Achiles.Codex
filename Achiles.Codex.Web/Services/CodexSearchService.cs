@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Achiles.Codex.Web.Controllers;
-using Achiles.Codex.Web.Indexes;
+using Achilles.Codex.Web.Controllers;
+using Achilles.Codex.Web.Indexes;
 using Raven.Client;
 using Raven.Client.Linq;
 
-namespace Achiles.Codex.Web.Services
+namespace Achilles.Codex.Web.Services
 {
     public interface ICodexSearchService
     {

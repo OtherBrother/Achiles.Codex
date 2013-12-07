@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Indexes;
-using Achiles.Codex.Web.Models;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Indexes;
+using Achilles.Codex.Web.Models;
 using Raven.Client;
 using Raven.Client.Linq;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     public class HomeController : BaseController
     {

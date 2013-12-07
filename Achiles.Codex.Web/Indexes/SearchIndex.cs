@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Achiles.Codex.Model;
+using Achilles.Codex.Model;
 using Raven.Abstractions.Indexing;
 using Raven.Client.Indexes;
 
-namespace Achiles.Codex.Web.Indexes
+namespace Achilles.Codex.Web.Indexes
 {
     public class SearchIndex : AbstractMultiMapIndexCreationTask<SearchIndex.Result>
     {
@@ -52,7 +52,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<AttributeInfo>(items => from i in items
                                     select new Result
                                     {
-                                        ObjectType = CodexItemType.Attribute,
+                                        ObjectType = CodexItemType.AttributeInfo,
                                         Id = i.Id,
                                         Name = i.Name,
                                         Description = i.Description,
@@ -91,6 +91,18 @@ namespace Achiles.Codex.Web.Indexes
                                        IconUrl = i.IconUrl,
                                        Tags = i.Tags
                                    });
+
+            AddMap<NcgEquipmentItem>(items => from i in items
+                                              select new Result
+                                              {
+                                                  ObjectType = CodexItemType.NcgEquimpentItem,
+                                                  Id = i.Id,
+                                                  Name = i.Name,
+                                                  Description = i.Description,
+                                                  IconUrl = i.IconUrl,
+                                                  Tags = i.Tags
+                                              });
+            
             #endregion
 
             #region Weapons
@@ -193,6 +205,7 @@ namespace Achiles.Codex.Web.Indexes
                                           Tags = i.Tags
                                       });
             #endregion
+           
 
             Indexes.Add(x=>x.Description, FieldIndexing.Analyzed);
             Indexes.Add(x => x.IconUrl, FieldIndexing.NotAnalyzed);
@@ -207,7 +220,6 @@ namespace Achiles.Codex.Web.Indexes
             Store(x => x.Tags, FieldStorage.Yes);
             Store(x => x.ObjectType, FieldStorage.Yes);
             Store(x => x.IconUrl, FieldStorage.Yes);
-            
             }
     }
 }

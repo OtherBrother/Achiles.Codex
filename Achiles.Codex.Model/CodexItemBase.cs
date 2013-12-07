@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Achiles.Codex.Model
+namespace Achilles.Codex.Model
 {
     public class CodexItemBase : CodexItem
     {

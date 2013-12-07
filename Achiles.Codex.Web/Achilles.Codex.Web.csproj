@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Achiles.Codex.Web</RootNamespace>
-    <AssemblyName>Achiles.Codex.Web</AssemblyName>
+    <RootNamespace>Achilles.Codex.Web</RootNamespace>
+    <AssemblyName>Achilles.Codex.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -200,6 +200,7 @@
     <Compile Include="Controllers\CodexController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NCGEquipmentItemController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SearchQuery.cs" />
     <Compile Include="Controllers\TagsController.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Indexes\TagIndex.cs" />
     <Compile Include="Misc\BaseController.cs" />
     <Compile Include="Misc\Extensions.cs" />
+    <Compile Include="Misc\ObjectDumper.cs" />
     <Compile Include="Misc\PredicateBuilder.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleListViewModel.cs" />
@@ -304,10 +306,14 @@
     <Content Include="Views\Shared\_EditCodexItemBasicInfoView.cshtml" />
     <Content Include="Views\Demo\Rule.cshtml" />
     <Content Include="Views\Shared\_EditCodexItemArticleView.cshtml" />
+    <Content Include="Views\NCGEquipmentItem\Index.cshtml" />
+    <Content Include="Views\NCGEquipmentItem\Edit.cshtml" />
+    <Content Include="Views\Codex\Item.cshtml" />
+    <Content Include="Views\Shared\_TagListView.cshtml" />
+    <Content Include="Views\Codex\_relatedItemsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Codex\" />
     <Folder Include="Views\Tags\" />
   </ItemGroup>
   <ItemGroup>
@@ -318,9 +324,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Achiles.Codex.Model\Achiles.Codex.Model.csproj">
+    <ProjectReference Include="..\Achiles.Codex.Model\Achilles.Codex.Model.csproj">
       <Project>{0f8604f0-293c-4b3d-b4fe-e3a13592dab4}</Project>
-      <Name>Achiles.Codex.Model</Name>
+      <Name>Achilles.Codex.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

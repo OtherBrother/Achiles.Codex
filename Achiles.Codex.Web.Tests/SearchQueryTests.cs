@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Controllers;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Achiles.Codex.Web.Tests
+namespace Achilles.Codex.Web.Tests
 {
     [TestClass]
     public class SearchQueryTests
@@ -42,7 +42,7 @@ namespace Achiles.Codex.Web.Tests
             var query = new SearchQuery(queryStr);
 
             Assert.AreEqual("search string", query.SearchTerm);
-            Assert.AreEqual(CodexItemType.Attribute, query.SearchObjects[0]);
+            Assert.AreEqual(CodexItemType.AttributeInfo, query.SearchObjects[0]);
             Assert.IsFalse(query.IsFullText);
         }
         [TestMethod]
@@ -53,7 +53,7 @@ namespace Achiles.Codex.Web.Tests
             var query = new SearchQuery(queryStr);
 
             Assert.AreEqual("search string", query.SearchTerm);
-            Assert.AreEqual(CodexItemType.Attribute, query.SearchObjects[0]);
+            Assert.AreEqual(CodexItemType.AttributeInfo, query.SearchObjects[0]);
             Assert.AreEqual("tag", query.SearchTags[0]);
             Assert.IsFalse(query.IsFullText);
 
@@ -67,7 +67,7 @@ namespace Achiles.Codex.Web.Tests
             var query = new SearchQuery(queryStr);
 
             Assert.AreEqual("search string", query.SearchTerm);
-            Assert.AreEqual(CodexItemType.Attribute, query.SearchObjects[0]);
+            Assert.AreEqual(CodexItemType.AttributeInfo, query.SearchObjects[0]);
             Assert.AreEqual(CodexItemType.Skill, query.SearchObjects[1]);
             Assert.AreEqual("tag1", query.SearchTags[0]);
             Assert.AreEqual("tag2", query.SearchTags[1]);
@@ -82,7 +82,7 @@ namespace Achiles.Codex.Web.Tests
             var query = new SearchQuery(queryStr);
 
             Assert.AreEqual("search string", query.SearchTerm);
-            Assert.AreEqual(CodexItemType.Attribute, query.SearchObjects[0]);
+            Assert.AreEqual(CodexItemType.AttributeInfo, query.SearchObjects[0]);
             Assert.AreEqual(CodexItemType.Skill, query.SearchObjects[1]);
             Assert.AreEqual("tag1", query.SearchTags[0]);
             Assert.AreEqual("tag2", query.SearchTags[1]);
@@ -116,7 +116,7 @@ namespace Achiles.Codex.Web.Tests
             const string queryStr = "at,ar,rs,sk,r,cs,m,s,cg,ncg,eq:search string";
             var query = new SearchQuery(queryStr);
 
-            Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.Attribute));
+            Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.AttributeInfo));
             Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.Article));
             Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.RuleSet));
             Assert.IsTrue(query.SearchObjects.Contains(CodexItemType.Skill));
