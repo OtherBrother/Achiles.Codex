@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Achiles.Codex.Web.Models;
+using Achilles.Codex.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller

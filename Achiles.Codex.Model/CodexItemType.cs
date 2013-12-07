@@ -1,4 +1,4 @@
-﻿namespace Achiles.Codex.Model
+﻿namespace Achilles.Codex.Model
 {
     public enum CodexItemType
     {
@@ -6,7 +6,7 @@
         Article,
         RuleSet,
         Rule,
-        Attribute,
+        AttributeInfo,
         CombatSkill,
         NcgEquimpentItem,
         Talent,

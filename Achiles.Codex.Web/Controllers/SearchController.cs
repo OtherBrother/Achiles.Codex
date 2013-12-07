@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using Achiles.Codex.Web.Models;
-using Achiles.Codex.Web.Services;
+using Achilles.Codex.Web.Models;
+using Achilles.Codex.Web.Services;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     public class SearchController : CodexItemController
     {

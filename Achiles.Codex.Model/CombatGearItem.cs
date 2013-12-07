@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Achiles.Codex.Model
+namespace Achilles.Codex.Model
 {
     public class CombatGearItem: CodexItemBase    {
     }

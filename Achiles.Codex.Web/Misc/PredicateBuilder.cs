@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Achiles.Codex.Web.Misc
+namespace Achilles.Codex.Web.Misc
 {
     public static class PredicateBuilder
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Achiles.Codex.Web
+namespace Achilles.Codex.Web
 {
     public class BundleConfig
     {

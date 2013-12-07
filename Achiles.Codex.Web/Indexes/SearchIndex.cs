@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Achiles.Codex.Model;
+using Achilles.Codex.Model;
 using Raven.Abstractions.Indexing;
 using Raven.Client.Indexes;
 
-namespace Achiles.Codex.Web.Indexes
+namespace Achilles.Codex.Web.Indexes
 {
     public class SearchIndex : AbstractMultiMapIndexCreationTask<SearchIndex.Result>
     {
@@ -52,7 +52,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<AttributeInfo>(items => from i in items
                                     select new Result
                                     {
-                                        ObjectType = CodexItemType.Attribute,
+                                        ObjectType = CodexItemType.AttributeInfo,
                                         Id = i.Id,
                                         Name = i.Name,
                                         Description = i.Description,

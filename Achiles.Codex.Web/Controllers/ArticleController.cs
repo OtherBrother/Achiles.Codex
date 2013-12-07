@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Models;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Models;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     public class ArticleController : CodexItemBaseController
     {

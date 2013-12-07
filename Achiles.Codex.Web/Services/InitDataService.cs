@@ -1,9 +1,9 @@
 ﻿using System.IO;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Models;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Models;
 using Raven.Client;
 
-namespace Achiles.Codex.Web.Services
+namespace Achilles.Codex.Web.Services
 {
     public interface IInitDataService
     {

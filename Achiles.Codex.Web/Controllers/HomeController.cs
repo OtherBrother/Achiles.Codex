@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Raven.Client;
 
-namespace Achiles.Codex.Web.Controllers
+namespace Achilles.Codex.Web.Controllers
 {
     public class HomeController : Controller
     {

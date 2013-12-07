@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Achiles.Codex.Model;
-using Achiles.Codex.Web.Models;
+using Achilles.Codex.Model;
+using Achilles.Codex.Web.Models;
 using Microsoft.Practices.Unity;
 using Raven.Client;
 
-namespace Achiles.Codex.Web
+namespace Achilles.Codex.Web
 {
     public class BaseController : Controller
     {
