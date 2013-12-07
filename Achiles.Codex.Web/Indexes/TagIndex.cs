@@ -18,9 +18,13 @@ namespace Achilles.Codex.Web.Indexes
 
         public TagStatisticsIndex()
         {
-            AddMap<AttributeInfo>(items=> from i in items 
+            AddMap<Article>(items=> from i in items 
                                           from t in i.Tags
                                           select new TagStatistics{ Tag= t.ToLower(), Count = 1});
+
+            AddMap<AttributeInfo>(items => from i in items
+                                           from t in i.Tags
+                                           select new TagStatistics { Tag = t.ToLower(), Count = 1 });
 
             AddMap<RuleSet>(items => from i in items
                                            from t in i.Tags

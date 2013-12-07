@@ -45,18 +45,18 @@ namespace Achilles.Codex.Web.Services
             _session.Store(new Rule { Description = "Luck is cool", Name = "Luck" });
             _session.Store(new Rule { Description = "You count it", Name = "Vigor" });
             
-            _session.Store(new MeleeWeapon { Description = "Kind of sword", Name = "Broadsword", Tags = { "Test" } });
-            _session.Store(new Article { Author = "AndriusFlea", Description = "Broadsword", Name = "Broadsword", Tags = {"MeleeWeapon"}});
+            _session.Store(new MeleeWeapon { Description = "Kind of sword", Name = "Broadsword", Tags = { "test" } });
+            _session.Store(new Article { Author = "AndriusFlea", Description = "Broadsword", Name = "Broadsword", Tags = { "meleeweapon" } });
             _session.Store(new CombatSkill { Description = "Helps you against big ass melee weapons", Name = "Evade", Tags = { "Defense" } });
             _session.Store(new CombatSkill { Description = "", Name = "Sword", Tags = { "Defense" } });
-            _session.Store(new Article { Author = "AndriusFlea", Description = "Sword", Name = "Sword", Tags = { "MeleeWeapon" } });
-            _session.Store(new HeadArmor { Description = "If this does not help you - nothing can", Name = "Titanium great helm", Tags = { "Defense" } });
+            _session.Store(new Article { Author = "AndriusFlea", Description = "Sword", Name = "Sword", Tags = { "meleeweapon" } });
+            _session.Store(new HeadArmor { Description = "If this does not help you - nothing can", Name = "Titanium great helm", Tags = { "defense" } });
             
-            _session.Store(new MeleeWeapon { Description = "Very very dangerous weapon", Name = "Lucky machete", Tags = { "Test" } });
-            _session.Store(new Article { Author = "AndriusFlea", Description = "Lucky machete. Donec nisi arcu, iaculis eget tincidunt nec, sagittis id risus. Nulla ligula risus, accumsan et rutrum in, viverra ut velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.", Name = "Lucky machete", Tags = { "MeleeWeapon" } });
+            _session.Store(new MeleeWeapon { Description = "Very very dangerous weapon", Name = "Lucky machete", Tags = { "test" } });
+            _session.Store(new Article { Author = "AndriusFlea", Description = "Lucky machete. Donec nisi arcu, iaculis eget tincidunt nec, sagittis id risus. Nulla ligula risus, accumsan et rutrum in, viverra ut velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.", Name = "Lucky machete", Tags = { "meleeweapon" } });
 
-            _session.Store(new MeleeWeapon { Description = "Useful for braking big ass shields, but otherwise heavy to carry around", Name = "Big ass axe", Tags = { "Test" } });
-            _session.Store(new Shield { Description = "This is very big and heavy shield, but may be broken by big ass axe", Name = "Big ass shield", Tags = { "Test" } });
+            _session.Store(new MeleeWeapon { Description = "Useful for braking big ass shields, but otherwise heavy to carry around", Name = "Big ass axe", Tags = { "test" } });
+            _session.Store(new Shield { Description = "This is very big and heavy shield, but may be broken by big ass axe", Name = "Big ass shield", Tags = { "test" } });
         }
     }
 }

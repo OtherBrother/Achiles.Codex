@@ -27,6 +27,10 @@ namespace Achilles.Codex.Web.Misc
             return string.Concat(str.Substring(0, maxLen), "..");
         
         }
+        public static string Cleanup(this string str)
+        {
+            return string.IsNullOrEmpty(str) ? str : Regex.Replace(str, @"(<[^>]+>|&nbsp;)|(<[^>]+$)", "").Trim();
+        }
 
         public static string GetQueryHighlightedinContext(this string content, string query, int contextWords = 15)
         {

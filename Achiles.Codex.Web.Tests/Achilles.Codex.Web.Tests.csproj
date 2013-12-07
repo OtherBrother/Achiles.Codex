@@ -68,6 +68,7 @@
     <Compile Include="SearchQueryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CodeItemTypeResolutionTests.cs" />
+    <Compile Include="ExtensionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Achiles.Codex.Model\Achilles.Codex.Model.csproj">

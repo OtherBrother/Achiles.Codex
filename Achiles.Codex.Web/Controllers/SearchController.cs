@@ -20,6 +20,9 @@ namespace Achilles.Codex.Web.Controllers
         {
             ViewBag.Title = "Search results";
 
+            if(string.IsNullOrEmpty(query))
+                return View(new SearchResultsViewModel());
+
             var searchQuery = new SearchQuery(query);
             
  

@@ -20,6 +20,8 @@ namespace Achilles.Codex.Web
             routes.MapRoute("CodexGetJson", "Codex/{*id}", defaults: new { controller = "Codex", Action = "Get" });
 
             routes.MapRoute("Search", "search/{query}",defaults: new { controller = "Search", Action = "Results" });
+            routes.MapRoute("SearchExt", "search/Results/{query}", defaults: new { controller = "Search", Action = "Results" });
+
             routes.MapRoute("TagSuggest", "Tags/Suggest/{q}", defaults: new { controller = "Tags", Action = "Suggest" });
 
             routes.MapRoute("ArticleList", "Articles", new { controller = "Article", Action = "Index", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional });
