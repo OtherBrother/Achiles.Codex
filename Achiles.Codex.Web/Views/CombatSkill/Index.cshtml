@@ -1,0 +1,39 @@
+﻿
+
+@using Achilles.Codex.Web.Misc
+@model IEnumerable<Achilles.Codex.Model.CombatSkill>
+
+<h2>Combat skills</h2>
+<p class="text-muted">
+    Skills are a numerical representation of characters training in a certain field
+</p>
+<hr />
+
+
+@{
+    ViewBag.Title = "Combat skills";
+}
+
+<h2>Index</h2>
+
+<p>
+    <div class="row">
+        <div class="col-xs-2">
+            <input type="text" class="form-control" id="filterAttributes" placeholder="fillter">
+        </div>
+        <div class="col-xs-2">
+            @if (User.IsContributor()) //only contributors can add new attribute
+            {<a class="btn btn-default" href="@Url.Action("Edit","CombatSkill")" title="Add new combat skill">
+                <span class="glyphicon glyphicon-plus-sign"></span> New combat skill
+            </a>}
+        </div>
+    </div>
+</p>
+
+
+
+
+
+
+
+
