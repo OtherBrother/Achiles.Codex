@@ -210,6 +210,7 @@
     <Compile Include="Indexes\TagIndex.cs" />
     <Compile Include="Misc\BaseController.cs" />
     <Compile Include="Misc\Extensions.cs" />
+    <Compile Include="Misc\ObjectDumper.cs" />
     <Compile Include="Misc\PredicateBuilder.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleListViewModel.cs" />
@@ -301,10 +302,12 @@
     <Content Include="Views\Shared\_EditCodexItemBasicInfoView.cshtml" />
     <Content Include="Views\Demo\Rule.cshtml" />
     <Content Include="Views\Shared\_EditCodexItemArticleView.cshtml" />
+    <Content Include="Views\Codex\Item.cshtml" />
+    <Content Include="Views\Shared\_TagListView.cshtml" />
+    <Content Include="Views\Codex\_relatedItemsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Codex\" />
     <Folder Include="Views\Tags\" />
   </ItemGroup>
   <ItemGroup>

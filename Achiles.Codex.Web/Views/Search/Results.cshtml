@@ -35,7 +35,7 @@ else
             <div class="list-group">
                 @foreach (var result in type)
                 {
-                    <a class="list-group-item">
+                    <a class="list-group-item" href="@Url.Action("RedirectToItem", "Codex", new { id = result.Id})">
                         <table>
                             <tr>
                                 <td rowspan="3"><img style="width: 64px; height: 64px;" src="@(result.IconUrl ?? Url.Content("~/Content/dice.jpg"))" /></td>

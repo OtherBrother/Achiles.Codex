@@ -1,0 +1,12 @@
+﻿@model List<string>
+
+@if (Model.Any())
+{
+    <p>
+        <span class="label label-default">Tags:</span>
+        @foreach (var t in Model)
+        {
+            <a href="@Url.Action("Results", "Search", new {query = "@" + t})">@t</a>
+        }
+    </p>
+}

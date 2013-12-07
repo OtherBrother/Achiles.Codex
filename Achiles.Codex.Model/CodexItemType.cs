@@ -6,7 +6,7 @@
         Article,
         RuleSet,
         Rule,
-        Attribute,
+        AttributeInfo,
         CombatSkill,
         NcgEquimpentItem,
         Talent,

@@ -61,6 +61,15 @@ namespace Achiles.Codex.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attribute.
+        /// </summary>
+        internal static string AttributeInfo {
+            get {
+                return ResourceManager.GetString("AttributeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Combat skill.
         /// </summary>
         internal static string CombatSkill {
@@ -75,6 +84,15 @@ namespace Achiles.Codex.Web.Resources {
         internal static string HandWeapon {
             get {
                 return ResourceManager.GetString("HandWeapon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Melee weapon.
+        /// </summary>
+        internal static string MeleeWeapon {
+            get {
+                return ResourceManager.GetString("MeleeWeapon", resourceCulture);
             }
         }
         

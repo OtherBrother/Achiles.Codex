@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Results;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Achiles.Codex.Model;
 using Achiles.Codex.Web.Indexes;
 using Achiles.Codex.Web.Services;
@@ -26,7 +27,7 @@ namespace Achiles.Codex.Web.Controllers
 
         public ActionResult RedirectToItem(string id)
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Item",new {id} );
         }
         
         public JsonResult Get(string id)
@@ -47,5 +48,14 @@ namespace Achiles.Codex.Web.Controllers
 
             return new JsonResult { Data = results, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
+
+        public ActionResult Item(string id)
+        {
+            var item = DocumentSession.Load<CodexItem>(id);
+            
+            return View(item);
+        }
+
     }
 }

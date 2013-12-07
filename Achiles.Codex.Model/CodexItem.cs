@@ -24,7 +24,7 @@ namespace Achiles.Codex.Model
 
         static CodexItem()
         {
-            Mappings.Add(new Mapping { PossibleInputs = { "attribute", "at", "attr" }, MappedItemTypes = { CodexItemType.Attribute } });
+            Mappings.Add(new Mapping { PossibleInputs = { "attribute", "at", "attr" }, MappedItemTypes = { CodexItemType.AttributeInfo } });
             Mappings.Add(new Mapping { PossibleInputs = { "article", "ar" }, MappedItemTypes = { CodexItemType.Article } });
             Mappings.Add(new Mapping { PossibleInputs = { "ruleset", "rs" }, MappedItemTypes = { CodexItemType.RuleSet } });
             Mappings.Add(new Mapping { PossibleInputs = { "rule", "r" }, MappedItemTypes = { CodexItemType.Rule } });
@@ -33,7 +33,7 @@ namespace Achiles.Codex.Model
             Mappings.Add(new Mapping { PossibleInputs = { "misc", "m" }, MappedItemTypes = { CodexItemType.MiscellaneousItem } });
             Mappings.Add(new Mapping { PossibleInputs = { "s" }, MappedItemTypes = { CodexItemType.Skill, CodexItemType.CombatSkill } });
             Mappings.Add(new Mapping { PossibleInputs = { "t" }, MappedItemTypes = { CodexItemType.Talent } });
-            Mappings.Add(new Mapping { PossibleInputs = { "cg" }, MappedItemTypes = { CodexItemType.CombatSkill, CodexItemType.Attribute } });
+            Mappings.Add(new Mapping { PossibleInputs = { "cg" }, MappedItemTypes = { CodexItemType.CombatSkill, CodexItemType.AttributeInfo } });
             Mappings.Add(new Mapping { PossibleInputs = { "ncg" }, MappedItemTypes = { CodexItemType.Skill, CodexItemType.Talent } });
 
             Mappings.Add(new Mapping { PossibleInputs = { "armor", "am" }, MappedItemTypes = { CodexItemType.HeadArmor, CodexItemType.BodyArmor, CodexItemType.ArmArmor, CodexItemType.LegArmor } });

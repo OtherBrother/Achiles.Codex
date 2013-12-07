@@ -52,7 +52,7 @@ namespace Achiles.Codex.Web.Indexes
             AddMap<AttributeInfo>(items => from i in items
                                     select new Result
                                     {
-                                        ObjectType = CodexItemType.Attribute,
+                                        ObjectType = CodexItemType.AttributeInfo,
                                         Id = i.Id,
                                         Name = i.Name,
                                         Description = i.Description,
