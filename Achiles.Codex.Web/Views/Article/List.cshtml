@@ -3,7 +3,21 @@
 @using System.Text.RegularExpressions
 
 <hr />
+<div class="pagelist">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-5">
+            <ul class="pagination pagination-sm"></ul>
+        </div>
+    </div>
+</div>
 <div id="articles" class="container"></div>
+<div class="pagelist">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-5">
+            <ul class="pagination pagination-sm"></ul>
+        </div>
+    </div>
+</div>
 
 <script id="article-template" type="text/x-handlebars-template">
     {{#each Articles}}
@@ -14,9 +28,9 @@
                 <div class="row">
                     <div class="col-md-1">
                         {{#if IconUrl}}
-                            <img class="thumbnail thumbnail-float-left" src="{{IconUrl}}" />
+                        <img class="thumbnail thumbnail-float-left" src="{{IconUrl}}" />
                         {{else}}
-                            <img class="thumbnail thumbnail-float-left" src="https://dl.dropboxusercontent.com/u/62192394/Web.Shared/default.image.ahilles.codex.jpg" />
+                        <img class="thumbnail thumbnail-float-left" src="https://dl.dropboxusercontent.com/u/62192394/Web.Shared/default.image.ahilles.codex.jpg" />
                         {{/if}}
                     </div>
                     <div id="description" class="col-md-11">{{Description}}</div>
@@ -27,13 +41,14 @@
             <div class="row">
                 <div class="col-md-10">
                     {{#if Tags}}
-                        {{#each Tags}}
-                            <a class='label label-primary' href="#"><span>{{this}}</span></a>
-                        {{/each}}
+                    {{#each Tags}}
+                    <a class='label label-primary' href="#"><span>{{this}}</span></a>
+                    {{/each}}
                     {{/if}}
                 </div>
                 <div class="btn-group pull-right" style="margin-right:5px">
-                    @if (User.IsContributor()) {
+                    @if (User.IsContributor())
+                    {
                         <a href="@Url.Action("Edit")/{{id}}" class="btn btn-warning btn-xs">
                             <span class="glyphicon glyphicon-wrench"></span>
                         </a>
@@ -48,10 +63,32 @@
 @section scripts
 {
     <script type="text/javascript">
-        $.getJSON("@Url.Content("GetJsonArticles/")", { pageSize: 10, pageNumber: 1 }, function (data) {
-            var source = $("#article-template").html();
-            var template = Handlebars.compile(source);
-            $('#articles').html(template(data));
-        });
+        var ps = 10;
+        function displayPage(num) {
+            if (!num) num = 1;
+            $.getJSON("@Url.Content("GetJsonArticles/")", { pageSize: ps, pageNumber: num }, function (data) {
+                var asource = $("#article-template").html();
+                var atemplate = Handlebars.compile(asource);
+                $('#articles').html(atemplate(data));
+                //Pagination
+                $(".pagination").html('<li><a>Jump to page</a></li>');
+                for (var i = 1; i <= Math.ceil(parseInt(data.TotalArticles) / ps) ; i++) {
+                    var active = "onClick='loadPage(" + i + ")'";; var action = "";
+                    if (i == num) {
+                        active = "class='active'";
+                    }
+                    if (data.TotalArticles <= ps) {
+                        active = "class='disabled'";
+                        action = "";
+                    } 
+                    $(".pagination").append("<li " + active + "><a " + action + ">" + i + "</a></li>");
+                }
+            });
+        }
+        function loadPage(num) {
+            displayPage(num);
+        }
+
+        displayPage();
     </script>
 }
