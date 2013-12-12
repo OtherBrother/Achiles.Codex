@@ -37,6 +37,7 @@ namespace Achilles.Codex.Web.Controllers
             storedItem.Properties = input.CodexItem.Properties.Distinct().ToList();
             storedItem.Price = input.CodexItem.Price;
             storedItem.Reach = input.CodexItem.Reach;
+            storedItem.AttackTypes = input.CodexItem.AttackTypes;
 
             DocumentSession.SaveChanges();
             Success("Splendid!", "More death tools ☻");

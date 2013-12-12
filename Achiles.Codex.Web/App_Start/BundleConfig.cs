@@ -22,9 +22,10 @@ namespace Achilles.Codex.Web
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                     "~/Scripts/bootstrap-select.js",      
                     "~/Scripts/typeahead.js",
-                      "~/Scripts/site.js",
                       "~/Scripts/handlebars-1.1.2.js",
-                      "~/Scripts/underscore.js"));
+                      "~/Scripts/underscore.js", 
+                      "~/Scripts/site.js" //always last
+                      ));
 
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
