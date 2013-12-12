@@ -27,7 +27,26 @@ else
             @Html.Partial("_EditCodexItemArticleView", Model)
         </div>
         <div class="tab-pane fade in" id="equipment-item">
-            @Html.Partial("_EditEquipmentItemView", Model)
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Properties of Equipment Item</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="Price" class="col-sm-2 control-label">Price</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="CodexItem_Price" name="CodexItem.Price" placeholder="Enter item price" value="@Model.CodexItem.Price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Weight" class="col-sm-2 control-label">Weight</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="CodexItem_Weight" name="CodexItem.Weight" placeholder="Enter item weight" value="@Model.CodexItem.Weight">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <hr />

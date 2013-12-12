@@ -5,7 +5,7 @@ using Achilles.Codex.Web.Models;
 
 namespace Achilles.Codex.Web.Controllers
 {
-    public class MiscellaneousItemController : EquipmentItemController
+    public class MiscellaneousItemController : CodexItemBaseController
     {
         //
         // GET: /MiscellaneousItem/

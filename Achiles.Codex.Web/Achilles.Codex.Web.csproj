@@ -200,7 +200,6 @@
     <Compile Include="Controllers\CodexController.cs" />
     <Compile Include="Controllers\CombatSkillController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
-    <Compile Include="Controllers\EquipmentItemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MiscellaneousItemController.cs" />
     <Compile Include="Controllers\NCGEquipmentItemController.cs" />
@@ -316,13 +315,11 @@
     <Content Include="Views\Codex\_relatedItemsView.cshtml" />
     <Content Include="Views\CombatSkill\Index.cshtml" />
     <Content Include="Views\CombatSkill\Edit.cshtml" />
-    <Content Include="Views\Shared\_EditEquipmentItemView.cshtml" />
     <Content Include="Views\MiscellaneousItem\Edit.cshtml" />
     <Content Include="Views\MiscellaneousItem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\EquipmentItem\" />
     <Folder Include="Views\Tags\" />
   </ItemGroup>
   <ItemGroup>
