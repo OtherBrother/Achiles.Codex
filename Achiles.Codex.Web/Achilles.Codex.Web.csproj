@@ -195,6 +195,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AmmoController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\AttributesController.cs" />
     <Compile Include="Controllers\CodexController.cs" />
@@ -323,6 +324,8 @@
     <Content Include="Views\Talent\Edit.cshtml" />
     <Content Include="Views\SkillFeature\Index.cshtml" />
     <Content Include="Views\SkillFeature\Edit.cshtml" />
+    <Content Include="Views\Ammo\Index.cshtml" />
+    <Content Include="Views\Ammo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
