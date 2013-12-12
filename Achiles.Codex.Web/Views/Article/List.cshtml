@@ -1,22 +1,57 @@
-﻿@model Achiles.Codex.Web.Models.ArticleListViewModel
-@using Achiles.Codex.Web.Misc
+﻿@model Achilles.Codex.Web.Models.ArticleListViewModel
+@using Achilles.Codex.Web.Misc
 @using System.Text.RegularExpressions
 
-<div class="container">
-
-</div>
+<hr />
+<div id="articles" class="container"></div>
 
 <script id="article-template" type="text/x-handlebars-template">
-    template content
+    {{#each Articles}}
+    <div class='panel panel-default'>
+        <div class="panel-body">
+            <h4><a href="@Url.Action("RedirectToItem", "Codex")/{{Id}}">{{Name}}</a></h4><hr />
+            <div>
+                <div class="row">
+                    <div class="col-md-1">
+                        {{#if IconUrl}}
+                            <img class="thumbnail thumbnail-float-left" src="{{IconUrl}}" />
+                        {{else}}
+                            <img class="thumbnail thumbnail-float-left" src="https://dl.dropboxusercontent.com/u/62192394/Web.Shared/default.image.ahilles.codex.jpg" />
+                        {{/if}}
+                    </div>
+                    <div id="description" class="col-md-11">{{Description}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-10">
+                    {{#if Tags}}
+                        {{#each Tags}}
+                            <a class='label label-primary' href="#"><span>{{this}}</span></a>
+                        {{/each}}
+                    {{/if}}
+                </div>
+                <div class="btn-group pull-right" style="margin-right:5px">
+                    @if (User.IsContributor()) {
+                        <a href="@Url.Action("Edit")/{{id}}" class="btn btn-warning btn-xs">
+                            <span class="glyphicon glyphicon-wrench"></span>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
 </script>
 
 @section scripts
 {
     <script type="text/javascript">
-         $.getJSON("json/?pageSize=10&pageNumber=1", "", function (data) {
-             for (var i in data.Articles) {
-                 
-             }
-         });
+        $.getJSON("@Url.Content("GetJsonArticles/")", { pageSize: 10, pageNumber: 1 }, function (data) {
+            var source = $("#article-template").html();
+            var template = Handlebars.compile(source);
+            $('#articles').html(template(data));
+        });
     </script>
 }

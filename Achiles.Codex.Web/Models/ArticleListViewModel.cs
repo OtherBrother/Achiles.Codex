@@ -11,5 +11,6 @@ namespace Achilles.Codex.Web.Models
         public IEnumerable<Article> Articles { get; set; }
         public int PageSize { get; set; }
         public int Page { get; set; }
+        public int TotalArticles { get; set; }
     }
 }

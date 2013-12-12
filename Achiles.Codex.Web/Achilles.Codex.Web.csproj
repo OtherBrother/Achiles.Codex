@@ -314,6 +314,7 @@
     <Content Include="Views\Codex\_relatedItemsView.cshtml" />
     <Content Include="Views\CombatSkill\Index.cshtml" />
     <Content Include="Views\CombatSkill\Edit.cshtml" />
+    <Content Include="Views\Article\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
