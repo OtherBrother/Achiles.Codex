@@ -196,12 +196,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AmmoController.cs" />
+    <Compile Include="Controllers\ArmArmorController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\AttributesController.cs" />
+    <Compile Include="Controllers\BodyArmorController.cs" />
     <Compile Include="Controllers\CodexController.cs" />
     <Compile Include="Controllers\CombatSkillController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\HeadArmorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LegArmorController.cs" />
     <Compile Include="Controllers\MiscellaneousItemController.cs" />
     <Compile Include="Controllers\NCGEquipmentItemController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -326,6 +330,14 @@
     <Content Include="Views\SkillFeature\Edit.cshtml" />
     <Content Include="Views\Ammo\Index.cshtml" />
     <Content Include="Views\Ammo\Edit.cshtml" />
+    <Content Include="Views\ArmArmor\Index.cshtml" />
+    <Content Include="Views\ArmArmor\Edit.cshtml" />
+    <Content Include="Views\BodyArmor\Index.cshtml" />
+    <Content Include="Views\BodyArmor\Edit.cshtml" />
+    <Content Include="Views\HeadArmor\Index.cshtml" />
+    <Content Include="Views\HeadArmor\Edit.cshtml" />
+    <Content Include="Views\LegArmor\Index.cshtml" />
+    <Content Include="Views\LegArmor\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
