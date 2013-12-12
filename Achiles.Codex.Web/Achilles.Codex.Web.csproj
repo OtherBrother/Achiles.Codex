@@ -198,6 +198,7 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\AttributesController.cs" />
     <Compile Include="Controllers\CodexController.cs" />
+    <Compile Include="Controllers\CombatSkillController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NCGEquipmentItemController.cs" />
@@ -311,6 +312,8 @@
     <Content Include="Views\Codex\Item.cshtml" />
     <Content Include="Views\Shared\_TagListView.cshtml" />
     <Content Include="Views\Codex\_relatedItemsView.cshtml" />
+    <Content Include="Views\CombatSkill\Index.cshtml" />
+    <Content Include="Views\CombatSkill\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
