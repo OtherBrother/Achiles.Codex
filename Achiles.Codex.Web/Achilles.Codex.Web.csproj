@@ -201,6 +201,7 @@
     <Compile Include="Controllers\CombatSkillController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MiscellaneousItemController.cs" />
     <Compile Include="Controllers\NCGEquipmentItemController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SearchQuery.cs" />
@@ -314,6 +315,8 @@
     <Content Include="Views\Codex\_relatedItemsView.cshtml" />
     <Content Include="Views\CombatSkill\Index.cshtml" />
     <Content Include="Views\CombatSkill\Edit.cshtml" />
+    <Content Include="Views\MiscellaneousItem\Edit.cshtml" />
+    <Content Include="Views\MiscellaneousItem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
