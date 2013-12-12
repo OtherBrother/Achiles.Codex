@@ -1,0 +1,22 @@
+﻿@model Achiles.Codex.Web.Models.ArticleListViewModel
+@using Achiles.Codex.Web.Misc
+@using System.Text.RegularExpressions
+
+<div class="container">
+
+</div>
+
+<script id="article-template" type="text/x-handlebars-template">
+    template content
+</script>
+
+@section scripts
+{
+    <script type="text/javascript">
+         $.getJSON("json/?pageSize=10&pageNumber=1", "", function (data) {
+             for (var i in data.Articles) {
+                 
+             }
+         });
+    </script>
+}
