@@ -41,6 +41,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AppfailReporting">
+      <HintPath>..\packages\Appfail.WebForms.1.1.0\lib\35\AppfailReporting.dll</HintPath>
+    </Reference>
+    <Reference Include="AppfailReporting.Mvc">
+      <HintPath>..\packages\Appfail.Mvc.1.1.0\lib\35\AppfailReporting.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -205,6 +211,7 @@
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HeadArmorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MeleeWeaponController.cs" />
     <Compile Include="Controllers\LegArmorController.cs" />
     <Compile Include="Controllers\MiscellaneousItemController.cs" />
     <Compile Include="Controllers\NCGEquipmentItemController.cs" />
@@ -239,6 +246,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-select.css" />
     <Content Include="Content\bootstrap-tagsinput.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -249,6 +257,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-tagsinput.js" />
     <Content Include="Scripts\bootstrap-wysihtml5-0.0.2.min.js" />
     <Content Include="Scripts\bootstrap-wysihtml5.js" />
@@ -257,6 +266,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\codex-item\edit-codex-item-article.js" />
     <Content Include="Scripts\codex-item\edit-codex-item-basic-info.js" />
+    <Content Include="Scripts\codex-item\edit-weapon.js" />
     <Content Include="Scripts\handlebars-1.1.2.js" />
     <Content Include="Scripts\handlebars.runtime-1.1.2.js" />
     <Content Include="Scripts\jqcloud-1.0.4.js" />
@@ -273,6 +283,8 @@
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\typeahead.js" />
     <Content Include="Scripts\typeahead.min.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Unity.Mvc4.README.txt" />
     <Content Include="Web.config" />
@@ -322,6 +334,9 @@
     <Content Include="Views\Codex\_relatedItemsView.cshtml" />
     <Content Include="Views\CombatSkill\Index.cshtml" />
     <Content Include="Views\CombatSkill\Edit.cshtml" />
+    <Content Include="Views\MeleeWeapon\Index.cshtml" />
+    <Content Include="Views\MeleeWeapon\Edit.cshtml" />
+    <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\MiscellaneousItem\Edit.cshtml" />
     <Content Include="Views\MiscellaneousItem\Index.cshtml" />
     <Content Include="Views\Talent\Index.cshtml" />

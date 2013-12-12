@@ -1,0 +1,189 @@
+﻿@using Achilles.Codex.Web.Misc
+@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.MeleeWeapon>
+
+@if (Model.IsNew)
+{
+    <h2>New melee weapon</h2>
+}
+else
+{
+    <h2>Edit <em>@(Model.CodexItem.Name ?? "<new melee weapon>") </em></h2>
+}
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#basic-info" data-toggle="tab">Basic information</a></li>
+        <li><a href="#article" data-toggle="tab">Article</a></li>
+        <li><a href="#weapon-properties" data-toggle="tab">Properties</a></li>
+        <li><a href="#attack-types" data-toggle="tab">Attack types</a></li>
+    </ul>
+</div>
+
+<br />
+
+@Html.ValidationSummary(false)
+
+<form class="form-horizontal" role="form" method="POST">
+
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="basic-info">
+            @Html.Partial("_EditCodexItemBasicInfoView", Model)
+        </div>
+        <div class="tab-pane fade in" id="article">
+            @Html.Partial("_EditCodexItemArticleView", Model)
+        </div>
+
+        <div class="tab-pane fade in" id="weapon-properties">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Reach and strength</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="CodexItem.Reach" class="col-sm-2 control-label">Reach</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="reach" name="CodexItem.Reach" placeholder="Reach" value="@Model.CodexItem.Reach" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CodexItem.MinimumStrenght" class="col-sm-2 control-label">MinimumStrenght</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="strength" name="CodexItem.MinimumStrenght" placeholder="Minimum strength" value="@Model.CodexItem.MinimumStrenght" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Weapon properties</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="properties-container">
+
+                    </div>
+                    <p>
+                        <a class="btn btn-info" id="add-property-button"><span class="glyphicon glyphicon-plus-sign"></span> Add property</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade in" id="attack-types">
+            <div id="attack-type-container"></div>
+            <p>
+                <a class="btn btn-info" id="add-attack-type-button"><span class="glyphicon glyphicon-plus-sign"></span> Add Attack type</a>
+            </p>
+        </div>
+    </div>
+    <hr />
+    <button type="submit" class="btn btn-primary">Save</button>
+
+</form>
+@section Head
+{
+    @Styles.Render("~/Content/edit-codex-item-basic-info")
+    @Styles.Render("~/Content/edit-codex-item-article")
+}
+
+@section scripts
+{
+    @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
+
+    @Scripts.Render("~/bundles/edit-codex-item-basic-info")
+    @Scripts.Render("~/bundles/edit-codex-item-article")
+    @Scripts.Render("~/bundles/edit-weapon")
+
+    <script id="attack-type-template" type="text/x-handlebars-template">
+        <div class="panel panel-default" id="attack-type-{{index}}">
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label for="attack-type-input-{{index}}" class="col-sm-2 control-label">Attack type</label>
+                    <div class="col-sm-10">
+                        <select class="selectpicker form-control" name="CodexItem.AttackTypes[{{index}}].Type" id="attack-type-input-{{index}}">
+                            {{create-option 'Bash' value.Type}}
+                            {{create-option 'Swing' value.Type}}
+                            {{create-option 'Thrust' value.Type}}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="damage-value-input-{{index}}" class="col-md-2 control-label">Base damage</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="CodexItem.AttackTypes[{{index}}].DamageValue" id="damage-value-input-{{index}}" value="{{value.DamageValue}}" />
+                    </div>
+                    <label for="ap-value-input-{{index}}" class="col-md-2 control-label">Armor piercing</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="CodexItem.AttackTypes[{{index}}].ArmorPiercingModifier" id="ap-value-input-{{index}}" value="{{value.ArmorPiercingModifier}}" />
+                    </div>
+                </div>
+
+                <div id="effect-container-{{index}}">
+
+                </div>
+                <p>
+                    <a class="btn btn-default" id="add-effect-{{index}}"><span class="glyphicon glyphicon-plus-sign"></span> Add effect</a>
+                    <a class="btn btn-danger pull-right" onclick="$('#attack-type-{{index}}').remove()"><span class="glyphicon glyphicon-minus-sign"></span> Remove attack</a>
+                </p>
+                </div>
+        </div>
+    </script>
+
+    <script id="effect-template" type="text/x-handlebars-template">
+        <div class="form-group" id="attack-{{context.AttackIndex}}-effect-{{index}}">
+
+            <label for="attack-{{context.AttackIndex}}-effect-type-input-{{index}}" class="col-md-2 control-label">Effect</label>
+            <div class="col-md-4">
+                <select class="selectpicker form-control" name="CodexItem.AttackTypes[{{context.AttackIndex}}].Effects[{{index}}].EffectType" id="attack-{{context.AttackIndex}}-effect-type-input-{{index}}">
+                    {{create-option 'Trauma' value.EffectType}}
+                    {{create-option 'Bleed' value.EffectType}}
+                    {{create-option 'Critical' value.EffectType}}
+                </select>
+                @*<input type="text" class="form-control" name="CodexItem.AttackTypes[{{context.AttackIndex}}].Effects[{{index}}].EffectType" id="attack-{{context.AttackIndex}}-effect-type-input-{{index}}" value="{{value.EffectType}}" />*@
+            </div>
+            <label for="attack-{{context.AttackIndex}}-effect-span-input-{{index}}" class="col-md-2 control-label">Span</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="CodexItem.AttackTypes[{{context.AttackIndex}}].Effects[{{index}}].Span" id="attack-{{context.AttackIndex}}-effect-span-input-{{index}}" value="{{value.Span}}" />
+            </div>
+        </div>
+    </script>
+
+    <script id="properties-template" type="text/x-handlebars-template">
+        <div class="form-group" id="weapon-property-{{index}}">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="CodexItem.Properties" placeholder="Enter property" value="{{value}}" />
+                    <span class="input-group-btn">
+                        <a class="btn btn-default" id="remove-property-button" onclick="$('#weapon-property-{{index}}').remove()"><span class="glyphicon glyphicon-minus-sign"></span></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+
+            var properties = @Html.Raw(Model.CodexItem.Properties.AsJson());
+            var attacks = @Html.Raw(Model.CodexItem.AttackTypes.AsJson());
+
+            binder.bind('#properties-container', '#properties-template', '#add-property-button', properties );
+
+            binder.bind(
+                '#attack-type-container',
+                '#attack-type-template',
+                '#add-attack-type-button',
+                attacks, function(i, x) {
+                    $('.selectpicker').selectpicker();
+                    var eff = (x || {}).Effects;
+                    binder.bind('#effect-container-' + i, '#effect-template', '#add-effect-' + i, eff, function(_, d) {
+                        $('.selectpicker').selectpicker();
+                    }, { AttackIndex: i });
+
+                });
+        });
+    </script>
+
+}
