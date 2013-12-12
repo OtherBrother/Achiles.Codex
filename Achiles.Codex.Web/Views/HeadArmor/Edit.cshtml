@@ -1,0 +1,75 @@
+﻿@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.HeadArmor>
+
+@if (Model.IsNew)
+{
+    <h2>New head armor</h2>
+}
+else
+{
+    <h2>Edit head armor <em>@(Model.CodexItem.Name ?? "<new HeadArmor>") </em></h2>
+}
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#basic-info" data-toggle="tab">Basic information</a></li>
+    <li><a href="#article" data-toggle="tab">Article</a></li>
+    <li><a href="#equipment-item" data-toggle="tab">Properties</a></li>
+</ul>
+<br />
+@Html.ValidationSummary(false)
+
+@using ((Html.BeginForm()))
+{
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="basic-info">
+            @Html.Partial("_EditCodexItemBasicInfoView", Model)
+        </div>
+        <div class="tab-pane fade in" id="article">
+            @Html.Partial("_EditCodexItemArticleView", Model)
+        </div>
+        <div class="tab-pane fade in" id="equipment-item">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Properties of Equipment Item</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="Price" class="col-sm-2 control-label">Price</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="CodexItem_Price" name="CodexItem.Price" placeholder="Enter item price" value="@Model.CodexItem.Price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Weight" class="col-sm-2 control-label">Weight</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" id="CodexItem_Weight" name="CodexItem.Weight" placeholder="Enter item weight" value="@Model.CodexItem.Weight">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <hr />
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Save head armor</button>
+    </div>
+}
+
+@section Head
+{
+    @Styles.Render("~/Content/edit-codex-item-basic-info")
+    @Styles.Render("~/Content/edit-codex-item-article")
+}
+
+@section scripts
+{
+    @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
+
+    @Scripts.Render("~/bundles/edit-codex-item-basic-info")
+    @Scripts.Render("~/bundles/edit-codex-item-article")
+
+}
+
+
+
+
