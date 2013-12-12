@@ -70,6 +70,7 @@ namespace Achilles.Codex.Web.Models
         public SearchResultsViewModel()
         {
             Suggestions = new string[0];
+            Results = new SearchIndex.Result[0];
         }
 
         public IEnumerable<SearchIndex.Result> Results { get; set; }

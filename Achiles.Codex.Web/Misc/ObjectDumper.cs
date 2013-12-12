@@ -99,7 +99,7 @@ namespace Achilles.Codex.Web.Misc
                         else
                         {
                             var isEnumerable = typeof(IEnumerable).IsAssignableFrom(type);
-                            Write("{0}: {1}", memberInfo.Name, isEnumerable ? "..." : "{ }");
+                            Write("{0}: {1}", memberInfo.Name, isEnumerable ? "" : "{ }");
 
                             var alreadyTouched = !isEnumerable && value!=null  && AlreadyTouched(value);
                             _level++;

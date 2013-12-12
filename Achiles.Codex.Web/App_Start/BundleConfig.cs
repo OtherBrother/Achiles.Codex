@@ -20,9 +20,11 @@ namespace Achilles.Codex.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
-                      "~/Scripts/typeahead.js",
-                      "~/Scripts/site.js",
-                      "~/Scripts/handlebars-1.1.2.js"
+                    "~/Scripts/bootstrap-select.js",      
+                    "~/Scripts/typeahead.js",
+                      "~/Scripts/handlebars-1.1.2.js",
+                      "~/Scripts/underscore.js", 
+                      "~/Scripts/site.js" //always last
                       ));
 
 
@@ -39,12 +41,17 @@ namespace Achilles.Codex.Web
                      "~/Scripts/bootstrap-tagsinput.js",
                      "~/Scripts/codex-item/edit-codex-item-basic-info.js"/*Make sure this item is alway last in the bundle*/
                      ));
+            
+            bundles.Add(new ScriptBundle("~/bundles/edit-weapon").Include(
+               "~/Scripts/codex-item/edit-weapon.js"
+               ));
                 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                     "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/typeahead.js-bootstrap.css"
+                      "~/Content/typeahead.js-bootstrap.css",
+                      "~/Content/bootstrap-select.css"
                       ));
             
             bundles.Add(new StyleBundle("~/Content/edit-codex-item-basic-info").Include(

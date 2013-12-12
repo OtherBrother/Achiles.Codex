@@ -5,7 +5,14 @@ namespace Achilles.Codex.Model
 {
     public class CombatSkill : CombatGearItem
     {
-        public List<string> Features { get; set; }
+        public List<string> Features 
+        {
+            get { return _Features; }
+            set { _Features = value; }
+        }
+
+
+        private List<string> _Features = new List<string>();
     }
 
     public class SkillFeature : CombatGearItem
@@ -13,6 +20,6 @@ namespace Achilles.Codex.Model
         public int MaxLevel { get; set; }
     }
 
-
+   
 
 }
