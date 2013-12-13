@@ -48,6 +48,13 @@ namespace Achilles.Codex.Web.Controllers
         }
 
         [System.Web.Mvc.HttpGet]
+        public JsonResult GetJsonWeapons(int? pageSize, int? pageNumber)
+        {
+            var model = GetWeaponListModel(pageSize, pageNumber);
+            return new JsonResult { JsonRequestBehavior = JsonRequestBehavior.AllowGet, Data = model };
+        }
+
+        [System.Web.Mvc.HttpGet]
         public ActionResult List(int? pageSize, int? pageNumber) {
             var model = GetWeaponListModel(pageSize, pageNumber);
             return View(model);
