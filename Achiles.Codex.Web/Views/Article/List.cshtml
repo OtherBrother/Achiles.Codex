@@ -73,7 +73,7 @@
                 //Pagination
                 $(".pagination").html('<li><a>Jump to page</a></li>');
                 for (var i = 1; i <= Math.ceil(parseInt(data.TotalArticles) / ps) ; i++) {
-                    var active = "onClick='loadPage(" + i + ")'";; var action = "";
+                    var active = "onClick='loadPage(" + i + ")'"; var action = "";
                     if (i == num) {
                         active = "class='active'";
                     }
