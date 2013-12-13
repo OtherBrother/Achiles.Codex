@@ -2,57 +2,59 @@
 @using Achilles.Codex.Web.Misc
 @using System.Text.RegularExpressions
 <hr/>
-<div id="weapons" class="container">
+<div id="weapons" class="container"></div>
+
+<script id="weapon-template" type="text/x-handlebars-template">
     <table class="table table-bordered table-striped" id="example-default">
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email Address</th>
-                <th>Hometown</th>
+                <th>Name</th>
+                <th>Min STR</th>
+                <th>Weight</th>
+                <th>Price</th>
+                <th>Article</th>
+                <th>Tags</th>
+                <th>Related</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Johnny</td>
-                <td>Appleseed</td>
-                <td>johnny.appleseed@email.com</td>
-                <td>New York, NY</td>
-            </tr>
-            <tr>
-                <td>Marty</td>
-                <td>McFly</td>
-                <td>not.a.chicken@hotmail.com</td>
-                <td>Hill Valley, CA</td>
-            </tr>
-            <tr>
-                <td>Tucan</td>
-                <td>Sam</td>
-                <td>fruity@generalmills.com</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>Darth</td>
-                <td>Vader</td>
-                <td>lord.of.the.sith@deathstar.gov</td>
-                <td>Tatooine</td>
-            </tr>
+            {{#each Weapons}}
+                <tr>
+                    <th>{{Name}}</th>
+                    <th>{{MinimumStrenght}}</th>
+                    <th>{{Weight}}</th>
+                    <th>{{Price}}</th>
+                    <th>{{ArticleId}}</th>
+                    <th>{{Tags}}</th>
+                    <th>
+                        {{#each RelatedCodexItems}}
+                            {{Name}}
+                        {{/each}}
+                    </th>
+                </tr>
+            {{/each}}
         </tbody>
     </table>
-</div>
+</script>
 
 @section scripts
 {
     <script type="text/javascript">
 
-        $("table").tablecloth({
-            theme: "stats",
-            bordered: false,
-            condensed: false,
-            striped: true,
-            sortable: true,
-            clean: true,
-            cleanElements: "th td"
+        $.getJSON("@Url.Content("GetJsonWeapons/")", { pageSize: 10, pageNumber: 1 }, function (data) {
+            var asource = $("#weapon-template").html();
+            var atemplate = Handlebars.compile(asource);
+            $('#weapons').html(atemplate(data));
+
+            $("table").tablecloth({
+                theme: "default",
+                bordered: false,
+                condensed: false,
+                striped: true,
+                sortable: true,
+                clean: true,
+                cleanElements: "th td"
+            });
         });
 
     </script>
