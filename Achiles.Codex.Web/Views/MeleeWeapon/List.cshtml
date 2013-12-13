@@ -1,7 +1,12 @@
 ﻿@model Achilles.Codex.Web.Models.WeaponListViewModel
 @using Achilles.Codex.Web.Misc
 @using System.Text.RegularExpressions
+<h2>Melee weapons</h2>
 <hr/>
+@if(User.IsContributor())
+{ 
+    <a class="btn btn-default" href="@Url.Action("Edit")"><span class="glyphicon glyphicon-plus"></span>&nbsp;New melee weapon</a>
+}
 <div id="weapons" class="container"></div>
 
 <script id="weapon-template" type="text/x-handlebars-template">
@@ -56,8 +61,8 @@
 @section scripts
 {
     <script type="text/javascript">
-
-        $.getJSON("@Url.Content("GetJsonWeapons/")", { pageSize: 10, pageNumber: 1 }, function (data) {
+        $.getJSON("@Url.Action("GetJsonWeapons/")", {}, function (data) {
+            console.log(data);
             var asource = $("#weapon-template").html();
             var atemplate = Handlebars.compile(asource);
             $('#weapons').html(atemplate(data));
