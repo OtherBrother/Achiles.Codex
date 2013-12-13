@@ -201,17 +201,25 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AmmoController.cs" />
+    <Compile Include="Controllers\ArmArmorController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\AttributesController.cs" />
+    <Compile Include="Controllers\BodyArmorController.cs" />
     <Compile Include="Controllers\CodexController.cs" />
     <Compile Include="Controllers\CombatSkillController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\HeadArmorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MeleeWeaponController.cs" />
+    <Compile Include="Controllers\LegArmorController.cs" />
+    <Compile Include="Controllers\MiscellaneousItemController.cs" />
     <Compile Include="Controllers\NCGEquipmentItemController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SearchQuery.cs" />
+    <Compile Include="Controllers\SkillFeatureController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
+    <Compile Include="Controllers\TalentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -331,6 +339,22 @@
     <Content Include="Views\MeleeWeapon\Index.cshtml" />
     <Content Include="Views\MeleeWeapon\Edit.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\MiscellaneousItem\Edit.cshtml" />
+    <Content Include="Views\MiscellaneousItem\Index.cshtml" />
+    <Content Include="Views\Talent\Index.cshtml" />
+    <Content Include="Views\Talent\Edit.cshtml" />
+    <Content Include="Views\SkillFeature\Index.cshtml" />
+    <Content Include="Views\SkillFeature\Edit.cshtml" />
+    <Content Include="Views\Ammo\Index.cshtml" />
+    <Content Include="Views\Ammo\Edit.cshtml" />
+    <Content Include="Views\ArmArmor\Index.cshtml" />
+    <Content Include="Views\ArmArmor\Edit.cshtml" />
+    <Content Include="Views\BodyArmor\Index.cshtml" />
+    <Content Include="Views\BodyArmor\Edit.cshtml" />
+    <Content Include="Views\HeadArmor\Index.cshtml" />
+    <Content Include="Views\HeadArmor\Edit.cshtml" />
+    <Content Include="Views\LegArmor\Index.cshtml" />
+    <Content Include="Views\LegArmor\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

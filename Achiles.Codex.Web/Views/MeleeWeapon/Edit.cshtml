@@ -95,16 +95,17 @@ else
     @Scripts.Render("~/bundles/edit-weapon")
 
     <script id="attack-type-template" type="text/x-handlebars-template">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{value.Type}}</h3>
-            </div>
+        <div class="panel panel-default" id="attack-type-{{index}}">
             <div class="panel-body">
 
                 <div class="form-group">
                     <label for="attack-type-input-{{index}}" class="col-sm-2 control-label">Attack type</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="CodexItem.AttackTypes[{{index}}].Type" id="attack-type-input-{{index}}" value="{{value.Type}}">
+                        <select class="selectpicker form-control" name="CodexItem.AttackTypes[{{index}}].Type" id="attack-type-input-{{index}}">
+                            {{create-option 'Bash' value.Type}}
+                            {{create-option 'Swing' value.Type}}
+                            {{create-option 'Thrust' value.Type}}
+                        </select>
                     </div>
                 </div>
 
@@ -124,9 +125,9 @@ else
                 </div>
                 <p>
                     <a class="btn btn-default" id="add-effect-{{index}}"><span class="glyphicon glyphicon-plus-sign"></span> Add effect</a>
+                    <a class="btn btn-danger pull-right" onclick="$('#attack-type-{{index}}').remove()"><span class="glyphicon glyphicon-minus-sign"></span> Remove attack</a>
                 </p>
-
-            </div>
+                </div>
         </div>
     </script>
 
@@ -135,10 +136,10 @@ else
 
             <label for="attack-{{context.AttackIndex}}-effect-type-input-{{index}}" class="col-md-2 control-label">Effect</label>
             <div class="col-md-4">
-                <select class="selectpicker" name="CodexItem.AttackTypes[{{context.AttackIndex}}].Effects[{{index}}].EffectType" id="attack-{{context.AttackIndex}}-effect-type-input-{{index}}">
-                    <option value="Trauma">Trauma</option>
-                    <option value="Bleed">Bleed</option>
-                    <option value="Critical">Critical</option>
+                <select class="selectpicker form-control" name="CodexItem.AttackTypes[{{context.AttackIndex}}].Effects[{{index}}].EffectType" id="attack-{{context.AttackIndex}}-effect-type-input-{{index}}">
+                    {{create-option 'Trauma' value.EffectType}}
+                    {{create-option 'Bleed' value.EffectType}}
+                    {{create-option 'Critical' value.EffectType}}
                 </select>
                 @*<input type="text" class="form-control" name="CodexItem.AttackTypes[{{context.AttackIndex}}].Effects[{{index}}].EffectType" id="attack-{{context.AttackIndex}}-effect-type-input-{{index}}" value="{{value.EffectType}}" />*@
             </div>
@@ -164,48 +165,21 @@ else
 
     <script type="text/javascript">
         $(function() {
-            var binder = binder || {};
-            binder.bind = function(container, template, addObj, data, onAddFunc, ctx) {
-                var c = $(container);
-                var s = $(template).html();
-                var t = Handlebars.compile(s);
-                var index = 0;
-
-                var create = function(val) {
-                    var html = t({ index: index, value: val, context: ctx });
-                    c.append(html);
-
-                    if (typeof(onAddFunc) == "function") {
-                        onAddFunc(index, val, ctx);
-                    }
-                    index++;
-                };
-
-                $(addObj).click(function() { create(); });
-
-                _.each(data, function(x) { create(x); });
-            };
 
             var properties = @Html.Raw(Model.CodexItem.Properties.AsJson());
             var attacks = @Html.Raw(Model.CodexItem.AttackTypes.AsJson());
-            binder.bind('#properties-container', '#properties-template', '#add-property-button', properties);
-      
+
+            binder.bind('#properties-container', '#properties-template', '#add-property-button', properties );
+
             binder.bind(
                 '#attack-type-container',
                 '#attack-type-template',
                 '#add-attack-type-button',
                 attacks, function(i, x) {
+                    $('.selectpicker').selectpicker();
                     var eff = (x || {}).Effects;
                     binder.bind('#effect-container-' + i, '#effect-template', '#add-effect-' + i, eff, function(_, d) {
-                        console.log(d);
-                        var sp = $('.selectpicker');
-                        sp.selectpicker();
-                        if (d && d.EffectType) {
-                            console.log(d.EffectType);
-                            sp.val(d.EffectType);
-                            sp.change();
-                        }
-
+                        $('.selectpicker').selectpicker();
                     }, { AttackIndex: i });
 
                 });
