@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Microsoft.Owin.Security.Provider;
 
 namespace Achilles.Codex.Web.Misc
@@ -44,6 +45,12 @@ namespace Achilles.Codex.Web.Misc
             var context = matches.Groups["ctx"];
             return Regex.Replace(context.Value, string.Format("(?<q>{0})", query), "<strong>${q}</strong>", RegexOptions.IgnoreCase);
             //return context.Value.Replace(query, string.Format("<strong>{0}</strong>",query));
+        }
+
+        public static string AsJson(this object obj)
+        {
+            var serializer = new JavaScriptSerializer();
+            return serializer.Serialize(obj);
         }
 
         public static bool IsContributor(this IPrincipal user)
