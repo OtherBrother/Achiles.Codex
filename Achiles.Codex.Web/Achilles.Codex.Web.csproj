@@ -235,6 +235,7 @@
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\CodexItemModel.cs" />
+    <Compile Include="Models\WeaponListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CodexItemLabels.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -334,6 +335,7 @@
     <Content Include="Views\Codex\_relatedItemsView.cshtml" />
     <Content Include="Views\CombatSkill\Index.cshtml" />
     <Content Include="Views\CombatSkill\Edit.cshtml" />
+    <Content Include="Views\Article\List.cshtml" />
     <Content Include="Views\MeleeWeapon\Index.cshtml" />
     <Content Include="Views\MeleeWeapon\Edit.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
@@ -353,6 +355,7 @@
     <Content Include="Views\HeadArmor\Edit.cshtml" />
     <Content Include="Views\LegArmor\Index.cshtml" />
     <Content Include="Views\LegArmor\Edit.cshtml" />
+    <Content Include="Views\MeleeWeapon\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

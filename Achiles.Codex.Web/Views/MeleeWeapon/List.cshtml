@@ -1,0 +1,77 @@
+﻿@model Achilles.Codex.Web.Models.WeaponListViewModel
+@using Achilles.Codex.Web.Misc
+@using System.Text.RegularExpressions
+<hr/>
+<div id="weapons" class="container"></div>
+
+<script id="weapon-template" type="text/x-handlebars-template">
+    <table class="table table-bordered table-striped" id="example-default">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Min STR</th>
+                <th>Weight</th>
+                <th>Price</th>
+                <th>Article</th>
+                <th>Tags</th>
+                <th>Related</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each Weapons}}
+                <tr>
+                    <td><a href='@Url.Action("RedirectToItem", "Codex")/{{Id}}'>{{Name}}</a></td>
+                    <td>{{MinimumStrenght}}</td>
+                    <td>{{Weight}}</td>
+                    <td>{{Price}}</td>
+                    <td>
+                        {{#if ArticleId}}
+                            <a href='@Url.Action("RedirectToItem", "Codex")/{{ArticleId}}'>{{Name}}</a>
+                            <span class='glyphicon glyphicon-share-alt'></span>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#each Tags}}
+                            <a class='label label-primary' href="#">{{this}}</a>&nbsp;
+                        {{/each}}
+                    </td>
+                    <td>
+                        {{#each RelatedCodexItems}}
+                            <a href='@Url.Action("RedirectToItem", "Codex")/{{Id}}'>{{Name}}</a>
+                        {{/each}}
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>
+
+<div class="tooltip">
+    <div class="tooltip-inner">
+        Tooltip!
+    </div>
+    <div class="tooltip-arrow"></div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $.getJSON("@Url.Content("GetJsonWeapons/")", { pageSize: 10, pageNumber: 1 }, function (data) {
+            var asource = $("#weapon-template").html();
+            var atemplate = Handlebars.compile(asource);
+            $('#weapons').html(atemplate(data));
+
+            $("table").tablecloth({
+                theme: "default",
+                bordered: false,
+                condensed: false,
+                striped: true,
+                sortable: true,
+                clean: true,
+                cleanElements: "th td"
+            });
+        });
+
+    </script>
+}

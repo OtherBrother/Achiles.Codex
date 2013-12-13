@@ -23,7 +23,10 @@ namespace Achilles.Codex.Web
                     "~/Scripts/bootstrap-select.js",      
                     "~/Scripts/typeahead.js",
                       "~/Scripts/handlebars-1.1.2.js",
-                      "~/Scripts/underscore.js", 
+                      "~/Scripts/underscore.js",
+                      "~/Scripts/jquery.metadata.js",
+                      "~/Scripts/jquery.tablecloth.js",
+                      "~/Scripts/jquery.tablesorter.js", 
                       "~/Scripts/site.js" //always last
                       ));
 
@@ -51,7 +54,9 @@ namespace Achilles.Codex.Web
                     "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/typeahead.js-bootstrap.css",
-                      "~/Content/bootstrap-select.css"
+                      "~/Content/bootstrap-select.css",
+                      "~/Content/prettify.css",
+                      "~/Content/tablecloth.css"
                       ));
             
             bundles.Add(new StyleBundle("~/Content/edit-codex-item-basic-info").Include(
