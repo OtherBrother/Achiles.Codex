@@ -6,6 +6,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using Achilles.Codex.Model;
 using Achilles.Codex.Web.Models;
+using Raven.Client;
+using Raven.Abstractions.Extensions;
+using Achilles.Codex.Web.Misc;
 
 namespace Achilles.Codex.Web.Controllers
 {
@@ -37,6 +40,12 @@ namespace Achilles.Codex.Web.Controllers
             return View(model);
         }
         [System.Web.Mvc.HttpGet]
+        public ActionResult List(int? pageSize, int? pageNumber)
+        {
+            var model = GetArticleListModel(pageSize, pageNumber);
+            return View(model);
+        }
+        [System.Web.Mvc.HttpGet]
         public JsonResult GetJsonArticles(int? pageSize, int? pageNumber)
         {
             var model = GetArticleListModel(pageSize, pageNumber);
@@ -48,11 +57,16 @@ namespace Achilles.Codex.Web.Controllers
             var ps = pageSize.GetValueOrDefault(10);
             var pn = pageNumber.GetValueOrDefault(1);
 
+            RavenQueryStatistics stats = null;
+            var articles = DocumentSession.Query<Article>().Statistics(out stats).Skip(ps * (pn - 1)).Take(ps).ToArray();
+            articles.ForEach(x => x.Description = x.Description.Fit(200));
+
             var model = new ArticleListViewModel
             {
-                Articles = DocumentSession.Query<Article>().Skip(ps*(pn - 1)).Take(ps).ToArray(),
+                Articles = articles,
                 Page = ps,
-                PageSize = pn
+                PageSize = pn,
+                TotalArticles = stats.TotalResults
             };
             return model;
         }

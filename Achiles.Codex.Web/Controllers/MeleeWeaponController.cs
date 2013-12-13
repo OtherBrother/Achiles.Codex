@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Achilles.Codex.Model;
 using Achilles.Codex.Web.Models;
+using Raven.Client;
+using Raven.Abstractions.Extensions;
+using Achilles.Codex.Web.Misc;
 
 namespace Achilles.Codex.Web.Controllers
 {
@@ -41,7 +44,32 @@ namespace Achilles.Codex.Web.Controllers
 
             DocumentSession.SaveChanges();
             Success("Splendid!", "More death tools ☻");
-                            return View(CreateModel(storedItem));
+                
+            return View(CreateModel(storedItem));
+        }
+
+        [System.Web.Mvc.HttpGet]
+        public JsonResult GetJsonWeapons()
+        {
+            var model = GetWeaponListModel();
+            return new JsonResult { JsonRequestBehavior = JsonRequestBehavior.AllowGet, Data = model };
+        }
+
+        [System.Web.Mvc.HttpGet]
+        public ActionResult List() {
+            var model = GetWeaponListModel();
+            return View(model);
+        }
+
+        private WeaponListViewModel GetWeaponListModel() {
+
+            RavenQueryStatistics stats = null;
+            var weapons = DocumentSession.Query<MeleeWeapon>().Statistics(out stats).ToArray();
+            var model = new WeaponListViewModel {
+                Weapons = weapons,
+                TotalWeapons = stats.TotalResults
+            };
+            return model;
         }
 	}
 }
