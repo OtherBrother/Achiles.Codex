@@ -20,22 +20,38 @@
         <tbody>
             {{#each Weapons}}
                 <tr>
-                    <th>{{Name}}</th>
-                    <th>{{MinimumStrenght}}</th>
-                    <th>{{Weight}}</th>
-                    <th>{{Price}}</th>
-                    <th>{{ArticleId}}</th>
-                    <th>{{Tags}}</th>
-                    <th>
-                        {{#each RelatedCodexItems}}
-                            {{Name}}
+                    <td><a href='@Url.Action("RedirectToItem", "Codex")/{{Id}}'>{{Name}}</a></td>
+                    <td>{{MinimumStrenght}}</td>
+                    <td>{{Weight}}</td>
+                    <td>{{Price}}</td>
+                    <td>
+                        {{#if ArticleId}}
+                            <a href='@Url.Action("RedirectToItem", "Codex")/{{ArticleId}}'>{{Name}}</a>
+                            <span class='glyphicon glyphicon-share-alt'></span>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#each Tags}}
+                            <a class='label label-primary' href="#">{{this}}</a>&nbsp;
                         {{/each}}
-                    </th>
+                    </td>
+                    <td>
+                        {{#each RelatedCodexItems}}
+                            <a href='@Url.Action("RedirectToItem", "Codex")/{{Id}}'>{{Name}}</a>
+                        {{/each}}
+                    </td>
                 </tr>
             {{/each}}
         </tbody>
     </table>
 </script>
+
+<div class="tooltip">
+    <div class="tooltip-inner">
+        Tooltip!
+    </div>
+    <div class="tooltip-arrow"></div>
+</div>
 
 @section scripts
 {

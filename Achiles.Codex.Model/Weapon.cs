@@ -39,9 +39,11 @@ namespace Achilles.Codex.Model
 
             }
             sb.AppendLine();
-            foreach (var p in Properties)
-            {
-                sb.AppendFormat("{0}", p).AppendLine();
+            if (Properties != null) {
+                foreach (var p in Properties)
+                {
+                    sb.AppendFormat("{0}", p).AppendLine();
+                }
             }
             return sb.ToString();
         }

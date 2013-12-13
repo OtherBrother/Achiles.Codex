@@ -49,29 +49,24 @@ namespace Achilles.Codex.Web.Controllers
         }
 
         [System.Web.Mvc.HttpGet]
-        public JsonResult GetJsonWeapons(int? pageSize, int? pageNumber)
+        public JsonResult GetJsonWeapons()
         {
-            var model = GetWeaponListModel(pageSize, pageNumber);
+            var model = GetWeaponListModel();
             return new JsonResult { JsonRequestBehavior = JsonRequestBehavior.AllowGet, Data = model };
         }
 
         [System.Web.Mvc.HttpGet]
-        public ActionResult List(int? pageSize, int? pageNumber) {
-            var model = GetWeaponListModel(pageSize, pageNumber);
+        public ActionResult List() {
+            var model = GetWeaponListModel();
             return View(model);
         }
 
-        private WeaponListViewModel GetWeaponListModel(int? pageSize, int? pageNumber) {
+        private WeaponListViewModel GetWeaponListModel() {
 
-            var ps = pageSize.GetValueOrDefault(10);
-            var pn = pageNumber.GetValueOrDefault(1);
             RavenQueryStatistics stats = null;
-            var weapons = DocumentSession.Query<MeleeWeapon>().Statistics(out stats).Skip(ps * (pn - 1)).Take(ps).ToArray();
-            var model = new WeaponListViewModel
-            {
+            var weapons = DocumentSession.Query<MeleeWeapon>().Statistics(out stats).ToArray();
+            var model = new WeaponListViewModel {
                 Weapons = weapons,
-                PageSize = ps,
-                Page = pn,
                 TotalWeapons = stats.TotalResults
             };
             return model;

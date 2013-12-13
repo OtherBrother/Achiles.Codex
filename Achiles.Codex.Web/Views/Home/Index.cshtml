@@ -85,8 +85,6 @@
 {
     @Scripts.Render("~/Scripts/jqcloud-1.0.4.js")
     
-    
-
     <script type="text/javascript">
         var tags = [@Html.Raw(string.Join(",", Model.Tags.Select(x => string.Format("{{text:'{0}',weight:{1}, link:window.codex.urls.searchCodexUrl+'@{0}' }}", x.Tag, x.Count))))];
         $(function() {
