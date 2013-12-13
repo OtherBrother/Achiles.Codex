@@ -355,6 +355,7 @@
     <Content Include="Views\HeadArmor\Edit.cshtml" />
     <Content Include="Views\LegArmor\Index.cshtml" />
     <Content Include="Views\LegArmor\Edit.cshtml" />
+    <Content Include="Views\MeleeWeapon\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
