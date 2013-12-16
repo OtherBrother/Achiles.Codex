@@ -231,6 +231,7 @@
     <Compile Include="Misc\PredicateBuilder.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleListViewModel.cs" />
+    <Compile Include="Models\DefaultCodexItemViewModel.cs" />
     <Compile Include="Models\EditUserModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -332,7 +333,7 @@
     <Content Include="Views\NCGEquipmentItem\Edit.cshtml" />
     <Content Include="Views\Codex\Item.cshtml" />
     <Content Include="Views\Shared\_TagListView.cshtml" />
-    <Content Include="Views\Codex\_relatedItemsView.cshtml" />
+    <Content Include="Views\Shared\_relatedItemsView.cshtml" />
     <Content Include="Views\CombatSkill\Index.cshtml" />
     <Content Include="Views\CombatSkill\Edit.cshtml" />
     <Content Include="Views\Article\List.cshtml" />

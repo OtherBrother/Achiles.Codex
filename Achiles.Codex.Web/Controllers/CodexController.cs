@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Achilles.Codex.Model;
 using Achilles.Codex.Web.Indexes;
+using Achilles.Codex.Web.Models;
 using Achilles.Codex.Web.Services;
 using Raven.Client;
 using Raven.Client.Linq;
@@ -53,8 +54,22 @@ namespace Achilles.Codex.Web.Controllers
         public ActionResult Item(string id)
         {
             var item = DocumentSession.Load<CodexItem>(id);
+            var model = new DefaultCodexItemViewModel
+            {
+                Item = item
+            };
             
-            return View(item);
+            var baseItem = item as CodexItemBase;
+            if (baseItem != null && !string.IsNullOrEmpty(baseItem.BodyId))
+            {
+                model.Body = DocumentSession.Load<Body>(baseItem.BodyId);
+            }
+            if (item != null)
+            {
+                ViewBag.Title = item.Name;
+            }
+
+            return View(model);
         }
 
     }

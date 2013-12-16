@@ -45,6 +45,7 @@
     <Compile Include="Article.cs" />
     <Compile Include="AttackType.cs" />
     <Compile Include="Attribute.cs" />
+    <Compile Include="Body.cs" />
     <Compile Include="CodexItem.cs" />
     <Compile Include="CodexItemBase.cs" />
     <Compile Include="CodexItemType.cs" />

@@ -1,5 +1,6 @@
-﻿@using Achilles.Codex.Web.Misc
-@model Achilles.Codex.Model.CodexItem
+﻿@using Achilles.Codex.Model
+@using Achilles.Codex.Web.Misc
+@model Achilles.Codex.Web.Models.DefaultCodexItemViewModel
 
 
 @if (Model == null)
@@ -8,22 +9,28 @@
 }
 else
 {
-    <h2>@Model.Name</h2>
+    <h2>@Model.Item.Name</h2>
     <hr />
-    <p>
-        @Html.Raw(Model.Description)
+    <p style="vertical-align: top;">
+        
+        <img class="img-thumbnail" src="@(Model.Item.IconUrl ?? "http://www.londonnights.com/gfx/default/search_no_photo.png")" />
+        @Html.Raw(Model.Item.Description)
     </p>
+    <hr />
 
-    if (!string.IsNullOrEmpty(Model.ToString()))
+    if (Model.Body != null)
     {
-        <p>
-            @Html.Raw(Html.Dump(Model))
-        </p>
+        @Html.Raw(Model.Body.Text ?? "Body is empty")
+        <hr />
     }
     <p>
-        @Html.Partial("_taglistview", Model.Tags)
+        @Html.Raw(Html.Dump(Model.Item))
+    </p>
+    <hr/>
+    <p>
+        @Html.Partial("_taglistview", Model.Item.Tags)
     </p>
     <p>
-        @Html.Partial("_relatedItemsView", Model.RelatedCodexItems)
+        @Html.Partial("_relatedItemsView", Model.Item.RelatedCodexItems)
     </p>
 }

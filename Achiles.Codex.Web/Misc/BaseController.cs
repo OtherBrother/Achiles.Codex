@@ -105,11 +105,11 @@ namespace Achilles.Codex.Web
         {
             string articleBody = null;
             
-            if (codexItem != null && !string.IsNullOrEmpty(codexItem.ArticleId))
+            if (codexItem != null && !string.IsNullOrEmpty(codexItem.BodyId))
             {
-                var article = DocumentSession.Load<Article>(codexItem.ArticleId);
+                var article = DocumentSession.Load<Body>(codexItem.BodyId);
                 if (article != null)
-                    articleBody = article.Description;
+                    articleBody = article.Text;
             }
 
             return new CodexItemModel<T> { CodexItem = codexItem, IsNew = (codexItem == null) || string.IsNullOrEmpty(codexItem.Id), ArticleBody = articleBody };
@@ -133,23 +133,17 @@ namespace Achilles.Codex.Web
 
         private void UpdateItemArticle<T>(CodexItemModel<T> model, T itemToUpdate) where T : CodexItemBase
         {
-            Article article = null;
-            article = !string.IsNullOrEmpty(itemToUpdate.ArticleId)
-                ? DocumentSession.Load<Article>(itemToUpdate.ArticleId)
-                : new Article();
+            Body body = null;
+            body = !string.IsNullOrEmpty(itemToUpdate.BodyId)
+                ? DocumentSession.Load<Body>(itemToUpdate.BodyId)
+                : new Body();
 
             if (!string.IsNullOrEmpty(model.ArticleBody))
             {
-                article.Name = itemToUpdate.Name;
-                article.Description = model.ArticleBody;
-                var tag = typeof(T).Name.ToLower();
-                
-                if (!article.Tags.Contains(tag))
-                    article.Tags.Add(tag);
-                
-                DocumentSession.Store(article);
+                body.Text = model.ArticleBody;
+                DocumentSession.Store(body);
             }
-            itemToUpdate.ArticleId = article.Id;
+            itemToUpdate.BodyId = body.Id;
         }
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
