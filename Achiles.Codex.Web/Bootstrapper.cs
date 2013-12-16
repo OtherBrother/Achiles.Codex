@@ -58,8 +58,7 @@ namespace Achilles.Codex.Web
             var documentStore = new DocumentStore
             {
                 Url = ConfigurationManager.AppSettings["CodexDbConnectionString"],
-                ApiKey = ConfigurationManager.AppSettings["CodexDbRavenKey"],
-                DefaultDatabase = "Personal-Codex"
+                ApiKey = ConfigurationManager.AppSettings["CodexDbRavenKey"]
             };
 
             documentStore.Conventions.RegisterIdConvention<Article>(GenerateCodexId);
