@@ -1,75 +1,89 @@
-﻿@model Achilles.Codex.Web.Models.WeaponListViewModel
+﻿@model Achilles.Codex.Web.Controllers.MeleeWeaponController.WeaponListViewModel
+@using System.Web.Http.Results
 @using Achilles.Codex.Web.Misc
-@using System.Text.RegularExpressions
+
+
 <h2>Melee weapons</h2>
-<hr/>
-@if(User.IsContributor())
-{ 
-    <a class="btn btn-default" href="@Url.Action("Edit")"><span class="glyphicon glyphicon-plus"></span>&nbsp;New melee weapon</a>
+<hr />
+
+@if (User.IsContributor())
+{
+    <p>
+        <a class="btn btn-default" href="@Url.Action("Edit")"><span class="glyphicon glyphicon-plus"></span>&nbsp;New melee weapon</a>
+    </p>
 }
-<div id="weapons" class="container"></div>
-
-<script id="weapon-template" type="text/x-handlebars-template">
-    <table class="table table-bordered table-striped" id="example-default">
-        <thead>
+<table class="table table-striped" id="weapon-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Min STR</th>
+            <th>Weight</th>
+            <th>Price</th>
+            @foreach (var x in Model.AttackTypes)
+            {
+                <th>@x base damage</th>
+                <th>@x effects</th>
+            }
+            @if (User.IsContributor())
+            {
+                <th>Edit</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var weapon in Model.Weapons)
+        {
             <tr>
-                <th>Name</th>
-                <th>Min STR</th>
-                <th>Weight</th>
-                <th>Price</th>
-                <th>Tags</th>
-                <th>Related</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each Weapons}}
-                <tr>
-                    <td><a href='@Url.Action("RedirectToItem", "Codex")/{{Id}}'>{{Name}}</a></td>
-                    <td>{{MinimumStrenght}}</td>
-                    <td>{{Weight}}</td>
-                    <td>{{Price}}</td>
+                <td><a href='@Url.Action("RedirectToItem", "Codex", new {id=weapon.Id})'>@weapon.Name</a></td>
+                <td>@weapon.MinimumStrenght</td>
+                <td>@weapon.Weight</td>
+                <td>@weapon.Price</td>
+                
+                @*this sux*@
+                @foreach (var x in Model.AttackTypes)
+                {
+                    var t = weapon.AttackTypes.FirstOrDefault(z => z.Type == x);
+                    if (t!=null)
+                    {
                     <td>
-                        {{#each Tags}}
-                            <a class='label label-primary' href="#">{{this}}</a>&nbsp;
-                        {{/each}}
+                        @t.DamageValue + @t.ArmorPiercingModifier
                     </td>
                     <td>
-                        {{#each RelatedCodexItems}}
-                            <a href='@Url.Action("RedirectToItem", "Codex")/{{Id}}'>{{Name}}</a>
-                        {{/each}}
-                    </td>
-                </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</script>
+                        @t.ToString()
+                    </td>    
+                    }
+                    else
+                    {
+                     <td>-</td>
+                     <td>-</td>
+                    }
+                }
+            @if (User.IsContributor())
+            {
+                <td style="text-align: center">
+                    <a href="@Url.Action("Edit", new { id = weapon.Id})" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-wrench"></span>
+                    </a>
+                </td>
+            }
 
-<div class="tooltip">
-    <div class="tooltip-inner">
-        Tooltip!
-    </div>
-    <div class="tooltip-arrow"></div>
-</div>
+            </tr>
+        }
+    </tbody>
+</table>
 
 @section scripts
 {
     <script type="text/javascript">
-        $.getJSON("@Url.Action("GetJsonWeapons/")", {}, function (data) {
-            console.log(data);
-            var asource = $("#weapon-template").html();
-            var atemplate = Handlebars.compile(asource);
-            $('#weapons').html(atemplate(data));
-
-            $("table").tablecloth({
-                theme: "default",
-                bordered: false,
-                condensed: false,
-                striped: true,
-                sortable: true,
-                clean: true,
-                cleanElements: "th td"
-            });
+        
+        $("#weapon-table").tablecloth({
+            theme: "default",
+            bordered: false,
+            condensed: false,
+            striped: true,
+            sortable: true,
+            clean: false,
+            cleanElements: "th td"
         });
-
     </script>
 }

@@ -237,7 +237,6 @@
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\CodexItemModel.cs" />
-    <Compile Include="Models\WeaponListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CodexItemLabels.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -255,11 +254,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dice.jpg" />
     <Content Include="Content\jqcloud.css" />
+    <Content Include="Content\prettify.css" />
+    <Content Include="Content\tablecloth.css" />
     <Content Include="Content\typeahead.js-bootstrap.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\asc.gif" />
+    <Content Include="Img\desc.gif" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-tagsinput.js" />
     <Content Include="Scripts\bootstrap-wysihtml5-0.0.2.min.js" />
@@ -276,6 +279,9 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.metadata.js" />
+    <Content Include="Scripts\jquery.tablecloth.js" />
+    <Content Include="Scripts\jquery.tablesorter.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

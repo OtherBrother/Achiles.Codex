@@ -8,6 +8,7 @@ using Achilles.Codex.Web.Models;
 using Raven.Client;
 using Raven.Abstractions.Extensions;
 using Achilles.Codex.Web.Misc;
+using WebGrease.Extensions;
 
 namespace Achilles.Codex.Web.Controllers
 {
@@ -41,6 +42,8 @@ namespace Achilles.Codex.Web.Controllers
             storedItem.Price = input.CodexItem.Price;
             storedItem.Reach = input.CodexItem.Reach;
             storedItem.AttackTypes = input.CodexItem.AttackTypes;
+            storedItem.Weight = input.CodexItem.Weight;
+            storedItem.MinimumStrenght = input.CodexItem.MinimumStrenght;
 
             DocumentSession.SaveChanges();
             Success("Splendid!", "More death tools ☻");
@@ -51,28 +54,31 @@ namespace Achilles.Codex.Web.Controllers
         [System.Web.Mvc.HttpGet]
         public JsonResult GetJsonWeapons()
         {
-            var model = GetWeaponListModel();
-            return new JsonResult { JsonRequestBehavior = JsonRequestBehavior.AllowGet, Data = model };
+            return new JsonResult { JsonRequestBehavior = JsonRequestBehavior.AllowGet, Data = DocumentSession.Query<MeleeWeapon>().ToArray() };
         }
 
         [System.Web.Mvc.HttpGet]
         public ActionResult List()
         {
-            var model = GetWeaponListModel();
+            ViewBag.Title = "Melee weapons";
+            var weapons = DocumentSession.Query<MeleeWeapon>().ToList();
+            var model = new WeaponListViewModel
+            {
+
+                Weapons = weapons,
+                AttackTypes = weapons.SelectMany(x => x.AttackTypes).GroupBy(x => x.Type).Select(x => x.Key).ToArray()
+
+            };
+
             return View(model);
         }
 
-        private WeaponListViewModel GetWeaponListModel()
+        public class WeaponListViewModel
         {
-
-            RavenQueryStatistics stats = null;
-            var weapons = DocumentSession.Query<MeleeWeapon>().Statistics(out stats).ToArray();
-            var model = new WeaponListViewModel
-            {
-                Weapons = weapons,
-                TotalWeapons = stats.TotalResults
-            };
-            return model;
+            public List<MeleeWeapon> Weapons { get; set; }
+            public string[] AttackTypes { get; set; }
         }
+
+
     }
 }
