@@ -231,6 +231,7 @@
     <Compile Include="Misc\PredicateBuilder.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleListViewModel.cs" />
+    <Compile Include="Models\DefaultItemViewModel.cs" />
     <Compile Include="Models\EditUserModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />

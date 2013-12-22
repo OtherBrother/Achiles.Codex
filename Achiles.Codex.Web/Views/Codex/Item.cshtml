@@ -1,29 +1,35 @@
 ﻿@using Achilles.Codex.Web.Misc
-@model Achilles.Codex.Model.CodexItem
+@model Achilles.Codex.Web.Models.DefaultItemViewModel
 
+<h2>@Model.CodexItem.Name</h2>
+<p>
+   
+    <div class="row">
+        <div class="col-lg-1">
+            @if (!string.IsNullOrEmpty(Model.CodexItem.IconUrl))
+            {
+                <img class="thumbnail" src="@Model.CodexItem.IconUrl" alt="@Model.CodexItem.Name" />
+            }
+        </div>
+        <div class="col-lg-11">
+            @Html.Raw(Model.CodexItem.Description)
+        </div>
+    </div>
 
-@if (Model == null)
-{
-    <p class="alert alert-warning">Item not found.</p>
-}
-else
-{
-    <h2>@Model.Name</h2>
-    <hr />
-    <p>
-        @Html.Raw(Model.Description)
-    </p>
-
-    if (!string.IsNullOrEmpty(Model.ToString()))
+</p>
+    @if (!string.IsNullOrEmpty(Model.Body))
     {
-        <p>
-            @Html.Raw(Html.Dump(Model))
-        </p>
+<p>
+    @Html.Raw(Model.Body)
+</p>
+
     }
-    <p>
-        @Html.Partial("_taglistview", Model.Tags)
-    </p>
-    <p>
-        @Html.Partial("_relatedItemsView", Model.RelatedCodexItems)
-    </p>
-}
+
+@Html.Raw(Html.Dump(Model.CodexItem))
+<p>
+    @Html.Partial("_taglistview", Model.CodexItem.Tags)
+</p>
+<p>
+    @Html.Partial("_relatedItemsView", Model.CodexItem.RelatedCodexItems)
+</p>
+
