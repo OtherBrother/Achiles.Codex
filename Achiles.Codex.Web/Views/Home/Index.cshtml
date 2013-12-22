@@ -51,7 +51,7 @@
                         <img style="float: left; padding: 3px 3px 0px 3px; width: 32px; height: 32px;" src="@(Model.RandomArticle.IconUrl ?? Url.Content("~/Content/dice.jpg"))" alt="@Model.RandomArticle.Name" />
                         @Model.RandomArticle.Description.Cleanup().Fit(150)
                     </p>
-                    <p><a href="#">Read full article</a></p>
+                    <p><a href="@Url.Action("RedirectToItem", "Codex", new { id = Model.RandomArticle.Id })">Read full article</a></p>
                 </div>
             </div>
         </div>
