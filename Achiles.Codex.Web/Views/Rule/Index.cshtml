@@ -1,0 +1,34 @@
+﻿@using Achilles.Codex.Web.Misc
+@model IEnumerable<Achilles.Codex.Model.Rule>
+
+@{
+    ViewBag.Title = "Rules";
+}
+
+<h2>Rules</h2>
+<p class="text-muted">
+    Rules - 
+</p>
+<hr />
+
+<p>
+    <div class="row">
+        <div class="col-xs-2">
+            <input type="text" class="form-control" id="filterAttributes" placeholder="fillter">
+        </div>
+        <div class="col-xs-2">
+            @if (User.IsContributor()) //only contributors can add new attribute
+            {<a class="btn btn-default" href="@Url.Action("Edit","Rule")" title="Add new rule">
+                <span class="glyphicon glyphicon-plus-sign"></span> New Rule
+            </a>}
+        </div>
+    </div>
+</p>
+
+
+
+
+
+
+
+

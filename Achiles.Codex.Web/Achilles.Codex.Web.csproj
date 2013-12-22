@@ -215,6 +215,7 @@
     <Compile Include="Controllers\LegArmorController.cs" />
     <Compile Include="Controllers\MiscellaneousItemController.cs" />
     <Compile Include="Controllers\NCGEquipmentItemController.cs" />
+    <Compile Include="Controllers\RuleController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SearchQuery.cs" />
     <Compile Include="Controllers\SkillFeatureController.cs" />
@@ -357,6 +358,8 @@
     <Content Include="Views\LegArmor\Index.cshtml" />
     <Content Include="Views\LegArmor\Edit.cshtml" />
     <Content Include="Views\MeleeWeapon\List.cshtml" />
+    <Content Include="Views\Rule\Index.cshtml" />
+    <Content Include="Views\Rule\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
