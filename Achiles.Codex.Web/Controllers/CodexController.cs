@@ -36,6 +36,7 @@ namespace Achilles.Codex.Web.Controllers
             if (coedxItem == null)
                 throw new HttpException(404, string.Format("Codex item with {0} id not found", id));
 
+
             return new JsonResult { Data = coedxItem , JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
         [ValidateInput(false)]
@@ -52,10 +53,17 @@ namespace Achilles.Codex.Web.Controllers
 
         public ActionResult Item(string id)
         {
-            var item = DocumentSession.Load<CodexItem>(id);
             
+            var item = DocumentSession.Load<CodexItem>(id);
+        
+            if (item==null)
+                throw new HttpException(404, string.Format("Codex item with {0} id not found", id));
+
+            ViewBag.Title = item.Name;
             return View(item);
         }
+
+        
 
     }
 }
