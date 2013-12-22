@@ -34,10 +34,7 @@ else
 
         <div class="tab-pane fade in" id="weapon-properties">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Reach and strength</h3>
-                </div>
-                <div class="panel-body">
+               <div class="panel-body">
                     <div class="form-group">
                         <label for="CodexItem.Reach" class="col-sm-2 control-label">Reach</label>
                         <div class="col-md-10">
@@ -46,17 +43,33 @@ else
                     </div>
 
                     <div class="form-group">
-                        <label for="CodexItem.MinimumStrenght" class="col-sm-2 control-label">MinimumStrenght</label>
+                        <label for="CodexItem.MinimumStrenght" class="col-sm-2 control-label">Minimum strenght</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" id="strength" name="CodexItem.MinimumStrenght" placeholder="Minimum strength" value="@Model.CodexItem.MinimumStrenght" />
                         </div>
                     </div>
-                </div>
+                   
+                   
+                       <div class="form-group">
+                           <label for="CodexItem.Weight" class="col-sm-2 control-label">Weight</label>
+                           <div class="col-md-10">
+                               <input type="text" class="form-control" id="weight" name="CodexItem.Weight" placeholder="Weight" value="@Model.CodexItem.Weight" />
+                           </div>
+                       </div>
+
+                       <div class="form-group">
+                           <label for="CodexItem.MinimumStrenght" class="col-sm-2 control-label">Price</label>
+                           <div class="col-md-10">
+                               <input type="text" class="form-control" id="price" name="CodexItem.Price" placeholder="Price" value="@Model.CodexItem.Price" />
+                           </div>
+                       </div>
+               </div>
             </div>
+            
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Weapon properties</h3>
+                    <h3 class="panel-title">Additional properties</h3>
                 </div>
                 <div class="panel-body">
                     <div id="properties-container">
