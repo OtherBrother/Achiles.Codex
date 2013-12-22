@@ -10,7 +10,10 @@ T.compile = function (template) {
     return render;
 };
 
-$('#CodexItem_Tags').tagsinput();
+$('#CodexItem_Tags')
+.tagsinput({
+    confirmKeys: [13, 44]
+});
 var tags = $('#CodexItem_Tags').tagsinput('input');
 tags.typeahead([
     {
@@ -18,7 +21,12 @@ tags.typeahead([
         name: 'tags',
         remote: window.codex.urls.tagsSuggestUrl + '%QUERY',
     }
-]);
+]).bind('typeahead:selected', $.proxy(function (obj, datum) {
+    
+    this.tagsinput('add', datum.value);
+    this.tagsinput('input').typeahead('setQuery', '');
+    
+}, $('#CodexItem_Tags')));
 
 Handlebars.registerHelper('objectTypeName', function (objtype) {
     return window.codex.objectTypeNames[objtype];
@@ -26,7 +34,7 @@ Handlebars.registerHelper('objectTypeName', function (objtype) {
 
 $('#CodexItem_RelatedItems')
     .tagsinput({
-        confirmKeys: [13, 44, 9]
+        confirmKeys: [13, 44]
     });
 var relatedItemsInput = $('#CodexItem_RelatedItems').tagsinput('input');
 
@@ -39,4 +47,10 @@ relatedItemsInput.typeahead([
         template: '<h5><strong>{{Name}}</strong> <small class="pull-right">{{{objectTypeName ObjectType}}}</small></h5> ',
         engine: T,
     }
-]);
+]).bind('typeahead:selected', $.proxy(function (obj, datum) {
+
+    console.log(datum);
+    this.tagsinput('add', datum.Id);
+    this.tagsinput('input').typeahead('setQuery', '');
+
+}, $('#CodexItem_RelatedItems')));

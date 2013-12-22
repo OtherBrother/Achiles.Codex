@@ -14,7 +14,7 @@
         </div>
         <div class="col-xs-2">
             @if (User.IsContributor()) //only contributors can add new attribute
-            {<a class="btn btn-default" href="#" title="Add new attribute to codex">
+            {<a class="btn btn-default" href="@Url.Action("Edit")" title="Add new attribute to codex">
                 <span class="glyphicon glyphicon-plus-sign"></span> New attribute
             </a>}
         </div>

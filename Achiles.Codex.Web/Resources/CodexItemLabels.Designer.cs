@@ -22,7 +22,7 @@ namespace Achilles.Codex.Web.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CodexItemLabels {
+    public class CodexItemLabels {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Achilles.Codex.Web.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Achilles.Codex.Web.Resources.CodexItemLabels", typeof(CodexItemLabels).Assembly);
@@ -51,7 +51,7 @@ namespace Achilles.Codex.Web.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Achilles.Codex.Web.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Attribute.
         /// </summary>
-        internal static string AttributeInfo {
+        public static string AttributeInfo {
             get {
                 return ResourceManager.GetString("AttributeInfo", resourceCulture);
             }
@@ -72,36 +72,63 @@ namespace Achilles.Codex.Web.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Combat skill.
         /// </summary>
-        internal static string CombatSkill {
+        public static string CombatSkill {
             get {
                 return ResourceManager.GetString("CombatSkill", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Melee weapon.
+        ///   Looks up a localized string similar to Head armor.
         /// </summary>
-        internal static string HandWeapon {
+        public static string HeadArmor {
             get {
-                return ResourceManager.GetString("HandWeapon", resourceCulture);
+                return ResourceManager.GetString("HeadArmor", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Melee weapon.
         /// </summary>
-        internal static string MeleeWeapon {
+        public static string MeleeWeapon {
             get {
                 return ResourceManager.GetString("MeleeWeapon", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Misc item.
+        /// </summary>
+        public static string MiscellaneousItem {
+            get {
+                return ResourceManager.GetString("MiscellaneousItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ranged weapon.
+        /// </summary>
+        public static string RangedWeapon {
+            get {
+                return ResourceManager.GetString("RangedWeapon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rule set.
         /// </summary>
-        internal static string RuleSet {
+        public static string RuleSet {
             get {
                 return ResourceManager.GetString("RuleSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skill feature.
+        /// </summary>
+        public static string SkillFeature {
+            get {
+                return ResourceManager.GetString("SkillFeature", resourceCulture);
             }
         }
     }

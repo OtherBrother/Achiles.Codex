@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Achilles.Codex.Model;
 using Achilles.Codex.Web.Indexes;
+using Achilles.Codex.Web.Models;
 using Achilles.Codex.Web.Services;
 using Raven.Client;
 using Raven.Client.Linq;
@@ -36,6 +37,7 @@ namespace Achilles.Codex.Web.Controllers
             if (coedxItem == null)
                 throw new HttpException(404, string.Format("Codex item with {0} id not found", id));
 
+
             return new JsonResult { Data = coedxItem , JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
         [ValidateInput(false)]
@@ -53,9 +55,29 @@ namespace Achilles.Codex.Web.Controllers
         public ActionResult Item(string id)
         {
             var item = DocumentSession.Load<CodexItem>(id);
-            
-            return View(item);
+            if (item==null)
+                throw new HttpException(404, string.Format("Codex item with {0} id not found", id));
+
+            var model = new DefaultItemViewModel
+            {
+                Item = item
+            };
+
+            var baseItem = item as CodexItemBase;
+            if(baseItem!=null && !string.IsNullOrEmpty(baseItem.BodyId))
+            {
+                var body = DocumentSession.Load<Body>(baseItem.BodyId);
+                if (body != null)
+                {
+                    model.Body = body.Text;
+                }
+            }
+        
+            ViewBag.Title = item.Name;
+            return View(model);
         }
+
+        
 
     }
 }

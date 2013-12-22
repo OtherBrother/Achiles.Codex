@@ -17,7 +17,7 @@ namespace Achilles.Codex.Web.Controllers
         {
             return View();
         }
-        [Authorize(Roles="Contributor")]
+        [Authorize(Roles = "Contributor")]
         public ActionResult Edit(string id)
         {
             ViewBag.Title = "Edit melee weapon";
@@ -25,7 +25,7 @@ namespace Achilles.Codex.Web.Controllers
             var model = GetModel<MeleeWeapon>(id);
             return View(model);
         }
-        
+
         [ValidateInput(false)]
         [HttpPost]
         [Authorize(Roles = "Contributor")]
@@ -34,9 +34,9 @@ namespace Achilles.Codex.Web.Controllers
             ViewBag.Title = "Edit melee weapon";
 
             if (!ModelState.IsValid) return View(input);
-            
+
             var storedItem = UpsertBaseCodexItem(input);
-                
+
             storedItem.Properties = input.CodexItem.Properties.Distinct().ToList();
             storedItem.Price = input.CodexItem.Price;
             storedItem.Reach = input.CodexItem.Reach;
@@ -44,7 +44,7 @@ namespace Achilles.Codex.Web.Controllers
 
             DocumentSession.SaveChanges();
             Success("Splendid!", "More death tools ☻");
-                
+
             return View(CreateModel(storedItem));
         }
 
@@ -56,20 +56,23 @@ namespace Achilles.Codex.Web.Controllers
         }
 
         [System.Web.Mvc.HttpGet]
-        public ActionResult List() {
+        public ActionResult List()
+        {
             var model = GetWeaponListModel();
             return View(model);
         }
 
-        private WeaponListViewModel GetWeaponListModel() {
+        private WeaponListViewModel GetWeaponListModel()
+        {
 
             RavenQueryStatistics stats = null;
             var weapons = DocumentSession.Query<MeleeWeapon>().Statistics(out stats).ToArray();
-            var model = new WeaponListViewModel {
+            var model = new WeaponListViewModel
+            {
                 Weapons = weapons,
                 TotalWeapons = stats.TotalResults
             };
             return model;
         }
-	}
+    }
 }

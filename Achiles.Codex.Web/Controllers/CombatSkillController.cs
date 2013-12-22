@@ -13,26 +13,35 @@ namespace Achilles.Codex.Web.Controllers
         {
             return View();
         }
+
+        private void SetTitle(CodexItemModel<CombatSkill> model)
+        {
+            ViewBag.Title = model.IsNew ? "New Combat skill" : string.Format("Edit {0}", model.CodexItem.Name);
+        }
+
         public ActionResult Edit(string id)
         {
             var model = GetModel<CombatSkill>(id);
+            SetTitle(model);
+            
             return View(model);
         }
-
 
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult Edit(CodexItemModel<CombatSkill> input)
         {
-            if (ModelState.IsValid)
-            {
-                //insert or update properties common for all base codex items
-                var storedItem = UpsertBaseCodexItem(input);
-                //..and save 
-                DocumentSession.SaveChanges();
-                Success("New combat skill is created");
-            }
-            return View(input);
+
+            SetTitle(input);
+            if (!ModelState.IsValid) return View(input);
+
+            var storedItem = UpsertBaseCodexItem(input);
+            storedItem.Features = input.CodexItem.Features;
+
+            DocumentSession.SaveChanges();
+            Success("New combat skill is created");
+
+            return View(CreateModel(storedItem));
         }
-	}
+    }
 }

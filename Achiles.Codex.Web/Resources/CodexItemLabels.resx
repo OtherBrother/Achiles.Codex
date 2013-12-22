@@ -123,13 +123,22 @@
   <data name="CombatSkill" xml:space="preserve">
     <value>Combat skill</value>
   </data>
-  <data name="HandWeapon" xml:space="preserve">
-    <value>Melee weapon</value>
+  <data name="HeadArmor" xml:space="preserve">
+    <value>Head armor</value>
   </data>
   <data name="MeleeWeapon" xml:space="preserve">
     <value>Melee weapon</value>
   </data>
+  <data name="MiscellaneousItem" xml:space="preserve">
+    <value>Misc item</value>
+  </data>
+  <data name="RangedWeapon" xml:space="preserve">
+    <value>Ranged weapon</value>
+  </data>
   <data name="RuleSet" xml:space="preserve">
     <value>Rule set</value>
+  </data>
+  <data name="SkillFeature" xml:space="preserve">
+    <value>Skill feature</value>
   </data>
 </root>

@@ -4,8 +4,6 @@ namespace Achilles.Codex.Model
 {
     public class CodexItemBase : CodexItem
     {
-
-
-        public string ArticleId { get; set; }
+        public string BodyId { get; set; }
     }
 }
