@@ -24,15 +24,18 @@ namespace Achilles.Codex.Web.Controllers
         [HttpPost]
         public ActionResult Edit(CodexItemModel<CombatSkill> input)
         {
-            if (ModelState.IsValid)
-            {
-                //insert or update properties common for all base codex items
-                var storedItem = UpsertBaseCodexItem(input);
-                //..and save 
-                DocumentSession.SaveChanges();
-                Success("New combat skill is created");
-            }
-            return View(input);
+            ViewBag.Title = "Edit Combat skill";
+
+            if (!ModelState.IsValid) return View(input);
+
+            //insert or update properties common for all base codex items
+            var storedItem = UpsertBaseCodexItem(input);
+            storedItem.Features = input.CodexItem.Features;
+
+            DocumentSession.SaveChanges();
+            Success("New combat skill is created");
+
+            return View(CreateModel(storedItem));
         }
-	}
+    }
 }

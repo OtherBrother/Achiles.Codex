@@ -6,9 +6,9 @@ using Achilles.Codex.Model;
 
 namespace Achilles.Codex.Web.Models
 {
-    public class DefaultCodexItemViewModel
+    public class DefaultItemViewModel
     {
         public CodexItem Item { get; set; }
-        public Body Body { get; set; }
+        public string Body { get; set; }
     }
 }

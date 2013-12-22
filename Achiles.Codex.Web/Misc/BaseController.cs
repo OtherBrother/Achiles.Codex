@@ -107,9 +107,9 @@ namespace Achilles.Codex.Web
             
             if (codexItem != null && !string.IsNullOrEmpty(codexItem.BodyId))
             {
-                var article = DocumentSession.Load<Body>(codexItem.BodyId);
-                if (article != null)
-                    articleBody = article.Text;
+                var body = DocumentSession.Load<Body>(codexItem.BodyId);
+                if (body != null)
+                    articleBody = body.Text;
             }
 
             return new CodexItemModel<T> { CodexItem = codexItem, IsNew = (codexItem == null) || string.IsNullOrEmpty(codexItem.Id), ArticleBody = articleBody };

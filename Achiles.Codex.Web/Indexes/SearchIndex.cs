@@ -81,6 +81,18 @@ namespace Achilles.Codex.Web.Indexes
                                       IconUrl = i.IconUrl,
                                       Tags = i.Tags
                                   });
+
+
+            AddMap<SkillFeature>(items => from i in items
+                                   select new Result
+                                   {
+                                       ObjectType = CodexItemType.SkillFeature,
+                                       Id = i.Id,
+                                       Name = i.Name,
+                                       Description = i.Description,
+                                       IconUrl = i.IconUrl,
+                                       Tags = i.Tags
+                                   });
             AddMap<CombatSkill>(items => from i in items
                                    select new Result
                                    {

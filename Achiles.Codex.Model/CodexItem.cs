@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Versioning;
 
@@ -30,6 +31,7 @@ namespace Achilles.Codex.Model
             Mappings.Add(new Mapping { PossibleInputs = { "rule", "r" }, MappedItemTypes = { CodexItemType.Rule } });
             Mappings.Add(new Mapping { PossibleInputs = { "skill", "sk", }, MappedItemTypes = { CodexItemType.Skill } });
             Mappings.Add(new Mapping { PossibleInputs = { "combatskill", "cs" }, MappedItemTypes = { CodexItemType.CombatSkill } });
+            Mappings.Add(new Mapping { PossibleInputs = { "skillfeature", "sf", "f" }, MappedItemTypes = { CodexItemType.SkillFeature } });
             Mappings.Add(new Mapping { PossibleInputs = { "misc", "m" }, MappedItemTypes = { CodexItemType.MiscellaneousItem } });
             Mappings.Add(new Mapping { PossibleInputs = { "s" }, MappedItemTypes = { CodexItemType.Skill, CodexItemType.CombatSkill } });
             Mappings.Add(new Mapping { PossibleInputs = { "t" }, MappedItemTypes = { CodexItemType.Talent } });
@@ -93,6 +95,7 @@ namespace Achilles.Codex.Model
 
             return itemType;
         }
+        
 
         public static bool GetTypesForQuery(string query, out CodexItemType[] types, out string searchTerm)
         {

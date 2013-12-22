@@ -66,7 +66,7 @@ namespace Achilles.Codex.Web.Misc
         public static string Dump(this HtmlHelper helper, object obj)
         {
             var tb = new TagBuilder("pre");
-            tb.SetInnerText(ObjectDumper.Dump(obj, 5, "Description", "RelatedCodexItems", "Tags", "Name"));
+            tb.SetInnerText(ObjectDumper.Dump(obj, 5, "Description", "RelatedCodexItems", "Tags", "Name", "IconUrl"));
             return tb.ToString();
         }
 

@@ -129,7 +129,7 @@
     <script type="text/javascript">
         
         window.codex = window.codex || {};
-        window.codex.objectTypeNames = { @Html.Raw(string.Join(",", Enum.GetNames(typeof (CodexItemType)).Select((x, i) => string.Format("{0}:'{1}'", i, x)))) };
+        window.codex.objectTypeNames = { @Html.Raw(string.Join(",", Enum.GetNames(typeof (CodexItemType)).Select((x, i) => string.Format("{0}:'{1}'", i, CodexItem.GetLabelForType((CodexItemType)(i)) )))) };
         window.codex.urls = window.urls || {};
 
         window.codex.urls.tagsSuggestUrl = '@Url.Action("Suggest","Tags")';

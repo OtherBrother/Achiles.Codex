@@ -12,12 +12,12 @@ else
 <ul class="nav nav-tabs">
     <li class="active"><a href="#basic-info" data-toggle="tab">Basic information</a></li>
     <li><a href="#article" data-toggle="tab">Article</a></li>
+    <li><a href="#features" data-toggle="tab">Features</a></li>
 </ul>
 <br />
 @Html.ValidationSummary(false)
 
-@using ((Html.BeginForm()))
-{
+<form method="post" class="form-horizontal">
     <div class="tab-content">
         <div class="tab-pane fade in active" id="basic-info">
             @Html.Partial("_EditCodexItemBasicInfoView", Model)
@@ -25,23 +25,32 @@ else
         <div class="tab-pane fade in" id="article">
             @Html.Partial("_EditCodexItemArticleView", Model)
         </div>
-    </div>
-     <div class="form-group">
-            <label for="Features" class="col-sm-2 control-label">Features</label>
-            <div class="col-sm-10">
-                <select multiple data-role="tagsinput" id="CodexItem_RelatedItems" name="CodexItem.RelatedItems">
-                    @foreach (var Features in Model.CodexItem.Features)
-                    {
-                        <option value="@Features">@Features</option>
-                    }
-                </select>
+        <div class="tab-pane fade in" id="features">
+            
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="CodexItem_Features" class="col-sm-2 control-label">Features</label>
+                        <div class="col-sm-10">
+                            <select multiple data-role="tagsinput" id="CodexItem_Features" name="CodexItem.Features">
+                                @foreach (var feature in Model.CodexItem.Features)
+                                {
+                                    <option value="@feature">feature</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+    </div>
     <hr />
     <div class="btn-group">
-        <button type="submit" class="btn btn-primary">Save combat skill</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-default" onclick="history.go(-1);">Back</button>
     </div>
-}
+</form>
 
 @section Head
 {
@@ -55,6 +64,32 @@ else
 
     @Scripts.Render("~/bundles/edit-codex-item-basic-info")
     @Scripts.Render("~/bundles/edit-codex-item-article")
+
+    <script type="text/javascript">
+
+        $('#CodexItem_Features')
+            .tagsinput({
+                confirmKeys: [13, 44]
+            });
+        var featuresInput = $('#CodexItem_Features').tagsinput('input');
+
+        featuresInput.typeahead([
+            {
+                limit: 10,
+                name: 'features',
+                valueKey: 'Id',
+                remote: window.codex.urls.codexItemSuggestUrl + '/f:' + '%QUERY',
+                template: '<h5><strong>{{Name}}</strong> <small class="pull-right">{{{objectTypeName ObjectType}}}</small></h5>',
+                engine: T,
+            }
+        ]).bind('typeahead:selected', $.proxy(function(obj, datum) {
+
+            console.log(datum);
+            this.tagsinput('add', datum.Id);
+            this.tagsinput('input').typeahead('setQuery', '');
+
+        }, $('#CodexItem_Features')));
+    </script>
 
 }
 
