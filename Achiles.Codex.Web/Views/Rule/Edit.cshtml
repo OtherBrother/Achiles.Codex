@@ -30,7 +30,7 @@ else
         <div class="tab-pane fade in" id="gear">
             <div class="radio">
                 <label>
-                    @Html.RadioButton("CodexItem.Gear", Gear.Comabt, (Model.IsNew ? (Gear)ViewBag.Gear : Model.CodexItem.Gear) == Gear.Comabt)
+                    @Html.RadioButton("CodexItem.Gear", Gear.Combat, (Model.IsNew ? (Gear)ViewBag.Gear : Model.CodexItem.Gear) == Gear.Combat)
                     Combat gear
                 </label>
 
@@ -38,7 +38,7 @@ else
 
             <div class="radio">
                 <label>
-                    @Html.RadioButton("CodexItem.Gear", Gear.NonComabt, (Model.IsNew ? (Gear)ViewBag.Gear : Model.CodexItem.Gear) == Gear.NonComabt)
+                    @Html.RadioButton("CodexItem.Gear", Gear.NonCombat, (Model.IsNew ? (Gear)ViewBag.Gear : Model.CodexItem.Gear) == Gear.NonCombat)
                     Non combat gear
                 </label>
             </div>

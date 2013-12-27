@@ -5,10 +5,11 @@
         public Gear? Gear { get; set; }
     }
 
+
     public enum Gear
     { 
-        Comabt,
-        NonComabt
+        Combat = 0,
+        NonCombat = 1
     }
 
 }

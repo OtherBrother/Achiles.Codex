@@ -28,8 +28,8 @@ namespace Achilles.Codex.Web
             routes.MapRoute("ArticleList", "Articles/{tag}", new { controller = "Article", Action = "Index", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional, tag = UrlParameter.Optional });
             routes.MapRoute("ArticleListJson", "Articles/Json/{tag}", new { controller = "Article", Action = "GetJsonArticles", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional, tag = UrlParameter.Optional });
 
-            routes.MapRoute("ncgRules", "Rules/ncg/", defaults: new {controller="Rule", action = "Index", gear = Gear.NonComabt });
-            routes.MapRoute("cgRules", "Rules/cg/", defaults: new { controller="Rule", action = "Index", gear = Gear.Comabt });
+            routes.MapRoute("ncgRules", "Rules/ncg/", defaults: new {controller="Rule", action = "Index", gear = Gear.NonCombat });
+            routes.MapRoute("cgRules", "Rules/cg/", defaults: new { controller="Rule", action = "Index", gear = Gear.Combat });
             
 
             routes.MapRoute(name: "Default",url: "{controller}/{action}/{*id}", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
