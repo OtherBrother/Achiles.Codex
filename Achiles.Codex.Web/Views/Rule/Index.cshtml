@@ -1,11 +1,12 @@
-﻿@using Achilles.Codex.Web.Misc
+﻿@using Achilles.Codex.Model
+@using Achilles.Codex.Web.Misc
 @model IEnumerable<Achilles.Codex.Model.Rule>
 
 @{
-    ViewBag.Title = "Rules";
+    ViewBag.Title = (ViewBag.Gear == (int)Gear.Combat) ? "Rules (combat)" : "Rules (non combat)";
 }
 
-<h2>Rules</h2>
+<h2>@ViewBag.Title</h2>
 <hr/>
 @if (User.IsContributor()) 
 {

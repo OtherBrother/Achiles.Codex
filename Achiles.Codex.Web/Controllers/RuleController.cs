@@ -12,9 +12,9 @@ namespace Achilles.Codex.Web.Controllers
         public ActionResult Index(Gear? gear)
         {
             var q = DocumentSession.Query<Rule>();
-            ViewBag.Gear = (int)gear;
-        
-            var g = gear.Value;
+            var g = gear.GetValueOrDefault();
+            ViewBag.Gear = (int) g;
+            
             return View(q.Where(x => x.Gear == g));
         }
         
