@@ -1,4 +1,5 @@
-﻿@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.Rule>
+﻿@using Achilles.Codex.Model
+@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.Rule>
 
 @if (Model.IsNew)
 {
@@ -12,33 +13,44 @@ else
 <ul class="nav nav-tabs">
     <li class="active"><a href="#basic-info" data-toggle="tab">Basic information</a></li>
     <li><a href="#article" data-toggle="tab">Article</a></li>
+    <li><a href="#gear" data-toggle="tab">Gear</a></li>
 </ul>
 <br />
 @Html.ValidationSummary(false)
 
-@using ((Html.BeginForm()))
-{
+<form method="post" class="form-horizontal">
+    
     <div class="tab-content">
         <div class="tab-pane fade in active" id="basic-info">
             @Html.Partial("_EditCodexItemBasicInfoView", Model)
-            @foreach (var value in Enum.GetValues(typeof(Achilles.Codex.Model.Gear)))
-            {
-                @Html.RadioButtonFor(m => m, value)
-                @Html.Label(value.ToString())
-            }
-            @*TO DO: create enum for non-combat and combat gear*@
         </div>
         <div class="tab-pane fade in" id="article">
             @Html.Partial("_EditCodexItemArticleView", Model)
         </div>
+        <div class="tab-pane fade in" id="gear">
+            <div class="radio">
+                <label>
+                    @Html.RadioButton("CodexItem.Gear", Gear.Combat, (Model.IsNew ? (Gear)ViewBag.Gear : Model.CodexItem.Gear) == Gear.Combat)
+                    Combat gear
+                </label>
+
+            </div>
+
+            <div class="radio">
+                <label>
+                    @Html.RadioButton("CodexItem.Gear", Gear.NonCombat, (Model.IsNew ? (Gear)ViewBag.Gear : Model.CodexItem.Gear) == Gear.NonCombat)
+                    Non combat gear
+                </label>
+            </div>
+        </div>
     </div>
     <hr />
- <div class="btn-group">
+    <div class="btn-group">
         <button type="submit" class="btn btn-primary">Save</button>
-        <button class="btn btn-default" onclick="history.go(-1);">Back</button>
+        <a class="btn btn-default" href="@Url.Action("Index", new {gear = ViewBag.Gear})">Back</a>
     </div>
-}
-
+    
+</form>
 
 @section Head
 {
