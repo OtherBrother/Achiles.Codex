@@ -1,8 +1,26 @@
-﻿@model Achilles.Codex.Web.Models.ArticleListViewModel
-@using Achilles.Codex.Web.Misc
+﻿@using Achilles.Codex.Web.Misc
 @using System.Text.RegularExpressions
 
+@{
+    ViewBag.Title = "Articles";
+    if (ViewBag.Tag != null)
+    {
+        ViewBag.Title = string.Format("Articles tagged as {0}", ViewBag.Tag);
+    }
+}
+
+<h2>@ViewBag.Title</h2>
 <hr />
+
+@if (User.IsContributor())
+{
+    <p>
+        <a class="btn btn-default" href="@Url.Action("Edit")" title="New Article">
+            <span class="glyphicon glyphicon-plus-sign"></span> New Article
+        </a>
+    </p>
+}
+
 <div class="pagelist">
     <div class="row">
         <div class="col-md-10 col-md-offset-5">
@@ -49,7 +67,7 @@
                 <div class="btn-group pull-right" style="margin-right:5px">
                     @if (User.IsContributor())
                     {
-                        <a href="@Url.Action("Edit")/{{id}}" class="btn btn-warning btn-xs">
+                        <a href="@Url.Action("Edit")/{{Id}}" class="btn btn-default btn-xs">
                             <span class="glyphicon glyphicon-wrench"></span>
                         </a>
                     }
@@ -66,7 +84,7 @@
         var ps = 10;
         function displayPage(num) {
             if (!num) num = 1;
-            $.getJSON("@Url.Action("GetJsonArticles/")", { pageSize: ps, pageNumber: num }, function (data) {
+            $.getJSON("@Url.Action("GetJsonArticles/", new {tag=@ViewBag.tag})", { pageSize: ps, pageNumber: num }, function (data) {
                 var asource = $("#article-template").html();
                 var atemplate = Handlebars.compile(asource);
                 $('#articles').html(atemplate(data));

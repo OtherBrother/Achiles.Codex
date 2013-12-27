@@ -1,16 +1,18 @@
-﻿@using Achilles.Codex.Web.Misc
-@model IEnumerable<Achilles.Codex.Model.CombatSkill>
+﻿@using Achilles.Codex.Model
+@using Achilles.Codex.Web.Misc
+@model IEnumerable<Achilles.Codex.Model.Rule>
 
-<h2>Combat skills</h2>
-<p class="text-muted">
-    Skills are a numerical representation of characters training in a certain field
-</p>
-<hr />
-@if (User.IsContributor())
+@{
+    ViewBag.Title = (ViewBag.Gear == (int)Gear.Combat) ? "Rules (combat)" : "Rules (non combat)";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr/>
+@if (User.IsContributor()) 
 {
     <p>
-        <a class="btn btn-default" href="@Url.Action("Edit")" title="New skill">
-            <span class="glyphicon glyphicon-plus-sign"></span> New skill
+        <a class="btn btn-default" href="@Url.Action("Edit", new { gear = ViewBag.Gear})" title="New rule">
+            <span class="glyphicon glyphicon-plus-sign"></span> New Rule
         </a>
     </p>
 }
@@ -18,7 +20,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Skill</th>
+            <th>Rule</th>
             <th>Description</th>
             <th>Tags</th>
             @if (User.IsContributor())
@@ -26,7 +28,7 @@
                 <th>Edit</th>
             }
         </tr>
-    </thead>
+   </thead>
     <tbody>
         @foreach (var a in Model)
         {
@@ -48,7 +50,3 @@
     </tbody>
 
 </table>
-
-
-
-

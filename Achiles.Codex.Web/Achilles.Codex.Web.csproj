@@ -215,6 +215,7 @@
     <Compile Include="Controllers\LegArmorController.cs" />
     <Compile Include="Controllers\MiscellaneousItemController.cs" />
     <Compile Include="Controllers\NCGEquipmentItemController.cs" />
+    <Compile Include="Controllers\RuleController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SearchQuery.cs" />
     <Compile Include="Controllers\SkillFeatureController.cs" />
@@ -325,13 +326,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Search\Results.cshtml" />
-    <Content Include="Views\Article\Create.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
     <Content Include="Views\Demo\NewArticle.cshtml" />
     <Content Include="Views\Demo\NewMeleeWeapon.cshtml" />
     <Content Include="Views\Demo\NewMeleeWeaponJonas.cshtml" />
-    <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Shared\_EditCodexItemBasicInfoView.cshtml" />
     <Content Include="Views\Demo\Rule.cshtml" />
     <Content Include="Views\Shared\_EditCodexItemArticleView.cshtml" />
@@ -363,6 +362,9 @@
     <Content Include="Views\LegArmor\Index.cshtml" />
     <Content Include="Views\LegArmor\Edit.cshtml" />
     <Content Include="Views\MeleeWeapon\List.cshtml" />
+    <Content Include="Views\Rule\Index.cshtml" />
+    <Content Include="Views\Rule\Edit.cshtml" />
+    <Content Include="Views\Article\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

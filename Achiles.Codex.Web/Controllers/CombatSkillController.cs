@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Achilles.Codex.Model;
 using Achilles.Codex.Web;
 using Achilles.Codex.Web.Models;
@@ -11,7 +12,7 @@ namespace Achilles.Codex.Web.Controllers
         // GET: /CombatSkill/
         public ActionResult Index()
         {
-            return View();
+            return View(DocumentSession.Query<CombatSkill>().ToArray());
         }
 
         private void SetTitle(CodexItemModel<CombatSkill> model)

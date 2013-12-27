@@ -1,4 +1,5 @@
 using System.Configuration;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Achilles.Codex.Model;
 using Achilles.Codex.Web.Controllers;
@@ -88,7 +89,12 @@ namespace Achilles.Codex.Web
         
         private static string GenerateCodexId<T>(string dbName, IDatabaseCommands commands, T entity) where  T : CodexItem
         {
-            return string.Format("{0}/{1}", typeof (T).Name.ToLower(), entity.Name.Trim().Replace(' ', '-').ToLower());
+            return string.Format("{0}/{1}", typeof(T).Name.ToLower(), MakeValidId(entity.Name));
+        }
+
+        private static string MakeValidId(string id)
+        {
+            return Regex.Replace(id.ToLower().Replace(" ", "-"), @"[^a-z\-]",string.Empty);
         }
     }
 }
