@@ -8,7 +8,7 @@
 
     public enum Gear
     { 
-        Cobat = 0,
+        Combat = 0,
         NonCombat = 1
     }
 

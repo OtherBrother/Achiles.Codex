@@ -40,7 +40,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Combat gear <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index","Rule", new {gear = Gear.Comabt})">Rules</a></li>
+                            <li><a href="@Url.Action("Index","Rule", new {gear = Gear.Combat})">Rules</a></li>
                             <li><a href="@Url.Action("Index","Attributes")">Attributes</a></li>
                             <li><a href="@Url.Action("Index","CombatSkill")">Skills</a></li>
                             <li><a href="@Url.Action("Index","SkillFeature")">Features</a></li>
@@ -63,7 +63,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Non combat gear <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index","Rule", new {gear = Gear.NonComabt})">Rules</a></li>
+                            <li><a href="@Url.Action("Index","Rule", new {gear = Gear.NonCombat})">Rules</a></li>
                             <li><a href="@Url.Action("Index","Talent")">Talent</a></li>
                             <li><a href="@Url.Action("Index","Talent")">Skills</a></li>
                             <li><a href="@Url.Action("Index","NCGEquipmentItem")">Items</a></li>
@@ -121,7 +121,7 @@
         <p><span class="label label-info">Type search</span> <strong>article,skill:</strong><i>query</i></p>
         Searches only in specific types of codex items. You can use follwing abbreviations: <i>at, ar, rs, sk, r, cs, m, s,t, cg, ncg, eq.</i> 
         
-        <p>You can combine all the rules together, like in folowing example lets search in a description of all <i>comabt gear</i> codex items tagged as <i>experimental</i> containing keywords <i>super awsome</i></p>
+        <p>You can combine all the rules together, like in folowing example lets search in a description of all <i>Combat gear</i> codex items tagged as <i>experimental</i> containing keywords <i>super awsome</i></p>
         <p><span class="label label-default">Example</span><br/><a href="@Url.Action("Results", "Search", new { query = "!cg:super awsome@@experimental" })">!cg:super&nbsp;awsome@@experimental</a></p>
     </div>
     
