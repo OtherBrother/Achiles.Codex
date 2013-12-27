@@ -1,51 +1,68 @@
-﻿@using Achilles.Codex.Web.Misc
-@model Achilles.Codex.Model.AttributeInfo
+﻿@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.AttributeInfo>
 
-<h2>Edit @Model.Name</h2>
+@if (Model.IsNew)
+{
+    <h2>New Attribute</h2>
+}
+else
+{
+    <h2>Edit Attribute <em>@(Model.CodexItem.Name ?? "<New Attribute>") </em></h2>
+}
 
-<form role="form" method="post">
-    <div class="form-group">
-        @Html.HiddenFor(m=>m.Id)
-        <label for="Description">Attribute description</label>
-        <textarea rows="10" class="form-control" id="Description" name="Description" placeholder="Enter attribute description">@Model.Description</textarea>
-        
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#basic-info" data-toggle="tab">Basic information</a></li>
+    <li><a href="#article" data-toggle="tab">Article</a></li>
+    <li><a href="#misc" data-toggle="tab">Misc</a></li>
+</ul>
+<br />
+@Html.ValidationSummary(false)
+
+<form method="post" class="form-horizontal">
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="basic-info">
+            @Html.Partial("_EditCodexItemBasicInfoView", Model)
+        </div>
+        <div class="tab-pane fade in" id="article">
+            @Html.Partial("_EditCodexItemArticleView", Model)
+        </div>
+        <div class="tab-pane fade in" id="misc">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="CodexItem.Order" class="col-sm-2 control-label">Order</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="weight" name="CodexItem.Order" placeholder="Order" value="@Model.CodexItem.Order" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="Order">Order</label>
-        <input class="form-control" type="text" id="Order" name="Order" value="@Model.Order" />
-    </div>
-    <div class="form-group">
-        
-        <select multiple data-role="tagsinput" id="Tags" name="Tags">
-            @foreach (var tag in Model.Tags)
-            {
-                 <option value="@tag">tag</option>
-            }
-        </select>
-</div>
+    <hr />
     <div class="btn-group">
         <button type="submit" class="btn btn-primary">Save</button>
-        <button class="btn btn-default" onclick="history.go(-1);">Back</button>
+        <a class="btn btn-default" href="@Url.Action("Index")">Back</a>
     </div>
 
+</form>
 
+    
 @section Head
 {
-    @Styles.Render("~/Content/bootstrap-tagsinput.css");
+    @Styles.Render("~/Content/edit-codex-item-basic-info")
+    @Styles.Render("~/Content/edit-codex-item-article")
 }
+
 @section scripts
 {
+    @*TODO: missing property in form: OrderInCircleOfQualities*@
     @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
-    @Scripts.Render("~/Scripts/bootstrap-tagsinput.js");    
-    <script type="text/javascript">
-            tinymce.init({ selector: 'textarea.form-control', entity_encoding : "raw" });
-	    $('#Tags').tagsinput({
-            typeahead: {
-                source: function (query) {
-                    return $.get('@Url.Action("Suggest", "Tags")'+ '/'+ query);
-                }
-            }
-        });
-        
-    </script>
+
+    @Scripts.Render("~/bundles/edit-codex-item-basic-info")
+    @Scripts.Render("~/bundles/edit-codex-item-article")
+
 }
+
+
+
+

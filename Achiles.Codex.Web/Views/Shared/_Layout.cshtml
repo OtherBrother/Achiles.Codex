@@ -28,20 +28,19 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Info <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("List", "Article")">Basics</a></li>
+                            <li><a href="@Url.Action("List", "Article", new { tag = "intro" })">Basics</a></li>
                             <li><a href="@Url.Action("List", "Article")">Articles</a></li>
-                            <li><a href="@Url.Action("List", "Article")">Tutorials</a></li>
-                            <li><a href="@Url.Action("List", "Article")">FAQ</a></li>
+                            <li><a href="@Url.Action("List", "Article", new { tag = "tutorial" })">Tutorials</a></li>
+                            <li><a href="@Url.Action("List", "Article", new { tag = "faq" })">FAQ</a></li>
                             <li class="divider"></li>
-                            <li><a href="@Url.Action("List", "Article")">Participate</a></li>
                             <li><a href="@Url.Action("List", "Article")">Contacts</a></li>
-                        </ul>
+                          </ul>
                     </li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Combat gear <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index","Rule")">Rules</a></li>
+                            <li><a href="@Url.Action("Index","Rule", new {gear = Gear.Comabt})">Rules</a></li>
                             <li><a href="@Url.Action("Index","Attributes")">Attributes</a></li>
                             <li><a href="@Url.Action("Index","CombatSkill")">Skills</a></li>
                             <li><a href="@Url.Action("Index","SkillFeature")">Features</a></li>
@@ -49,22 +48,22 @@
                             <li role="presentation" class="dropdown-header">Items</li>
                             <li><a href="@Url.Action("List","MeleeWeapon")">Melee weapons</a></li>
                             <li><a href="@Url.Action("Index","Shield")">Shields</a></li>
-                            <li><a href="@Url.Action("Index","RangedWeapon")">Ranged weapons</a></li>
-                            <li><a href="@Url.Action("Index","Ammo")">Ammo</a></li>
+                            @*<li><a href="@Url.Action("Index","RangedWeapon")">Ranged weapons</a></li>*@
+                            @*<li><a href="@Url.Action("Index","Ammo")">Ammo</a></li>*@
                             <li><a href="@Url.Action("Index", "MiscellaneousItem")">Miscellaneous Items</a></li>
                             
-                            <li class="divider"></li>
+                            @*<li class="divider"></li>
                             <li role="presentation" class="dropdown-header">Armor</li>
                             <li><a href="@Url.Action("Index", "HeadArmor")">Head armor</a></li>
                             <li><a href="@Url.Action("Index", "BodyArmor")">Body armor</a></li>
                             <li><a href="@Url.Action("Index", "ArmArmor")">Arm armor</a></li>
-                            <li><a href="@Url.Action("Index", "LegArmor")">Leg armor</a></li>
+                            <li><a href="@Url.Action("Index", "LegArmor")">Leg armor</a></li>*@
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Non combat gear <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index","Rule")">Rules</a></li>
+                            <li><a href="@Url.Action("Index","Rule", new {gear = Gear.NonComabt})">Rules</a></li>
                             <li><a href="@Url.Action("Index","Talent")">Talent</a></li>
                             <li><a href="@Url.Action("Index","Talent")">Skills</a></li>
                             <li><a href="@Url.Action("Index","NCGEquipmentItem")">Items</a></li>

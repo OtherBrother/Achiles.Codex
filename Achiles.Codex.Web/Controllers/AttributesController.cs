@@ -3,10 +3,11 @@ using System.Web.Mvc;
 using Achilles.Codex.Model;
 using Achilles.Codex.Web.Services;
 using Raven.Client;
+using Achilles.Codex.Web.Models;
 
 namespace Achilles.Codex.Web.Controllers
 {
-    public class AttributesController : CodexItemController
+    public class AttributesController : CodexItemBaseController
     {
         public ActionResult Index(bool deleted = false)
         {
@@ -23,24 +24,28 @@ namespace Achilles.Codex.Web.Controllers
         [Authorize(Roles = "Contributor")]
         public ActionResult Edit(string id)
         {
-            var model = DocumentSession.Load<AttributeInfo>(id);
-            @ViewBag.Title = string.Format("Edit {0}", model.Name);
+            ViewBag.Title = "Edit melee Attribute";
+            var model = GetModel<AttributeInfo>(id);
             return View(model);
         }
         
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(AttributeInfo input)
+        [Authorize(Roles = "Contributor")]
+        public ActionResult Edit(CodexItemModel<AttributeInfo> input)
         {
-            var entity = DocumentSession.Load<AttributeInfo>(input.Id);
-            @ViewBag.Title = string.Format("Edit {0}", entity.Name);
+            ViewBag.Title = "Edit melee Attribute";
 
-            UpdateProperties(entity, input);           
+            if (!ModelState.IsValid) return View(input);
+
+            var storedItem = UpsertBaseCodexItem(input);
+            storedItem.Order = input.CodexItem.Order;
+            
             DocumentSession.SaveChanges();
+            Success("Saved.", "No, really, it is saved.");
+            
+            return View(CreateModel(storedItem));
 
-            Success("Hooray!", "Now it is much better.");
-
-            return View(entity);
         }
         [Authorize(Roles = "Contributor")]
         public ActionResult Delete(string id)
@@ -50,7 +55,6 @@ namespace Achilles.Codex.Web.Controllers
             {
                 DocumentSession.Delete(entity);
                 DocumentSession.SaveChanges();
-                
             }
             return RedirectToAction("Index", new { Deleted = true});
         }

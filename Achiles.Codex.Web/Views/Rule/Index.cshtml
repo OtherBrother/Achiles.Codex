@@ -6,29 +6,46 @@
 }
 
 <h2>Rules</h2>
-<p class="text-muted">
-    Rules - 
-</p>
-<hr />
+<hr/>
+@if (User.IsContributor()) 
+{
+    <p>
+        <a class="btn btn-default" href="@Url.Action("Edit", new { gear = ViewBag.Gear})" title="New rule">
+            <span class="glyphicon glyphicon-plus-sign"></span> New Rule
+        </a>
+    </p>
+}
 
-<p>
-    <div class="row">
-        <div class="col-xs-2">
-            <input type="text" class="form-control" id="filterAttributes" placeholder="fillter">
-        </div>
-        <div class="col-xs-2">
-            @if (User.IsContributor()) //only contributors can add new attribute
-            {<a class="btn btn-default" href="@Url.Action("Edit","Rule")" title="Add new rule">
-                <span class="glyphicon glyphicon-plus-sign"></span> New Rule
-            </a>}
-        </div>
-    </div>
-</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Rule</th>
+            <th>Description</th>
+            <th>Tags</th>
+            @if (User.IsContributor())
+            {
+                <th>Edit</th>
+            }
+        </tr>
+   </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td><a href="@Url.Action("RedirectToitem", "Codex",new {id= @a.Id})">@a.Name</a> </td>
+                <td>@a.Description</td>
+                <td>@Html.Partial("_TagListView", a.Tags)</td>
+                @if (User.IsContributor())
+                {
+                    <td style="text-align: center">
+                        <a href="@Url.Action("Edit", new { id = a.Id})" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-wrench"></span>
+                        </a>
+                    </td>
+                }
+            </tr>
+        }
 
+    </tbody>
 
-
-
-
-
-
-
+</table>

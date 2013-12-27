@@ -45,15 +45,9 @@ namespace Achilles.Codex.Web
 
     public class CodexItemController : BaseController
     {
-        protected void UpdateProperties(CodexItem itemToUpdate, CodexItem input)
-        {
-            if (itemToUpdate == null) throw new ArgumentNullException("itemToUpdate");
+      
 
-            itemToUpdate.Description = input.Description;
-            itemToUpdate.Tags = input.Tags;
-        }
-
-        private void SetRelatedItems(CodexItem item)
+        protected void SetRelatedItems(CodexItem item)
         {
             //TODO: this is hack and should be redone properly, but because of time contriants it here..
             var relatedItemIds = this.Request.Form["CodexItem.RelatedItems"];
