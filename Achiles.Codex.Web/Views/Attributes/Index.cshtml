@@ -7,105 +7,52 @@
     Attributes – numerical values of certain physical or mental qualities. Attributes are used in all combat and similar (turn based or instant) situations.
 </p>
 <hr />
-<p>
-    <div class="row">
-        <div class="col-xs-2">
-            <input type="text" class="form-control" id="filterAttributes" placeholder="fillter">
-        </div>
-        <div class="col-xs-2">
-            @if (User.IsContributor()) //only contributors can add new attribute
-            {<a class="btn btn-default" href="@Url.Action("Edit")" title="Add new attribute to codex">
-                <span class="glyphicon glyphicon-plus-sign"></span> New attribute
-            </a>}
-        </div>
-    </div>
-</p>
-@{ var i = 0; }
-@foreach (var attr in Model)
+@if (User.IsContributor())
 {
-    var attributeID = "attributePanel" + i;
-    <div id="@attributeID" class="panel panel-default">
-        <div class="panel-heading" title="Press to expand"><span class="attributeName">@attr.Name</span><span class="badge pull-right">@attr.Id.CleanId().ToUpper()</span></div>
-        <div class="panel-body">
-            @if (string.IsNullOrEmpty((attr.Description)))
-            {<p class="alert alert-warning">
-                 Attribute has no description. Go ahead and <a href="@Url.Action("Edit", "Attributes", new {Id = attr.Id})" title=""> add one</a>!
-             </p>}
-            else
-            {@Html.Raw(attr.Description)}
-        </div>
-        @if (User.IsContributor())
-        {
-            <div class="panel-footer">
-                <div class="btn-group">
-                    <a class="btn btn-default" href="@Url.Action("Edit", "Attributes", new {Id = attr.Id})" title="Edit attribute"><i class="glyphicon glyphicon-edit"></i></a>
-                    <a class="btn btn-default" href="#" title="Delete attribute" data-toggle="modal" data-target="#confirm_delete" data-delete-id="@attr.Id" data-delete-name="@attr.Name"><i class="glyphicon glyphicon-remove"> </i></a>
-                </div>
-            </div>
-        }
-    </div>
-    i++;
+    <p>
+        <a href="@Url.Action("Edit")" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus"></span> New attribute
+        </a>
+    </p>
 }
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Description</th>
+            <th>Order</th>
+            @if (User.IsContributor())
+            {
+                <th>Edit</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td><a href="@Url.Action("RedirectToitem", "Codex",new {id= @a.Id})">@a.Name</a> </td>
+                <td>@a.Description</td>
+                <td>@a.Order</td>
+                @if (User.IsContributor())
+            {
+                <td style="text-align: center">
+                    <a href="@Url.Action("Edit", new { id = a.Id})" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-wrench"></span>
+                    </a>
+                </td>
+            }
+            </tr>
+        }
 
-<div class="modal fade" id="confirm_delete">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">You are about to delete attribute..</h4>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete <strong id="attribute_name">asd</strong> attribute? Data will be irretrievably lost!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">No way!</button>
-                <a class="btn btn-danger" id="delete_link">Sure, go ahead!</a>
-            </div>
-        </div>
-    </div>
-</div>
+    </tbody>
+</table>
 
 @section scripts
 {
     <script type="text/javascript">
 
-        $(document).ready(function(){
-            $(".panel-heading").tooltip();
-            $("a").tooltip();
-        });
-
-        var nameContainer = $('#attribute_name');
-        var deleteLink = $('#delete_link');
-
-        $('#confirm_delete').on('show.bs.modal', function(a, b) {
-            var $this = $(a.relatedTarget);
-            var id = $this.attr('data-delete-id');
-            var name = $this.attr('data-delete-name');
-
-            nameContainer.text(name);
-            deleteLink.attr('href', '@Url.Action("Delete", "Attributes")' + '/' + id );
-
-        });
-
-        $(".panel-body").hide(0); //close all panels
-        $(".panel-footer").hide(0); //close all panel footers
-        $(".panel-heading").click(function () { //display panel contents on click
-            $(this).parent().children(".panel-body").toggle(400);
-            $(this).parent().children(".panel-footer").toggle(400);
-        });
-
-        $("#filterAttributes").keyup(function () { //Filter by attribute name
-            var str = $(this).val().toLowerCase();
-            console.log(str);
-            for (var i = 0; i < @Model.Count(); i++) {
-                var attributeLabel = $("#attributePanel" + i).children(".panel-heading").children(".attributeName").html().toLowerCase();
-                if(attributeLabel.indexOf(str) == -1) {
-                    $("#attributePanel" + i).hide(100);
-                } else {
-                    $("#attributePanel" + i).show(100);
-                }
-            }
-        });to
+       
 
     </script>
 }

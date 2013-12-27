@@ -1,32 +1,56 @@
 ﻿@using Achilles.Codex.Web.Misc
 @model IEnumerable<Achilles.Codex.Model.SkillFeature>
-
-<h2>Skill Features</h2>
-<p class="text-muted">
-    Skill feature
-</p>
+@{
+    ViewBag.Title = "Features";
+}
+<h2>Features</h2>
 <hr />
 
+    @if (User.IsContributor()) //only contributors can add new attribute
+{
+    <p>
+        <a class="btn btn-default" href="@Url.Action("Edit", "SkillFeature")" title="New skill feature">
+            <span class="glyphicon glyphicon-plus-sign"></span> New Skill Feature
+        </a>
+    </p>
+    }
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>Description</th>
+            <th>Max level</th>
+            <th>Tags</th>
+            @if (User.IsContributor())
+            {
+                <th>Edit</th>
+            }
+        </tr>
 
-@{
-    ViewBag.Title = "Skill Feature";
-}
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td><a href="@Url.Action("RedirectToitem", "Codex",new {id= @a.Id})">@a.Name</a> </td>
+                <td>@a.Description</td>
+                <td>@a.MaxLevel</td>
+                <td>@Html.Partial("_TagListView", a.Tags)</td>
+                @if (User.IsContributor())
+                {
+                    <td style="text-align: center">
+                        <a href="@Url.Action("Edit", new { id = a.Id})" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-wrench"></span>
+                        </a>
+                    </td>
+                }
+            </tr>
+        }
 
-<h2>Index</h2>
+    </tbody>
+    
+</table>
 
-<p>
-    <div class="row">
-        <div class="col-xs-2">
-            <input type="text" class="form-control" id="filterAttributes" placeholder="fillter">
-        </div>
-        <div class="col-xs-2">
-            @if (User.IsContributor()) //only contributors can add new attribute
-            {<a class="btn btn-default" href="@Url.Action("Edit", "SkillFeature")" title="Add new skill feature">
-                <span class="glyphicon glyphicon-plus-sign"></span> New Skill Feature
-            </a>}
-        </div>
-    </div>
-</p>
 
 
 

@@ -45,13 +45,7 @@ namespace Achilles.Codex.Web
 
     public class CodexItemController : BaseController
     {
-        protected void UpdateProperties(CodexItem itemToUpdate, CodexItem input)
-        {
-            if (itemToUpdate == null) throw new ArgumentNullException("itemToUpdate");
-
-            itemToUpdate.Description = input.Description;
-            itemToUpdate.Tags = input.Tags;
-        }
+      
 
         private void SetRelatedItems(CodexItem item)
         {

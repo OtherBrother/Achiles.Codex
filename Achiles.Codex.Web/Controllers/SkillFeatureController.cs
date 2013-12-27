@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Achilles.Codex.Model;
 using Achilles.Codex.Web;
 using Achilles.Codex.Web.Models;
@@ -11,8 +12,7 @@ namespace Achilles.Codex.Web.Controllers
         // GET: /SkillFeature/
         public ActionResult Index()
         {
-
-            return View();
+            return View(DocumentSession.Query<SkillFeature>().ToArray().OrderBy(x=>x.Name));
         }
 
         public ActionResult Edit(string id)
@@ -30,7 +30,7 @@ namespace Achilles.Codex.Web.Controllers
             {
                 //insert or update properties common for all base codex items
                 var storedItem = UpsertBaseCodexItem(input);
-                //..and save 
+        
                 DocumentSession.SaveChanges();
                 Success("New skill feature is created");
             }
