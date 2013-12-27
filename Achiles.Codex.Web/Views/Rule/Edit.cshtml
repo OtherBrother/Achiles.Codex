@@ -1,23 +1,18 @@
-﻿@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.AttributeInfo>
+﻿@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.Rule>
 
-@if (Model.IsNew)
-{
-    <h2>New Attribute</h2>
-}
-else
-{
-    <h2>Edit Attribute <em>@(Model.CodexItem.Name ?? "<New Attribute>") </em></h2>
+@{
+    ViewBag.Title = Model.IsNew? "New rule" : string.Format("Edit {0} rule", Model.CodexItem.Name); 
 }
 
+<h2>@ViewBag.Title</h2>
 <ul class="nav nav-tabs">
     <li class="active"><a href="#basic-info" data-toggle="tab">Basic information</a></li>
     <li><a href="#article" data-toggle="tab">Article</a></li>
-    <li><a href="#misc" data-toggle="tab">Misc</a></li>
 </ul>
 <br />
 @Html.ValidationSummary(false)
 
-<form method="post" class="form-horizontal">
+<form class="form-horizontal" method="POST">
     <div class="tab-content">
         <div class="tab-pane fade in active" id="basic-info">
             @Html.Partial("_EditCodexItemBasicInfoView", Model)
@@ -25,28 +20,16 @@ else
         <div class="tab-pane fade in" id="article">
             @Html.Partial("_EditCodexItemArticleView", Model)
         </div>
-        <div class="tab-pane fade in" id="misc">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label for="CodexItem.Order" class="col-sm-2 control-label">Order</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="weight" name="CodexItem.Order" placeholder="Order" value="@Model.CodexItem.Order" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <hr />
     <div class="btn-group">
         <button type="submit" class="btn btn-primary">Save</button>
         <a class="btn btn-default" href="@Url.Action("Index")">Back</a>
     </div>
-
-</form>
-
     
+</form>
+}
+
 @section Head
 {
     @Styles.Render("~/Content/edit-codex-item-basic-info")
@@ -55,14 +38,12 @@ else
 
 @section scripts
 {
-    @*TODO: missing property in form: OrderInCircleOfQualities*@
+    @*TODO:host editor scripts localy so that we can include them in the 'bundles/edit-codex-item-article' bundle and avoid copy-pastying to each form*@
     @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
 
     @Scripts.Render("~/bundles/edit-codex-item-basic-info")
     @Scripts.Render("~/bundles/edit-codex-item-article")
 
 }
-
-
 
 

@@ -14,7 +14,8 @@ namespace Achilles.Codex.Web.Controllers
         {
             return View(DocumentSession.Query<SkillFeature>().ToArray().OrderBy(x=>x.Name));
         }
-
+        
+        [Authorize(Roles = "Contributor")]
         public ActionResult Edit(string id)
         {
             var model = GetModel<SkillFeature>(id);
@@ -24,6 +25,7 @@ namespace Achilles.Codex.Web.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
+        [Authorize(Roles = "Contributor")]
         public ActionResult Edit(CodexItemModel<SkillFeature> input)
         {
             if (ModelState.IsValid)

@@ -1,40 +1,39 @@
 ﻿@using Achilles.Codex.Web.Misc
-@model IEnumerable<Achilles.Codex.Model.SkillFeature>
-@{
-    ViewBag.Title = "Features";
-}
-<h2>Features</h2>
-<hr />
+@model IEnumerable<Achilles.Codex.Model.Rule>
 
+@{
+    ViewBag.Title = "Rules";
+}
+
+<h2>Rules</h2>
+<hr/>
 @if (User.IsContributor()) 
 {
     <p>
-        <a class="btn btn-default" href="@Url.Action("Edit", "SkillFeature")" title="New skill feature">
-            <span class="glyphicon glyphicon-plus-sign"></span> New Skill Feature
+        <a class="btn btn-default" href="@Url.Action("Edit")" title="New skill feature">
+            <span class="glyphicon glyphicon-plus-sign"></span> New Rule
         </a>
     </p>
 }
+
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Feature</th>
+            <th>Rule</th>
             <th>Description</th>
-            <th>Max level</th>
             <th>Tags</th>
             @if (User.IsContributor())
             {
                 <th>Edit</th>
             }
         </tr>
-
-    </thead>
+   </thead>
     <tbody>
         @foreach (var a in Model)
         {
             <tr>
                 <td><a href="@Url.Action("RedirectToitem", "Codex",new {id= @a.Id})">@a.Name</a> </td>
                 <td>@a.Description</td>
-                <td>@a.MaxLevel</td>
                 <td>@Html.Partial("_TagListView", a.Tags)</td>
                 @if (User.IsContributor())
                 {
@@ -50,12 +49,3 @@
     </tbody>
 
 </table>
-
-
-
-
-
-
-
-
-
