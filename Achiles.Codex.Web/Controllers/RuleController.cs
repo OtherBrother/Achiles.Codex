@@ -12,13 +12,10 @@ namespace Achilles.Codex.Web.Controllers
         public ActionResult Index(Gear? gear)
         {
             var q = DocumentSession.Query<Rule>();
-            if (gear.HasValue)
-            {
-                var g = gear.Value;
-                return View(q.Where(x => x.Gear == g));
-            }
-
-            return View(q.ToArray());
+            ViewBag.Gear = (int)gear;
+        
+            var g = gear.Value;
+            return View(q.Where(x => x.Gear == g));
         }
         
         [Authorize(Roles = "Contributor")]
@@ -26,6 +23,12 @@ namespace Achilles.Codex.Web.Controllers
         public ActionResult Edit(string id)
         {
             var model = GetModel<Rule>(id);
+
+            int gearId;
+            if (int.TryParse(Request["gear"], out gearId))
+            {
+                ViewBag.Gear = (Gear) gearId;
+            }
             return View(model);
         }
 
@@ -34,16 +37,14 @@ namespace Achilles.Codex.Web.Controllers
         [Authorize(Roles = "Contributor")]
         public ActionResult Edit(CodexItemModel<Rule> input)
         {
+            if (!ModelState.IsValid) return View(input);
+            
+            var storedItem = UpsertBaseCodexItem(input);
+            storedItem.Gear = input.CodexItem.Gear;
+            DocumentSession.SaveChanges();
+            Success("Nice work!", "Rules are made to be broken!");
 
-            if (ModelState.IsValid)
-            {
-                var storedItem = UpsertBaseCodexItem(input);
-                storedItem.Gear = input.CodexItem.Gear;
-                DocumentSession.SaveChanges();
-                Success("Nice work!", "Rules are made to be broken!");
-            }
-
-            return View(input);
+            return View(CreateModel(storedItem));
         }
 	}
 }

@@ -25,11 +25,12 @@ namespace Achilles.Codex.Web
 
             routes.MapRoute("TagSuggest", "Tags/Suggest/{q}", defaults: new { controller = "Tags", Action = "Suggest" });
 
-            routes.MapRoute("ArticleList", "Articles", new { controller = "Article", Action = "Index", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional });
-            routes.MapRoute("ArticleListJson", "Articles/Json", new { controller = "Article", Action = "GetJsonArticles", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional });
+            routes.MapRoute("ArticleList", "Articles/{tag}", new { controller = "Article", Action = "Index", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional, tag = UrlParameter.Optional });
+            routes.MapRoute("ArticleListJson", "Articles/Json/{tag}", new { controller = "Article", Action = "GetJsonArticles", pageSize = UrlParameter.Optional, pageNumber = UrlParameter.Optional, tag = UrlParameter.Optional });
 
             routes.MapRoute("ncgRules", "Rules/ncg/", defaults: new {controller="Rule", action = "Index", gear = Gear.NonComabt });
-            routes.MapRoute("cgRules", "Rules/cg/", defaults: new { controller="Rule", action = "Index", gear = Gear.Cobat });
+            routes.MapRoute("cgRules", "Rules/cg/", defaults: new { controller="Rule", action = "Index", gear = Gear.Comabt });
+            
 
             routes.MapRoute(name: "Default",url: "{controller}/{action}/{*id}", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );

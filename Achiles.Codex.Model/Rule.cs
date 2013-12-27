@@ -7,7 +7,7 @@
 
     public enum Gear
     { 
-        Cobat,
+        Comabt,
         NonComabt
     }
 

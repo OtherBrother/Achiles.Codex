@@ -47,7 +47,7 @@ namespace Achilles.Codex.Web
     {
       
 
-        private void SetRelatedItems(CodexItem item)
+        protected void SetRelatedItems(CodexItem item)
         {
             //TODO: this is hack and should be redone properly, but because of time contriants it here..
             var relatedItemIds = this.Request.Form["CodexItem.RelatedItems"];

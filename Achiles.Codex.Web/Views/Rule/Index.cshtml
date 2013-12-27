@@ -10,7 +10,7 @@
 @if (User.IsContributor()) 
 {
     <p>
-        <a class="btn btn-default" href="@Url.Action("Edit")" title="New skill feature">
+        <a class="btn btn-default" href="@Url.Action("Edit", new { gear = ViewBag.Gear})" title="New skill feature">
             <span class="glyphicon glyphicon-plus-sign"></span> New Rule
         </a>
     </p>
