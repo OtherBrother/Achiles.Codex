@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Achilles.Codex.Model;
 using Achilles.Codex.Web.Models;
+using Microsoft.Practices.ObjectBuilder2;
 using Raven.Client;
 using Raven.Abstractions.Extensions;
 using Achilles.Codex.Web.Misc;
@@ -66,8 +67,32 @@ namespace Achilles.Codex.Web.Controllers
             {
 
                 Weapons = weapons,
-                AttackTypes = weapons.SelectMany(x => x.AttackTypes).GroupBy(x => x.Type).Select(x => x.Key).ToArray()
+                AttackTypes = weapons.SelectMany(x => x.AttackTypes ?? new List<AttackType>()).GroupBy(x => x.Type).Select(x => x.Key).ToArray(),
+                AvailableTags =  weapons.SelectMany(x=>x.Tags).Distinct().OrderBy(x=>x).ToArray(),
+                SelectedTags = new string[0],
+                SelectedAttacks = new string[0]
+            };
 
+            return View(model);
+        }
+        [System.Web.Mvc.HttpPost]
+        public ActionResult List(string [] tags, string[] attacks)
+        {
+            ViewBag.Title = "Melee weapons";
+            var weapons = DocumentSession.Query<MeleeWeapon>().ToList();
+            tags = tags ?? new string[0];
+            attacks = attacks ?? new string[0];
+            
+            var model = new WeaponListViewModel
+            {
+                Weapons = weapons
+                    .Where(x => tags.Length == 0 || x.Tags.Any(y=>tags.Contains(y)))
+                    .Where(x => attacks.Length == 0 || x.AttackTypes.Any(y => attacks.Contains(y.Type)))
+                    .ToList(),
+                AttackTypes = weapons.SelectMany(x => x.AttackTypes ?? new List<AttackType>()).GroupBy(x => x.Type).Select(x => x.Key).ToArray(),
+                AvailableTags = weapons.SelectMany(x => x.Tags).Distinct().OrderBy(x => x).ToArray(),
+                SelectedTags = tags,
+                SelectedAttacks = attacks
             };
 
             return View(model);
@@ -77,8 +102,9 @@ namespace Achilles.Codex.Web.Controllers
         {
             public List<MeleeWeapon> Weapons { get; set; }
             public string[] AttackTypes { get; set; }
+            public string[] AvailableTags { get; set; }
+            public string[] SelectedTags { get; set; }
+            public string[] SelectedAttacks { get; set; }
         }
-
-
     }
 }

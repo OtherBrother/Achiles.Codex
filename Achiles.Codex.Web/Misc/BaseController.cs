@@ -73,7 +73,7 @@ namespace Achilles.Codex.Web
             {
                 SetRelatedItems(input);
                 //make all tags lowercase
-                input.Tags = input.Tags.Select(x => x.ToLower()).ToList();
+                input.Tags = input.Tags.Select(x => x.ToLower()).Distinct().ToList();
                 DocumentSession.Store(input);
                 return input;
             }
@@ -81,7 +81,7 @@ namespace Achilles.Codex.Web
             {
                 itemToUpdate.Name = input.Name; //this allows to id and name to differ..
                 itemToUpdate.Description = input.Description;
-                itemToUpdate.Tags = input.Tags.Select(x=>x.ToLower()).ToList();
+                itemToUpdate.Tags = input.Tags.Select(x=>x.ToLower()).Distinct().ToList();
                 SetRelatedItems(itemToUpdate);
                 return itemToUpdate;
             }

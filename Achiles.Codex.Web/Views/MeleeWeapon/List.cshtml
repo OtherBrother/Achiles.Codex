@@ -1,7 +1,12 @@
 ﻿@model Achilles.Codex.Web.Controllers.MeleeWeaponController.WeaponListViewModel
 @using System.Web.Http.Results
+@using Achilles.Codex.Model
 @using Achilles.Codex.Web.Misc
+@using Raven.Client.Linq
 
+@{
+    var filtered = Model.SelectedTags.Any() || Model.SelectedAttacks.Any();
+}
 
 <h2>Melee weapons</h2>
 <hr />
@@ -12,17 +17,84 @@
         <a class="btn btn-default" href="@Url.Action("Edit")"><span class="glyphicon glyphicon-plus"></span>&nbsp;New melee weapon</a>
     </p>
 }
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#filter-panel">
+                    Filters
+                    @if (filtered)
+                    {
+                        <span class="badge">On</span>
+                    }
+                </a>
+            </h4>
+        </div>
+        <form method="post">
+            <div id="filter-panel" class="panel-collapse collapse @(filtered?"in":string.Empty)">
+                <div class="panel-body">
+
+                    @foreach (var g in Model.AvailableTags.Select((x, i) => new { Index = i, Tag = x }).GroupBy(z => z.Index / 6))
+                    {
+
+                        <div class="row">
+                            @foreach (var i in g)
+                            {
+                                <div class="col-sm-2">
+                                    <label class="checkbox-inline">
+                                        <input class="checkbox-inline" type="checkbox" name="tags" value="@i.Tag" @(Model.SelectedTags.Contains(i.Tag) ? "checked" : "") /> @i.Tag
+                                    </label>
+                                </div>
+                            }
+                        </div>
+
+                    }
+                    <hr />
+                    @foreach (var g in Model.AttackTypes.Select((x, i) => new { Index = i, AttackType = x }).GroupBy(z => z.Index / 6))
+                    {
+
+                        <div class="row">
+                            @foreach (var i in g)
+                            {
+                                <div class="col-sm-2">
+                                    <label class="checkbox-inline">
+                                        <input class="checkbox-inline" type="checkbox" name="attacks" value="@i.AttackType" @(Model.SelectedAttacks.Contains(i.AttackType) ? "checked" : "") /> @i.AttackType
+                                    </label>
+                                </div>
+                            }
+                        </div>
+
+                    }
+                    <hr/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="select_all" class="checkbox-inline">
+                                <input class="checkbox-inline" type="checkbox" id="select_all" onclick="$('input:checkbox').not(this).prop('checked', this.checked)" /> Select all
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-default btn-sm pull-right">Filter</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<hr/>
 <table class="table table-striped" id="weapon-table">
     <thead>
-        <tr>
-            <th>Name</th>
-            <th>Min STR</th>
-            <th>Weight</th>
-            <th>Price</th>
+        <tr >
+            <th class="text-left">Name</th>
+            <th class="text-center">Min STR</th>
+            <th class="text-center">Weight</th>
+            <th class="text-center">Price</th>
             @foreach (var x in Model.AttackTypes)
-            {
-                <th>@x base damage</th>
-                <th>@x effects</th>
+{
+                <th class="text-center">@x dmg</th>
+                <th class="text-center">@x fx</th>
             }
             @if (User.IsContributor())
             {
@@ -31,42 +103,49 @@
         </tr>
     </thead>
     <tbody>
+        
         @foreach (var weapon in Model.Weapons)
         {
-            <tr>
-                <td><a href='@Url.Action("RedirectToItem", "Codex", new {id=weapon.Id})'>@weapon.Name</a></td>
+            <tr class="text-center">
+                <td class="text-left"><a href='@Url.Action("RedirectToItem", "Codex", new {id=weapon.Id})'>@weapon.Name</a></td>
                 <td>@weapon.MinimumStrenght</td>
                 <td>@weapon.Weight</td>
                 <td>@weapon.Price</td>
-                
+
                 @*this sux*@
                 @foreach (var x in Model.AttackTypes)
                 {
-                    var t = weapon.AttackTypes.FirstOrDefault(z => z.Type == x);
-                    if (t!=null)
+                    if (weapon.AttackTypes != null)
                     {
-                    <td>
-                        @t.DamageValue + @t.ArmorPiercingModifier
-                    </td>
-                    <td>
-                        @t.ToString()
-                    </td>    
-                    }
-                    else
-                    {
-                     <td>-</td>
-                     <td>-</td>
+                        var t = weapon.AttackTypes.FirstOrDefault(z => z.Type == x);
+                        if (t != null)
+                        {
+                            <td>
+                                @t.DamageValue + @t.ArmorPiercingModifier
+                            </td>
+                            <td>
+                                @foreach (var e in t.Effects)
+{
+    <span><img src="@Url.Content("~/Content/images/" + e.EffectType + ".png")" alt="@e.EffectType" title="@e.EffectType" /><strong>@e.Span&nbsp;</strong></span> 
+    
+}
+                                </td>
+                        }
+                        else
+                        {
+                            <td>-</td>
+                            <td>-</td>
+                        }
                     }
                 }
-            @if (User.IsContributor())
-            {
-                <td style="text-align: center">
-                    <a href="@Url.Action("Edit", new { id = weapon.Id})" class="btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-wrench"></span>
-                    </a>
-                </td>
-            }
-
+                @if (User.IsContributor())
+                {
+                    <td style="text-align: center">
+                        <a href="@Url.Action("Edit", new { id = weapon.Id})" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-wrench"></span>
+                        </a>
+                    </td>
+                }
             </tr>
         }
     </tbody>
@@ -75,7 +154,7 @@
 @section scripts
 {
     <script type="text/javascript">
-        
+
         $("#weapon-table").tablecloth({
             theme: "default",
             bordered: false,
@@ -85,5 +164,8 @@
             clean: false,
             cleanElements: "th td"
         });
+
+
+
     </script>
 }
