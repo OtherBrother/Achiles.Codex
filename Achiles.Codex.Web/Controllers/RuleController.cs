@@ -27,7 +27,8 @@ namespace Achilles.Codex.Web.Controllers
             int gearId;
             if (int.TryParse(Request["gear"], out gearId))
             {
-                ViewBag.Gear = (Gear) gearId;
+                model.CodexItem.Gear = (Gear) gearId;
+                ViewBag.Gear = model.CodexItem.Gear;
             }
             return View(model);
         }
