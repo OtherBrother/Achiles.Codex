@@ -158,13 +158,14 @@ else
                     {{create-option 'Bleed' value.EffectType}}
                     {{create-option 'Critical' value.EffectType}}
                 </select>
-                @*<input type="text" class="form-control" name="CodexItem.AttackTypes[{{context.AttackIndex}}].Effects[{{index}}].EffectType" id="attack-{{context.AttackIndex}}-effect-type-input-{{index}}" value="{{value.EffectType}}" />*@
             </div>
             <label for="attack-{{context.AttackIndex}}-effect-span-input-{{index}}" class="col-md-2 control-label">Span</label>
-            <div class="col-md-4">
-                <input type="text" class="form-control" name="CodexItem.AttackTypes[{{context.AttackIndex}}].Effects[{{index}}].Span" id="attack-{{context.AttackIndex}}-effect-span-input-{{index}}" value="{{value.Span}}" />
+            <div class="col-md-3">
+                <input type="text" class="form-control" name="CodexItem.AttackTypes[{{context.AttackIndex}}].Effects[{{index}}].Span" id="attack-{{context.AttackIndex}}-effect-span-input-{{index}}" value="{{value.Span}}" /> 
             </div>
-        </div>
+            <div class="col-md-1">
+                <a class="btn btn-default" title="Remove effect" onclick="$('#attack-{{context.AttackIndex}}-effect-{{index}}').remove()"><span class="glyphicon glyphicon-minus-sign"></span> </a> 
+            </div>
     </script>
 
     <script id="properties-template" type="text/x-handlebars-template">
