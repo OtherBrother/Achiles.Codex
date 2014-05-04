@@ -33,7 +33,7 @@ else
                         <label for="CodexItem_Features" class="col-sm-2 control-label">Features</label>
                         <div class="col-sm-10">
                             <select multiple data-role="tagsinput" id="CodexItem_Features" name="CodexItem.Features">
-                                @foreach (var feature in Model.CodexItem.Features)
+                                @foreach (var feature in Model.CodexItem.Features ?? Enumerable.Empty<string>())
                                 {
                                     <option value="@feature">feature</option>
                                 }

@@ -1,17 +1,18 @@
-﻿@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.Talent>
+﻿@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.Skill>
 
 @if (Model.IsNew)
 {
-    <h2>New Talent</h2>
+    <h2>New Skill</h2>
 }
 else
 {
-    <h2>Edit Talent <em>@(Model.CodexItem.Name ?? "<New Talent>") </em></h2>
+    <h2>Edit Skill <em>@(Model.CodexItem.Name ?? "New skill") </em></h2>
 }
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#basic-info" data-toggle="tab">Basic information</a></li>
     <li><a href="#article" data-toggle="tab">Article</a></li>
+    <li><a href="#specializations" data-toggle="tab">Specializations</a></li>
 </ul>
 <br />
 @Html.ValidationSummary(false)
@@ -25,12 +26,17 @@ else
         <div class="tab-pane fade in" id="article">
             @Html.Partial("_EditCodexItemArticleView", Model)
         </div>
+        <div class="tab-pane fade in" id="specializations">
+            <div class="panel panel-default" id="spec-{{index}}">
+                
+            </div>
+            </div>
     </div>
     <hr />
-  <div class="btn-group">
+    <div class="btn-group">
         <button type="submit" class="btn btn-primary">Save</button>
-      <a class="btn btn-default" href="@Url.Action("Index")">Back</a>
-    </div>
+        <a class="btn btn-default" href="@Url.Action("Index")">Back</a>
+        </div>
 }
 
 @section Head
@@ -41,11 +47,12 @@ else
 
 @section scripts
 {
-    @*TODO: missing property in form: OrderInCircleOfQualities*@
+    @*TODO: MaxLevel property do not take value*@
     @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
 
     @Scripts.Render("~/bundles/edit-codex-item-basic-info")
     @Scripts.Render("~/bundles/edit-codex-item-article")
+
 
 }
 

@@ -8,8 +8,6 @@ namespace Achilles.Codex.Web.Controllers
 {
     public class SkillFeatureController : CodexItemBaseController
     {
-        //
-        // GET: /SkillFeature/
         public ActionResult Index()
         {
             return View(DocumentSession.Query<SkillFeature>().ToArray().OrderBy(x=>x.Name));
@@ -38,7 +36,5 @@ namespace Achilles.Codex.Web.Controllers
             }
             return View(input);
         }
-
-
     }
 }
