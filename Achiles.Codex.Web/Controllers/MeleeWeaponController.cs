@@ -41,7 +41,8 @@ namespace Achilles.Codex.Web.Controllers
 
             storedItem.Properties = input.CodexItem.Properties.Distinct().ToList();
             storedItem.Price = input.CodexItem.Price;
-            storedItem.Reach = input.CodexItem.Reach;
+            storedItem.ReachMin = input.CodexItem.ReachMin;
+            storedItem.ReachMax = input.CodexItem.ReachMax;
             storedItem.AttackTypes = input.CodexItem.AttackTypes;
             storedItem.Weight = input.CodexItem.Weight;
             storedItem.MinimumStrenght = input.CodexItem.MinimumStrenght;

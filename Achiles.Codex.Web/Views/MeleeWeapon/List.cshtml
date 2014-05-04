@@ -90,6 +90,7 @@
             <th class="text-left">Name</th>
             <th class="text-center">Min STR</th>
             <th class="text-center">Weight</th>
+            <th class="text-left">Reach</th>
             <th class="text-center">Price</th>
             @foreach (var x in Model.AttackTypes)
 {
@@ -110,6 +111,7 @@
                 <td class="text-left"><a href='@Url.Action("RedirectToItem", "Codex", new {id=weapon.Id})'>@weapon.Name</a></td>
                 <td>@weapon.MinimumStrenght</td>
                 <td>@weapon.Weight</td>
+                <td >@weapon.FormatedReach()</td>
                 <td>@weapon.Price</td>
 
                 @*this sux*@

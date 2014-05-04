@@ -12,7 +12,9 @@ namespace Achilles.Codex.Model
             AttackTypes = new List<AttackType>();
         }
 
-        public int Reach { get; set; }
+        //public int Reach { get; set; }
+        public int ReachMin { get; set; }
+        public int ReachMax { get; set; }
         public int MinimumStrenght { get; set; }
         
         /// <summary>
@@ -27,7 +29,7 @@ namespace Achilles.Codex.Model
 
             sb.AppendFormat("W:{0}", Weight)
                 .AppendLine()
-                .AppendFormat("R:{0}", Reach)
+                .AppendFormat("R:{0} - {1}", ReachMin, ReachMax)
                 .AppendLine()
                 .AppendFormat("St:{0}", MinimumStrenght)
                 .AppendLine();

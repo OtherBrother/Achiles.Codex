@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Achilles.Codex.Model;
 using Microsoft.Owin.Security.Provider;
 
 namespace Achilles.Codex.Web.Misc
@@ -75,6 +76,14 @@ namespace Achilles.Codex.Web.Misc
             var x = await task.ConfigureAwait(false);
             return x;
         }
-        
+
+        public static string FormatedReach(this MeleeWeapon weapon)
+        {
+            if (weapon.ReachMin == weapon.ReachMax)
+                return weapon.ReachMin.ToString();
+
+            return string.Format("{0}/{1}", weapon.ReachMin, weapon.ReachMax);
+        }
+
     }
 }

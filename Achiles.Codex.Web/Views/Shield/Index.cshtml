@@ -1,24 +1,26 @@
 ﻿@using Achilles.Codex.Web.Misc
-@model IEnumerable<Achilles.Codex.Model.Skill>
+@model IEnumerable<Achilles.Codex.Model.Shield>
 @{
-    ViewBag.Title = "Skills (ncg)";
+    ViewBag.Title = "Shields";
 }
-<h2>Skills</h2>
+<h2>Shields</h2>
 <hr />
 
 @if (User.IsContributor()) 
 {
     <p>
-        <a class="btn btn-default" href="@Url.Action("Edit", "Skill")" title="New skill">
-            <span class="glyphicon glyphicon-plus-sign"></span> New Skill
+        <a class="btn btn-default" href="@Url.Action("Edit", "Shield")" title="New skill feature">
+            <span class="glyphicon glyphicon-plus-sign"></span> New shield
         </a>
     </p>
 }
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Skill</th>
+            <th>Shield</th>
             <th>Description</th>
+            <th>Defense bonus</th>
+            <th>Hit points</th>
             <th>Tags</th>
             @if (User.IsContributor())
             {
@@ -33,6 +35,8 @@
             <tr>
                 <td><a href="@Url.Action("RedirectToitem", "Codex",new {id= @a.Id})">@a.Name</a> </td>
                 <td>@a.Description</td>
+                <td>@a.DefenseBonus</td>
+                <td>@a.HitPoints</td>
                 <td>@Html.Partial("_TagListView", a.Tags)</td>
                 @if (User.IsContributor())
                 {
