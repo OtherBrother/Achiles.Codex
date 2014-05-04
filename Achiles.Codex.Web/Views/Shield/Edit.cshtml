@@ -1,0 +1,65 @@
+﻿@model Achilles.Codex.Web.Models.CodexItemModel<Achilles.Codex.Model.Shield>
+
+@if (Model.IsNew)
+{
+    <h2>New Skill Feature</h2>
+}
+else
+{
+    <h2>Edit Shield <em>@(Model.CodexItem.Name ?? "<new shield>") </em></h2>
+}
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#basic-info" data-toggle="tab">Basic information</a></li>
+    <li><a href="#article" data-toggle="tab">Article</a></li>
+    <li><a href="#properties" data-toggle="tab">Properties</a></li>
+</ul>
+<br />
+@Html.ValidationSummary(false)
+
+@using ((Html.BeginForm()))
+{
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="basic-info">
+            @Html.Partial("_EditCodexItemBasicInfoView", Model)
+        </div>
+        <div class="tab-pane fade in" id="article">
+            @Html.Partial("_EditCodexItemArticleView", Model)
+        </div>
+        <div class="tab-pane fade in" id="properties">
+            <div class="form-group">
+                <label for="CodexItem_DefenseBonus">Defense bonus</label>
+                <input class="form-control" type="number" id="CodexItem_DefenseBonus" name="CodexItem.DefenseBonus" value="@Model.CodexItem.DefenseBonus" />
+            </div>
+            <div class="form-group">
+                <label for="CodexItem_HitPoints">Hit points</label>
+                <input class="form-control" type="number" id="CodexItem_HitPoints" name="CodexItem.HitPoints" value="@Model.CodexItem.HitPoints" />
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-default" href="@Url.Action("Index")">Back</a>
+        </div>
+}
+
+@section Head
+{
+    @Styles.Render("~/Content/edit-codex-item-basic-info")
+    @Styles.Render("~/Content/edit-codex-item-article")
+}
+
+@section scripts
+{
+    @*TODO: MaxLevel property do not take value*@
+    @Scripts.Render("//tinymce.cachefly.net/4.0/tinymce.min.js")
+
+    @Scripts.Render("~/bundles/edit-codex-item-basic-info")
+    @Scripts.Render("~/bundles/edit-codex-item-article")
+
+}
+
+
+
+
