@@ -1,28 +1,23 @@
 ﻿@using Achilles.Codex.Web.Misc
-@model IEnumerable<Achilles.Codex.Model.Talent>
-
-<h2>Talents</h2>
-<p class="text-muted">
-    Talents are numerical values of certain character qualities, and are used in non-combat gear – all prolonged situations or actions performed when not under stress.
-</p>
+@model IEnumerable<Achilles.Codex.Model.Skill>
+@{
+    ViewBag.Title = "Skills (ncg)";
+}
+<h2>Features</h2>
 <hr />
 
-
-@{
-    ViewBag.Title = "Talent";
-}
-@if (User.IsContributor())
+@if (User.IsContributor()) 
 {
     <p>
-        <a class="btn btn-default" href="@Url.Action("Edit", "Taelent")" title="New skill feature">
-            <span class="glyphicon glyphicon-plus-sign"></span> New Talent
+        <a class="btn btn-default" href="@Url.Action("Edit", "Skill")" title="New skill">
+            <span class="glyphicon glyphicon-plus-sign"></span> New Skill
         </a>
     </p>
 }
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Talent</th>
+            <th>Feature</th>
             <th>Description</th>
             <th>Tags</th>
             @if (User.IsContributor())
@@ -53,6 +48,8 @@
     </tbody>
 
 </table>
+
+
 
 
 

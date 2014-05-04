@@ -218,6 +218,7 @@
     <Compile Include="Controllers\RuleController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SearchQuery.cs" />
+    <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\SkillFeatureController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\TalentController.cs" />
@@ -368,6 +369,8 @@
     <Content Include="Views\Rule\Index.cshtml" />
     <Content Include="Views\Rule\Edit.cshtml" />
     <Content Include="Views\Article\Edit.cshtml" />
+    <Content Include="Views\Skill\Edit.cshtml" />
+    <Content Include="Views\Skill\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

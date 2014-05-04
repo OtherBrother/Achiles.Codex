@@ -1,43 +1,42 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Achilles.Codex.Model;
-using Achilles.Codex.Web;
 using Achilles.Codex.Web.Models;
 
 namespace Achilles.Codex.Web.Controllers
 {
-    public class TalentController : CodexItemBaseController
+    public class SkillController : CodexItemBaseController
     {
-        //
-        // GET: /Talent/
         public ActionResult Index()
         {
-
-            return View(DocumentSession.Query<Talent>().ToArray().OrderBy(x => x.Name));
+            return View(DocumentSession.Query<Skill>().ToArray().OrderBy(x => x.Name));
         }
 
+        [Authorize(Roles = "Contributor")]
         public ActionResult Edit(string id)
         {
-            var model = GetModel<Talent>(id);
+            var model = GetModel<Skill>(id);
             return View(model);
         }
 
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Edit(CodexItemModel<Talent> input)
+        [Authorize(Roles = "Contributor")]
+        public ActionResult Edit(CodexItemModel<Skill> input)
         {
             if (ModelState.IsValid)
             {
                 //insert or update properties common for all base codex items
                 var storedItem = UpsertBaseCodexItem(input);
-                //..and save 
+
                 DocumentSession.SaveChanges();
-                Success("New talent is created");
+                Success("Work is afraid of a skilled worker.");
             }
             return View(input);
         }
-
-
     }
 }
